@@ -1,0 +1,180 @@
+{
+    "subject": {
+        "name": "Carl Moore",
+        "title": "Software Developer",
+        "email": "carlmoore256@gmail.com",
+        "phone": "7088603766",
+        "github": "github.com/carlmoore256"
+    },
+    "summary": "Junior developer who is driven, creative and a quick learner. Experienced with data engineering, web APIs, XR Unity development and creative coding. Strong troubleshooting abilities, and equipped with adaptable skills.",
+    "experiences": [
+        {
+            "position": "Lead Game Developer",
+            "date": {
+                "start": "May 2023"
+            },
+            "company": "Ultimate Fantasy Battle (thig.io)",
+            "location": "Seattle, WA",
+            "summary": "Lead Game Developer role at thig.io",
+            "highlights": [
+                "Building a multiplayer mobile game for iOS and Android in Unity/C#",
+                "Complete re-design of client's exisitng board game companion app",
+                "Learning how to integrate design patterns for a complex software project with multiplayer connectivity",
+                "Experience building for iOS, Android, and WebGL platforms",
+                "Collaborated with another engineer to create the back-end multiplayer network protocol"
+            ]
+        },
+        {
+            "position": "Technology Manager",
+            "date": {
+                "start": "March 2023"
+            },
+            "company": "Seattle NFT Museum",
+            "location": "Seattle, WA",
+            "summary": "Managing technology systems for a digitial art gallery specializing in web3 artwork",
+            "highlights": [
+                "Integrating IOT control for displays, reducing turn-around time for new exhibits and daily setup time",
+                "Built web application nftcast.app to dynamically display and coordinate content on 30+ smart TVs",
+                "Reduced costs of the museum significantly by implementing custom software solution, providing greater control to our staff, curators and event organizers",
+                "Automating media conversions of large video and image files, optimizing digital art for displays"
+            ]
+        },
+        {
+            "position": "Data Engineer",
+            "date": {
+                "start": "October 2022",
+                "end": "May 2023"
+            },
+            "company": "Ride Share Network (RSN) LLC",
+            "location": "Seattle, WA",
+            "summary": "Data Engineer role at RSN LLC",
+            "highlights": [
+                "Building comprehensive BI dashboards in Sisense for data science team at VSCO, a social media and photo editing mobile application",
+                "Experience serving client’s needs through collaboration tools Jira and Confluence, learning business strategy & docs, fulfilling tickets"
+            ]
+        },
+        {
+            "position": "Solutions Architect",
+            "date": {
+                "start": "March 2022",
+                "end": "August 2022"
+            },
+            "company": "Soultice Solutions",
+            "location": "Seattle, WA",
+            "summary": "Part-time contract resolving database migration issues for client moving CRMs",
+            "highlights": [
+                "Resolved database merge conflicts for customer migrating CRM",
+                "Automated task of generating financial statement PDF documents for contractor, building NodeJS tool & integrating with business database",
+                "Experience handling secure and sensitive data for client with care"
+            ]
+        },
+        {
+            "position": "E-Commerce Specialist",
+            "date": {
+                "start": "April 2022",
+                "end": "August 2022"
+            },
+            "company": "Patchwerks LLC",
+            "location": "Seattle, WA",
+            "summary": "",
+            "highlights": [
+                "Designed an improved ecommerce business website patchwerks.com",
+                "Automated website upkeep tasks - new product listings, social media updates, and inventory changes using a custom NodeJS application",
+                "Gained experience building Shopify apps, learning Shopify admin API and Liquid templating language",
+                "Integrated 3rd party apps into company’s e-commerce platform"
+            ]
+        },
+        {
+            "position": "FOH Audio Engineer (Part Time)",
+            "date": {
+                "start": "March 2021",
+                "end": "January 2022"
+            },
+            "company": "Funhouse & El Corazon",
+            "location": "Seattle, WA",
+            "summary": "Part-time contract as FOH audio engineer and occasional lighting director for live music venue",
+            "highlights": [
+                "Mixing live performances, set/strike, coordinating with bands",
+                "Running house and monitor mixes with a Behringer X32 mixing console",
+                "Running lights with a QuickQ10 lighting console"
+            ]
+        },
+        {
+            "position": "Research Assistant",
+            "date": {
+                "start": "September 2019",
+                "end": "May 2021"
+            },
+            "company": "American University",
+            "location": "Washington, DC",
+            "summary": "Audio technology and machine learning research assistant",
+            "highlights": [
+                "Developed generative deep learning models for audio signal repair",
+                "Designed VR applications with novel methods of audio interactivity",
+                "Respresented the program at AES NYC, presenting VR demos",
+                "Researched and implemented audio signal processing techniques",
+                "Assisted faculty and students with remote learning audio streaming solutions during the pandemic, deploying a Python software solution"
+            ]
+        },
+        {
+            "position": "Unity Developer (MagicLeap AR Application)",
+            "date": {
+                "start": "June 2019",
+                "end": "September 2019"
+            },
+            "company": "American University IDEAS Lab",
+            "location": "Washington, DC",
+            "summary": "Developed an AR virtual museum application for MagicLeap One",
+            "highlights": [
+                "Developed Magic Leap AR exhibit in collaboration with Peace Corps",
+                "Integrated volumetric scans of artifacts and interviews with Peace Corps volunteers",
+                "Co-authored paper `AHMED` - (VRST 2019)",
+                "Implemented novel hand-tracking controls and spatial interface"
+            ]
+        }
+    ],
+    "skills": [],
+    "education": [
+        {
+            "institution": "American University",
+            "location": "Washington, DC",
+            "degree": "Audio Technology",
+            "degreeType": "MA",
+            "date": {
+                "start": "September 2019",
+                "end": "May 2021"
+            },
+            "courses": [
+                "Computer Vision",
+                "Digital Instrument Design",
+                "Audio Technology Capstone"
+            ],
+            "summary": "I was given a scholarship to continue my studies and research into XR at AU. I worked as research assistant under Professor William Brent, researching audio signal processing techniques and machine learning, and co-developing applications for low-latency audio streaming for remote learning during the pandemic. During this time, I dove deep into machine learning, neural networks, signal processing, and honed my skills in Python, C++, and C#.",
+            "activities": ["Research Assistant", "Tutor (Sound Synthesis)", "Technical support for remote choir rehearsals"]
+        },
+        {
+            "institution": "American University",
+            "location": "Washington, DC",
+            "degree": "Audio Production",
+            "degreeType": "BA",
+            "date": {
+                "start": "September 2014",
+                "end": "May 2019"
+            },
+            "courses": [
+                "Deep Learning & Computer Vision",
+                "Recording & Mixing I & II",
+                "Sound Synthesis",
+                "Cinematography",
+                "Great Ideas in Mathematics"
+            ],
+            "summary": "I got my Undergraduate Degree from AU in Audio Production, which I discovered to be a deep passion of mine after shifting around from Film and Political Science.",
+            "activities": [
+                "Graphic Designer (The Eagle)",
+                "Tutor (Sound Synthesis)",
+                "IDEAS lab volunteer developing XR applications",
+                "VR Research Paper - TimbreSpaceVR"
+            ]
+        }
+    ]
+}
