@@ -5,7 +5,7 @@ export interface DateRange {
 
 type ExperienceType = "work" | "volunteer" | "education" | "publication" | "project";
 
-export interface Experience {
+export interface _Experience {
     position: string;
     type?: ExperienceType;
     date: DateRange;
@@ -16,14 +16,14 @@ export interface Experience {
     skills?: string[]; // could be a list of ids that relate to skills
 }
 
-export interface Skill {
+export interface _Skill {
     id: string;
     name: string;
     level: string;
     keywords: string[];
 }
 
-export interface Education {
+export interface _Education {
     institution: string;
     location: string;
     degree: string;
@@ -34,7 +34,7 @@ export interface Education {
     activities?: string[];
 }
 
-export interface Contact {
+export interface _Contact {
     name: string;
     title: string;
     email: string;
@@ -45,9 +45,9 @@ export interface Contact {
 }
 
 export interface ResumeData {
-    subject: Contact;
+    subject: _Contact;
     summary: string;
-    experiences: Experience[];
-    skills: Skill[];
-    education: Education[];
+    experiences: _Experience[];
+    skills: _Skill[];
+    education: _Education[];
 }

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { Education } from "../lib/resume-types";
+    import type { _Education } from "../lib/resume-types";
     import ListBox from "./ListBox.svelte";
 
-    export let education: Education;
+    export let education: _Education;
     export let courseDescription: string = "Notable courses:";
     export let activitiesDescription: string = "Activities:";
 </script>

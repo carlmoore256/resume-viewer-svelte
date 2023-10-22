@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { Contact } from "../lib/resume-types";
+    import type { _Contact } from "../lib/resume-types";
     import { formatPhoneNumber } from "../lib/format";
     import Icon from "@iconify/svelte";
-    export let subject: Contact;
+    export let subject: _Contact;
 </script>
 
 <div id="container">

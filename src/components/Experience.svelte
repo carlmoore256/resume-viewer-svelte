@@ -1,39 +1,85 @@
 <script lang="ts">
-    import type { Experience } from "../lib/resume-types";
+    import type { Experience } from "../lib/api";
     import { fade, scale } from "svelte/transition";
+    import { readableDate } from "../lib/format";
 
-    import Icon from "@iconify/svelte";
     export let experience: Experience;
+
+    // let elements: HTMLElement[] = [];
+    // function getPositions() {
+    //     elements.forEach((element, index) => {
+    //         console.log(
+    //             `Getting position for ${experience.descriptions[index].id}`
+    //         );
+    //         const rect = element.getBoundingClientRect();
+    //         // writableDataStore.setData(experience.descriptions[index].id, {
+    //         //     top: rect.top,
+    //         //     left: rect.left,
+    //         //     width: rect.width,
+    //         //     height: rect.height,
+    //         // });
+    //         writableDataStore.upsertData(experience.descriptions[index].id, {
+    //             bulletRect: rect,
+    //         });
+    //     });
+    // }
+
+    // onMount(() => {
+    //     getPositions();
+    // });
 
     let showingDetails = true;
 </script>
 
 <div class="experience-section">
     <div class="position">
-        <h3>{experience.position}</h3>
+        <h3>{experience.name}</h3>
     </div>
     <div class="horizontal-bar">
         <div class="position">
             <span
-                ><strong>{experience.company}</strong> | {experience.location}</span
+                ><strong>{experience.organization.name}</strong> | {experience
+                    .organization.location}</span
             >
         </div>
         <div class="date">
-            {experience.date.start}
+            {readableDate(experience.startDate || "")}
 
-            {#if experience.date.end}
-                - {experience.date.end}
+            {#if experience.endDate}
+                - {readableDate(experience.endDate || "")}
             {:else}
                 - Present
             {/if}
         </div>
     </div>
-    <!-- {#if experience.summary}
+
+    {#if showingDetails}
+        {#if experience.descriptions.length > 0}
+            <ul
+                class="highlights"
+                transition:scale={{ start: 0.95, duration: 200 }}
+            >
+                {#each experience.descriptions as description, index}
+                    <div
+                        class="bullet-container"
+                        id={`bullet_${description.id}`}
+                    >
+                        <li>
+                            {description.text}
+                        </li>
+                    </div>
+                {/each}
+            </ul>
+        {/if}
+    {/if}
+</div>
+
+<!-- {#if experience.summary}
         <div class="summary">
             {experience.summary}
         </div>
     {/if} -->
-    <!-- {#if experience.summary && !showingDetails}
+<!-- {#if experience.summary && !showingDetails}
         <div class="summary">
             {experience.summary}
         </div>
@@ -48,20 +94,6 @@
             <Icon icon="ooui:expand" />
         </button>
     {/if} -->
-
-    {#if showingDetails}
-        {#if experience.highlights && experience.highlights.length > 0}
-            <ul
-                class="highlights"
-                transition:scale={{ start: 0.95, duration: 200 }}
-            >
-                {#each experience.highlights as highlight}
-                    <li>{highlight}</li>
-                {/each}
-            </ul>
-        {/if}
-    {/if}
-</div>
 
 <style>
     .horizontal-bar {
