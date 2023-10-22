@@ -29,6 +29,8 @@
     // });
 
     let showingDetails = true;
+    // let detailsStyle = "height: 0px; overflow: hidden;";
+    let detailsStyle = "";
 </script>
 
 <div class="experience-section">
@@ -53,25 +55,25 @@
         </div>
     </div>
 
-    {#if showingDetails}
+    <!-- {#if showingDetails} -->
+    <div class="details" style={detailsStyle}>
         {#if experience.descriptions.length > 0}
             <ul
                 class="highlights"
                 transition:scale={{ start: 0.95, duration: 200 }}
             >
                 {#each experience.descriptions as description, index}
-                    <div
+                    <li
                         class="bullet-container"
                         id={`bullet_${description.id}`}
                     >
-                        <li>
-                            {description.text}
-                        </li>
-                    </div>
+                        {description.text}
+                    </li>
                 {/each}
             </ul>
         {/if}
-    {/if}
+    </div>
+    <!-- {/if} -->
 </div>
 
 <!-- {#if experience.summary}
@@ -96,6 +98,11 @@
     {/if} -->
 
 <style>
+    /* .bullet-container li::before {
+        content: "•"; 
+        position: absolute;
+        left: -1.2em;
+    } */
     .horizontal-bar {
         display: flex;
         justify-content: space-between;

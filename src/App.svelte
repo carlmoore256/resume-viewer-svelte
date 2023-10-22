@@ -13,6 +13,7 @@
     });
 
     let useNodes = true;
+    let useMap = false;
 </script>
 
 <div class="container">
@@ -20,9 +21,17 @@
         <p>Loading...</p>
     {:else}
         <main>
+            <button id="use-map" on:click={() => (useMap = !useMap)}>
+                {#if useMap}
+                    Hide Map
+                {:else}
+                    Show Map
+                {/if}
+            </button>
             {#if useNodes}
-                <DescriptionMap />
-                <Resume {resumeData} />
+                <DescriptionMap isActivated={true}/>
+                <!-- <DescriptionMap isActivated={useMap} /> -->
+                <!-- <Resume {resumeData} /> -->
             {:else}
                 <Resume {resumeData} />
             {/if}
@@ -31,6 +40,13 @@
 </div>
 
 <style>
+    #use-map {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 100;
+    }
+
     .container {
         display: flex;
         justify-content: center;

@@ -34,33 +34,32 @@
 
     let svgBullets = [];
 
-    function generateMap() {
-        const allDescriptions: DescriptionPoint[] = [];
+    function getDescriptionPoints(experience: Experience): DescriptionPoint[] {
+        return experience.descriptions.map((d) => {
+            const bulletElement = document.getElementById(`bullet_${d.id}`);
+            if (!bulletElement) {
+                console.log("No bullet element found");
+            }
+            return {
+                id: d.id,
+                x: d.reducedEmbedding[0],
+                y: d.reducedEmbedding[1],
+                cluster: d.kmeansLabel,
+                text: d.text,
+                experienceName: experience.name,
+                experienceOrg: experience.organization.name,
+                experienceLocation: experience.organization.location,
+                bulletElement,
+                // startDate: experience.startDate,
+                // endDate: experience.endDate,
+            };
+        });
+    }
 
-        for (const {
-            descriptions,
-            name,
-            organization,
-            startDate,
-            endDate,
-        } of $experienceStore) {
-            const points = descriptions.map((d) => {
-                // console.log()
-                return {
-                    id: d.id,
-                    x: d.reducedEmbedding[0],
-                    y: d.reducedEmbedding[1],
-                    cluster: d.kmeansLabel,
-                    text: d.text,
-                    experienceName: name,
-                    experienceOrg: organization.name,
-                    experienceLocation: organization.location,
-                    bulletElement: document.getElementById(`bullet_${d.id}`),
-                    // startDate,
-                    // endDate
-                };
-            });
-            allDescriptions.push(...points);
+    function getMapData() {
+        const allDescriptions = [];
+        for (const experience of $experienceStore) {
+            allDescriptions.push(...getDescriptionPoints(experience));
         }
 
         const experienceCenters = $experienceStore.map((e) => {
@@ -72,34 +71,53 @@
             };
         });
 
-        // const clusterCenters = experiences.map(e => e.name);
-
         const [minX, maxX] = d3.extent(allDescriptions.map((d) => d.x));
         const [minY, maxY] = d3.extent(allDescriptions.map((d) => d.y));
 
         if (!minX || !minY || !maxX || !maxY) {
             console.log("Range be non-zero numbers");
-            return;
         }
+
+        return {
+            allDescriptions,
+            experienceCenters,
+            minX,
+            maxX,
+            minY,
+            maxY,
+        };
+    }
+
+    function generateMap() {
+        const { allDescriptions, experienceCenters, minX, maxX, minY, maxY } =
+            getMapData();
 
         const width = window.innerWidth;
         const height = window.innerHeight;
 
+        const totalHeight = Math.max(
+            document.body.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.clientHeight,
+            document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight
+        );
+
         const _svg = d3.select(svg);
 
         _svg.attr("width", width)
-            .attr("height", height)
+            .attr("height", totalHeight)
             .selectAll("*")
             .remove()
             .attr("viewBox", [0, 0, width, height]);
 
         const xScale = d3
             .scaleLinear()
-            .domain([minX, maxX])
+            .domain([minX!, maxX!])
             .range([margin.left, width - margin.right]);
         const yScale = d3
             .scaleLinear()
-            .domain([minY, maxY])
+            .domain([minY!, maxY!])
             .range([height - margin.bottom, margin.top]);
 
         const colorDomain = Array.from(
@@ -118,30 +136,66 @@
             .style("font-family", "sans-serif")
             .style("font-size", "12px");
 
+        const t = d3.transition().duration(1000);
+
+        if (!isActivated) {
+            _svg.selectAll("circle")
+                .data(allDescriptions)
+                .join("circle")
+                .attr("cx", (d) => xScale(d.x))
+                .attr("cy", (d) => yScale(d.y))
+                .attr("r", 8)
+                .transition()
+                .duration(1000)
+                .attr(
+                    "cx",
+                    (d) =>
+                        d.bulletElement!.getBoundingClientRect().left +
+                        window.scrollX -
+                        22
+                )
+                .attr(
+                    "cy",
+                    (d) =>
+                        d.bulletElement!.getBoundingClientRect().top +
+                        window.scrollY +
+                        5
+                )
+
+                .attr("r", 4)
+                .attr("fill", (d) => colorScale(d.experienceName) as string);
+        } else {
+            _svg.selectAll("circle")
+                .data(allDescriptions)
+                .join("circle")
+                .attr(
+                    "cx",
+                    (d) =>
+                        d.bulletElement!.getBoundingClientRect().left +
+                        window.scrollX -
+                        22
+                )
+                .attr(
+                    "cy",
+                    (d) =>
+                        d.bulletElement!.getBoundingClientRect().top +
+                        window.scrollY +
+                        5
+                )
+                .transition()
+                .duration(1000)
+                .attr("cx", (d) => xScale(d.x))
+                .attr("cy", (d) => yScale(d.y))
+                .attr("r", 8)
+                .attr("fill", (d) => colorScale(d.experienceName) as string);
+        }
+
         _svg.selectAll("circle")
             .data(allDescriptions)
-            .join("circle")
-            .attr("cx", (d) =>
-                isActivated
-                    ? xScale(d.x)
-                    : d.bulletElement!.getBoundingClientRect().left +
-                      window.scrollX
-            )
-            .attr("cy", (d) =>
-                isActivated
-                    ? yScale(d.y)
-                    : d.bulletElement!.getBoundingClientRect().top +
-                      window.scrollY
-            )
-            .attr("r", 10)
-            .attr("fill", (d) => colorScale(d.experienceName) as string)
             .on("mouseover", function (d, data) {
                 d3.select(this).transition().duration(100).attr("r", 15);
-
                 const descriptionStore = storeForId(d.id);
-
                 const { pageX, pageY } = d;
-
                 div.style("left", pageX + 15 + "px")
                     .style("top", pageY + 15 + "px")
                     .style(
@@ -162,40 +216,6 @@
                 d3.select(".test").style("opacity", 0);
                 div.transition().duration(50).style("opacity", 0);
             });
-
-        allDescriptions.forEach((d) => {
-            d3.select(d.bulletElement)
-                .append("svg")
-                .attr("width", 10)
-                .attr("height", 10);
-            svgBullets.push();
-        });
-    }
-
-    function drawCircles(node: HTMLElement, descriptions: DescriptionPoint[]) {
-        const allDescriptions: DescriptionPoint[] = [];
-        const [minX, maxX] = d3.extent(descriptions.map((d) => d.x));
-        const [minY, maxY] = d3.extent(descriptions.map((d) => d.y));
-
-        if (!minX || !minY || !maxX || !maxY) {
-            console.log("Range be non-zero numbers");
-            return;
-        }
-
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-
-        const xScale = d3
-            .scaleLinear()
-            .domain([minX, maxX])
-            .range([margin.left, width - margin.right]);
-        const yScale = d3
-            .scaleLinear()
-            .domain([minY, maxY])
-            .range([height - margin.bottom, margin.top]);
-        const colorDomain = Array.from(
-            new Set(descriptions.map((d) => d.experienceName.toString()))
-        );
     }
 
     $: {
@@ -203,9 +223,11 @@
             generateMap();
 
             if (isActivated) {
-                container.style.position = "fixed";
+                // container.style.position = "fixed";
+                container.style.backdropFilter = "blur(5px)";
             } else {
-                container.style.position = "absolute";
+                // container.style.position = "absolute";
+                container.style.backdropFilter = "none";
             }
         }
     }
@@ -223,8 +245,10 @@
 <style>
     svg {
         /* background-color: #fff; */
-        height: 100%;
-        position: fixed;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     .container {
@@ -233,6 +257,8 @@
         height: 100vh; /* for vertical centering */
         position: absolute;
         z-index: 20;
+        width: 100vw;
+        transition-duration: 900ms;
     }
 
     .tooltip {
