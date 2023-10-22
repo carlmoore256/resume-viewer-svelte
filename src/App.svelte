@@ -1,8 +1,10 @@
 <script lang="ts">
     import Resume from "./components/Resume.svelte";
     import type { ResumeData } from "./lib/resume-types";
+    import DescriptionMapOverlay from "./components/DescriptionMapOverlay.svelte";
     import DescriptionMap from "./components/DescriptionMap.svelte";
     import Basic from "./components/Basic.svelte";
+    import ExperienceCreator from "./components/ExperienceCreator.svelte";
 
     let resumeData: ResumeData;
     let isLoading = true;
@@ -14,13 +16,22 @@
 
     let useNodes = true;
     let useMap = false;
+
+    type Page = "resume" | "map" | "resume-map";
+
+    const currentPage: Page = "map";
 </script>
 
 <div class="container">
     {#if isLoading}
         <p>Loading...</p>
     {:else}
-        <main>
+        {#if currentPage == "map"}
+            <DescriptionMap />
+            <ExperienceCreator />
+        {:else if currentPage == "resume"}
+            <Resume {resumeData} />
+        {:else if currentPage == "resume-map"}
             <button id="use-map" on:click={() => (useMap = !useMap)}>
                 {#if useMap}
                     Hide Map
@@ -29,13 +40,13 @@
                 {/if}
             </button>
             {#if useNodes}
-                <DescriptionMap isActivated={true}/>
-                <!-- <DescriptionMap isActivated={useMap} /> -->
-                <!-- <Resume {resumeData} /> -->
+                <DescriptionMapOverlay isActivated={useMap} />
+                <Resume {resumeData} />
             {:else}
                 <Resume {resumeData} />
             {/if}
-        </main>
+        {/if}
+        <main />
     {/if}
 </div>
 

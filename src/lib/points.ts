@@ -13,7 +13,7 @@ export function distance(point1 : number[], point2 : number[]) {
 
 export function radius(points : number[][]) {
     const { x: centerX, y: centerY } = centerOfMass(points);
-    const radius = Math.max(...points.map(coord => {
+    return Math.max(...points.map(coord => {
         const dx = coord[0] - centerX;
         const dy = coord[1] - centerY;
         return Math.sqrt(dx * dx + dy * dy);  // Euclidean distance

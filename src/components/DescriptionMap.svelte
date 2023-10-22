@@ -1,15 +1,22 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { getExperiences } from "../lib/api";
-    import type { Experience, Description } from "../lib/api";
-    import { centerOfMass, radius, distance } from "../lib/points";
-    import { experienceStore } from "../lib/stores/experienceStore";
-    import { storeForId } from "../lib/stores/writableDataStore";
     import * as d3 from "d3";
+    import type { Experience } from "../lib/api";
+    import { centerOfMass, radius } from "../lib/points";
+    import { experienceStore } from "../lib/stores/experienceStore";
 
-    export let isActivated = false;
+    interface MapOptions {
+        nodeSize: number;
+        hoverSizeMult: number;
+        tooltipTransitionMs: number;
+    }
+
+    export let options: MapOptions = {
+        nodeSize: 8,
+        hoverSizeMult: 1.5,
+        tooltipTransitionMs: 100,
+    };
+
     let svg: SVGElement;
-    let container: HTMLDivElement;
     let tooltip: HTMLDivElement;
 
     // idea - the map can be invisible, or the dots in the locations
@@ -27,19 +34,12 @@
         experienceName: string;
         experienceOrg: string;
         experienceLocation: string;
-        bulletElement: HTMLElement | null;
         // startDate: string;
         // endDate: string | undefined;
     }
 
-    let svgBullets = [];
-
     function getDescriptionPoints(experience: Experience): DescriptionPoint[] {
         return experience.descriptions.map((d) => {
-            const bulletElement = document.getElementById(`bullet_${d.id}`);
-            if (!bulletElement) {
-                console.log("No bullet element found");
-            }
             return {
                 id: d.id,
                 x: d.reducedEmbedding[0],
@@ -49,7 +49,6 @@
                 experienceName: experience.name,
                 experienceOrg: experience.organization.name,
                 experienceLocation: experience.organization.location,
-                bulletElement,
                 // startDate: experience.startDate,
                 // endDate: experience.endDate,
             };
@@ -57,9 +56,9 @@
     }
 
     function getMapData() {
-        const allDescriptions = [];
+        const descriptions = [];
         for (const experience of $experienceStore) {
-            allDescriptions.push(...getDescriptionPoints(experience));
+            descriptions.push(...getDescriptionPoints(experience));
         }
 
         const experienceCenters = $experienceStore.map((e) => {
@@ -71,15 +70,15 @@
             };
         });
 
-        const [minX, maxX] = d3.extent(allDescriptions.map((d) => d.x));
-        const [minY, maxY] = d3.extent(allDescriptions.map((d) => d.y));
+        const [minX, maxX] = d3.extent(descriptions.map((d) => d.x));
+        const [minY, maxY] = d3.extent(descriptions.map((d) => d.y));
 
         if (!minX || !minY || !maxX || !maxY) {
             console.log("Range be non-zero numbers");
         }
 
         return {
-            allDescriptions,
+            descriptions,
             experienceCenters,
             minX,
             maxX,
@@ -89,7 +88,7 @@
     }
 
     function generateMap() {
-        const { allDescriptions, experienceCenters, minX, maxX, minY, maxY } =
+        const { descriptions, experienceCenters, minX, maxX, minY, maxY } =
             getMapData();
 
         const width = window.innerWidth;
@@ -103,14 +102,6 @@
             document.documentElement.offsetHeight
         );
 
-        const _svg = d3.select(svg);
-
-        _svg.attr("width", width)
-            .attr("height", totalHeight)
-            .selectAll("*")
-            .remove()
-            .attr("viewBox", [0, 0, width, height]);
-
         const xScale = d3
             .scaleLinear()
             .domain([minX!, maxX!])
@@ -121,7 +112,7 @@
             .range([height - margin.bottom, margin.top]);
 
         const colorDomain = Array.from(
-            new Set(allDescriptions.map((d) => d.experienceName.toString()))
+            new Set(descriptions.map((d) => d.experienceName.toString()))
         );
 
         const colorScale = d3
@@ -129,75 +120,47 @@
             .domain(colorDomain)
             .range(d3.schemeCategory10);
 
-        var div = d3
+        const _tooltip = d3
             .select(tooltip)
             .style("opacity", 0)
             .style("position", "absolute")
             .style("font-family", "sans-serif")
             .style("font-size", "12px");
 
-        const t = d3.transition().duration(1000);
+        const _svg = d3.select(svg);
 
-        if (!isActivated) {
-            _svg.selectAll("circle")
-                .data(allDescriptions)
-                .join("circle")
-                .attr("cx", (d) => xScale(d.x))
-                .attr("cy", (d) => yScale(d.y))
-                .attr("r", 8)
-                .transition()
-                .duration(1000)
-                .attr(
-                    "cx",
-                    (d) =>
-                        d.bulletElement!.getBoundingClientRect().left +
-                        window.scrollX -
-                        22
-                )
-                .attr(
-                    "cy",
-                    (d) =>
-                        d.bulletElement!.getBoundingClientRect().top +
-                        window.scrollY +
-                        5
-                )
+        _svg.attr("width", width)
+            .attr("height", totalHeight)
+            .selectAll("*")
+            .remove()
+            .attr("viewBox", [0, 0, width, height]);
 
-                .attr("r", 4)
-                .attr("fill", (d) => colorScale(d.experienceName) as string);
-        } else {
-            _svg.selectAll("circle")
-                .data(allDescriptions)
-                .join("circle")
-                .attr(
-                    "cx",
-                    (d) =>
-                        d.bulletElement!.getBoundingClientRect().left +
-                        window.scrollX -
-                        22
-                )
-                .attr(
-                    "cy",
-                    (d) =>
-                        d.bulletElement!.getBoundingClientRect().top +
-                        window.scrollY +
-                        5
-                )
-                .transition()
-                .duration(1000)
-                .attr("cx", (d) => xScale(d.x))
-                .attr("cy", (d) => yScale(d.y))
-                .attr("r", 8)
-                .attr("fill", (d) => colorScale(d.experienceName) as string);
-        }
+        _svg.selectAll(".experience")
+            .data(experienceCenters)
+            .join("circle")
+            .classed("experience", true)
+            .attr("cx", (d) => xScale(d.center.x))
+            .attr("cy", (d) => yScale(d.center.y))
+            .attr("r", (d) => d.radius * 200)
+            .style("fill", (d) => colorScale(d.name) as string)
+            .style("opacity", 0.1)
 
-        _svg.selectAll("circle")
-            .data(allDescriptions)
+        _svg.selectAll(".description")
+            .data(descriptions)
+            .join("circle")
+            .classed("description", true)
+            .attr("cx", (d) => xScale(d.x))
+            .attr("cy", (d) => yScale(d.y))
+            .attr("r", options.nodeSize)
+            .attr("fill", (d) => colorScale(d.experienceName) as string)
             .on("mouseover", function (d, data) {
-                d3.select(this).transition().duration(100).attr("r", 15);
-                const descriptionStore = storeForId(d.id);
-                const { pageX, pageY } = d;
-                div.style("left", pageX + 15 + "px")
-                    .style("top", pageY + 15 + "px")
+                d3.select(this)
+                    .transition()
+                    .duration(100)
+                    .attr("r", options.nodeSize * options.hoverSizeMult);
+                _tooltip
+                    .style("left", d.pageX + 15 + "px")
+                    .style("top", d.pageY + 15 + "px")
                     .style(
                         "background-color",
                         colorScale(data.experienceName) as string
@@ -205,60 +168,43 @@
                     .html(
                         `<b>${data.experienceName}</b> 
                         <br/> ${data.experienceOrg} | ${data.experienceLocation} 
-                        <br /> ${data.text}
-                        <br /> ${descriptionStore}`
+                        <br /> ${data.text}`
                     );
-
-                div.transition().duration(50).style("opacity", 1);
+                _tooltip
+                    .transition()
+                    .duration(options.tooltipTransitionMs)
+                    .style("opacity", 1);
             })
             .on("mouseout", function (d) {
-                d3.select(this).transition().duration(400).attr("r", 10);
-                d3.select(".test").style("opacity", 0);
-                div.transition().duration(50).style("opacity", 0);
+                d3.select(this)
+                    .transition()
+                    .duration(400)
+                    .attr("r", options.nodeSize);
+                _tooltip
+                    .transition()
+                    .duration(options.tooltipTransitionMs)
+                    .style("opacity", 0);
             });
     }
 
     $: {
         if (svg && $experienceStore.length > 0) {
             generateMap();
-
-            if (isActivated) {
-                // container.style.position = "fixed";
-                container.style.backdropFilter = "blur(5px)";
-            } else {
-                // container.style.position = "absolute";
-                container.style.backdropFilter = "none";
-            }
         }
     }
-
-    // $: line = d3.line((d, i) => x(i), y);
 </script>
 
 <svelte:window on:resize={() => generateMap()} />
 
-<div class="container" bind:this={container}>
-    <div class="tooltip" bind:this={tooltip} />
-    <svg bind:this={svg} />
-</div>
+<div class="tooltip" bind:this={tooltip} />
+<svg bind:this={svg} />
 
 <style>
     svg {
-        /* background-color: #fff; */
         width: 100vw;
         position: absolute;
         top: 0;
         left: 0;
-    }
-
-    .container {
-        /* display: flex; */
-        justify-content: center;
-        height: 100vh; /* for vertical centering */
-        position: absolute;
-        z-index: 20;
-        width: 100vw;
-        transition-duration: 900ms;
     }
 
     .tooltip {
