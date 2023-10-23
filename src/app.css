@@ -17,6 +17,8 @@
     -webkit-text-size-adjust: 100%;
 
     font-family: "Forum", serif;
+
+    overflow-y: hidden;
 }
 
 /* :root::before {

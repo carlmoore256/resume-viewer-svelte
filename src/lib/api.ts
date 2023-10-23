@@ -15,7 +15,7 @@ export interface Experience {
     contactId: string;
     contacts: any[];
     descriptions: Description[];
-    startDate: string | null;
+    startDate: string;
     endDate?: string | null;
     organization: {
         name: string;

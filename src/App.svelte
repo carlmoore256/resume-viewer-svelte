@@ -5,6 +5,8 @@
     import DescriptionMap from "./components/DescriptionMap.svelte";
     import Basic from "./components/Basic.svelte";
     import ExperienceCreator from "./components/ExperienceCreator.svelte";
+    import Navbar from "./components/Navbar.svelte";
+    import { experienceStore } from "./lib/stores/experienceStore";
 
     let resumeData: ResumeData;
     let isLoading = true;
@@ -22,12 +24,17 @@
     const currentPage: Page = "map";
 </script>
 
+<!-- <Navbar /> -->
 <div class="container">
     {#if isLoading}
         <p>Loading...</p>
     {:else}
         {#if currentPage == "map"}
-            <DescriptionMap />
+            <DescriptionMap
+                width={window.innerWidth}
+                height={window.innerHeight}
+                experiences={$experienceStore}
+            />
             <ExperienceCreator />
         {:else if currentPage == "resume"}
             <Resume {resumeData} />

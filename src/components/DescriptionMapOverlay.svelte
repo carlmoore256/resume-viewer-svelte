@@ -147,20 +147,20 @@
                 .attr("r", 8)
                 .transition()
                 .duration(1000)
-                .attr(
-                    "cx",
-                    (d) =>
+                .attr("cx", (d) => {
+                    if (d.bulletElement) {
                         d.bulletElement!.getBoundingClientRect().left +
-                        window.scrollX -
-                        22
-                )
-                .attr(
-                    "cy",
-                    (d) =>
+                            window.scrollX -
+                            22;
+                    }
+                })
+                .attr("cy", (d) => {
+                    if (d.bulletElement) {
                         d.bulletElement!.getBoundingClientRect().top +
-                        window.scrollY +
-                        5
-                )
+                            window.scrollY +
+                            5;
+                    }
+                })
 
                 .attr("r", 4)
                 .attr("fill", (d) => colorScale(d.experienceName) as string);

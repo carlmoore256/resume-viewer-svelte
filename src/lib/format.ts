@@ -3,7 +3,7 @@ export function formatPhoneNumber(phoneNumber: string) {
 }
 
 export function readableDate(dateString: string) {
-    try {     
+    try {
         const date = new Date(dateString);
         const monthNames = [
             "January",
@@ -19,12 +19,27 @@ export function readableDate(dateString: string) {
             "November",
             "December",
         ];
-    
+
         const month = monthNames[date.getMonth()];
         const year = date.getFullYear();
-    
+
         return `${month}, ${year}`;
     } catch (error) {
         return "N/A";
     }
 }
+
+export const styleToString = (style: any) => {
+    return Object.keys(style).reduce(
+        (acc, key) =>
+            acc +
+            key
+                .split(/(?=[A-Z])/)
+                .join("-")
+                .toLowerCase() +
+            ":" +
+            style[key] +
+            ";",
+        ""
+    );
+};
