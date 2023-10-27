@@ -4,7 +4,18 @@
     import SkillList from "../components/SkillList.svelte";
     import { experienceStore } from "../lib/stores/experienceStore";
     import { skillStore } from "../lib/stores/skillStore";
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+
+
 </script>
+
+<svelte:window on:resize={() => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+}} />
 
 <main>
     <DescriptionMap

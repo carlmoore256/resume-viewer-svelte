@@ -32,3 +32,24 @@ export interface DescriptionTooltipProps {
     position: { x: number; y: number };
     color: string;
 }
+
+export interface DescriptionTooltipOptions {
+    opacity: number;
+    offsetX: number;
+    offsetY: number;
+}
+
+export interface DescriptionPointOptions {
+    nodeSize: number;
+    hoverSizeMult: number;
+    hoverSizeDurationMs: number;
+    tooltipTransitionMs: number;
+    tooltipOpacity: number;
+}
+
+export interface ExperiencePointOptions {
+    nodeSize: number;
+    hoverSizeMult: number;
+    hoverSizeDecayMs: number;
+    opacity: number;
+}

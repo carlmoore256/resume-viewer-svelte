@@ -19,3 +19,11 @@ export function radius(points : number[][]) {
         return Math.sqrt(dx * dx + dy * dy);  // Euclidean distance
     }));
 }
+
+export function raidusCoords(coords: {x: number, y: number}[]) {
+    return radius(coords.map(coord => [coord.x, coord.y]));
+}
+
+export function coordsToPonts(coords: {x: number, y: number}[]) {
+    return coords.map(coord => [coord.x, coord.y]);
+}
