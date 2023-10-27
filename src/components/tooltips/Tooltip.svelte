@@ -32,7 +32,7 @@
         /* position: absolute; */
         background-color: rgba(71, 26, 72, 0.785);
         /* border: 1px solid black; */
-        pointer-events: none; /* Prevents the tooltip from blocking mouse events */
+        /* pointer-events: none; */
         transition: opacity 0.3s;
         filter: drop-shadow(0px 0px 3px rgba(66, 46, 46, 0.209));
         border-radius: 5px;

@@ -15,12 +15,32 @@ const createExperienceStore = () => {
         }
     };
 
+    const randomizePositions = (amount : number) => {
+        update(experiences => {
+            return experiences.map(e => {
+                return {
+                    ...e,
+                    descriptions: e.descriptions.map(d => {
+                        return {
+                            ...d,
+                            reducedEmbedding: [
+                                d.reducedEmbedding[0] + (Math.random() * amount),
+                                d.reducedEmbedding[1] + (Math.random() * amount),
+                            ],
+                        };
+                    }),
+                };
+            });
+        })
+    }
+
     fetchData();
 
     return {
         subscribe,
         fetchData,
         set,
+        randomizePositions
     };
 };
 

@@ -1,13 +1,25 @@
 <script lang="ts">
     import type { Skill } from "../lib/api";
     import { styleToString } from "../lib/format";
+    import { scale } from "svelte/transition";
 
     export let skill: Skill;
     export let onClick: ((id: Skill) => void) | null = null;
-    // export let onClickDelete: ((id: Skill) => void) | null = null;
+    export let onMouseover: ((id: Skill) => void) | null = null;
+    export let onMouseout: ((id: Skill) => void) | null = null;
     export let style: any = {};
 
-    let showDelete = false;
+    function handleMouseover() {
+        if (onMouseover) {
+            onMouseover(skill);
+        }
+    }
+
+    function handleMouseout() {
+        if (onMouseout) {
+            onMouseout(skill);
+        }
+    }
 
     function handleClick() {
         if (onClick) {
@@ -23,13 +35,12 @@
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <button
     on:click={handleClick}
-    on:mouseover={() => (showDelete = true)}
-    on:mouseout={() => (showDelete = false)}
+    on:mouseover={handleMouseover}
+    on:mouseout={handleMouseout}
+    in:scale={{ duration: 300 }}
     style={styleString}
 >
     <h3>{skill.name}</h3>
-
-
 </button>
 
 <!-- {#if onClickDelete != null && showDelete}

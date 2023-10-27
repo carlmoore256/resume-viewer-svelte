@@ -2,38 +2,20 @@
     import * as d3 from "d3";
     import { ResumeDataset } from "../lib/ResumeDataset";
     import type { Description, Experience } from "../lib/api";
+    import type {
+        DescriptionMapOptions,
+        TooltipState,
+    } from "../lib/chart-types";
+    import { DefaultTooltipState } from "../lib/chart-types";
+    import { selectedSkillStore } from "../lib/stores/descriptionMapStores";
     import DescriptionPoint from "./DescriptionPoint.svelte";
     import ExperiencePoint from "./ExperiencePoint.svelte";
     import DescriptionTooltip from "./tooltips/DescriptionTooltip.svelte";
 
-    export let options = {
-        descriptionPointOptions: {
-            nodeSize: 8,
-            hoverSizeMult: 1.5,
-            hoverSizeDurationMs: 300,
-            tooltipTransitionMs: 100,
-            tooltipOpacity: 0.3,
-        },
-        experiencePointOptions: {
-            nodeSize: 0.5,
-            hoverSizeMult: 1.1,
-            hoverSizeDecayMs: 800,
-            opacity: 0.1,
-        },
-        descriptionTooltipOptions: {
-            opacity: 0.3,
-            offsetX: 15,
-            offsetY: 15,
-            anchorSize: 23
-        },
-        margin: { top: 50, right: 50, bottom: 50, left: 50 },
-    };
-
+    export let options: DescriptionMapOptions;
     export let experiences: Experience[];
     export let width: number;
     export let height: number;
-
-    let viewBox = `0 0 ${width} ${height}`;
 
     $: dataset = new ResumeDataset(
         experiences,
@@ -43,19 +25,71 @@
         (d) => d.reducedEmbedding[1]
     );
 
-    interface TooltipData {
-        show: boolean;
-        locked: boolean;
-    }
-
-    let tooltipRecord: Record<string, TooltipData> = {};
+    let tooltipStates: Record<string, TooltipState> = {};
 
     $: {
-        tooltipRecord = {};
+        tooltipStates = {};
         dataset.descriptions.forEach(
-            (d) => (tooltipRecord[d.id] = { show: false, locked: false })
+            (d) => (tooltipStates[d.id] = { ...DefaultTooltipState })
         );
     }
+
+    function mutateTooltipStates(callback: (s: TooltipState) => void) {
+        dataset.descriptions.forEach((d) => {
+            const state = tooltipStates[d.id];
+            callback(state);
+            tooltipStates[d.id] = state;
+        });
+    }
+
+    selectedSkillStore.subscribe(({ item, type }) => {
+        if (!dataset) return;
+
+        // if (item == null) {
+        //     mutateTooltipStates((d) => (d = {...DefaultTooltipState}));
+        //     return;
+        // }
+
+
+        switch (type) {
+            case "click": {
+                console.log("Clicked skill", item)
+                if (item == null) {
+                    mutateTooltipStates((d) => {
+                        d.showLabel = false;
+                        d.highlight = false;
+                    });
+                    return;
+                }
+                const descriptions = dataset.descriptionsWithSkill(item.id);
+                descriptions.forEach(
+                    (d) => {
+                        tooltipStates[d.id].showLabel = true;
+                        tooltipStates[d.id].highlight = true;
+                    }
+                );
+                break;
+            }
+
+            case "hover": {
+                if (item == null) {
+                    mutateTooltipStates((d) => {
+                        d.showLabel = false;
+                        d.highlight = false;
+                    });
+                    return;
+                }
+                const descriptions = dataset.descriptionsWithSkill(item.id);
+                descriptions.forEach(
+                    (d) => {
+                        tooltipStates[d.id].showLabel = true;
+                        tooltipStates[d.id].highlight = true;
+                    }
+                );
+                break;
+            }
+        }
+    });
 
     function drawLinesToRelatedSkills(description: Description) {
         for (const skillId of description.skillIds) {
@@ -86,23 +120,22 @@
     }
 
     function handleDescriptionClick(event: MouseEvent, data: Description) {
-        if (!tooltipRecord[data.id]) return;
-        tooltipRecord[data.id].locked = !tooltipRecord[data.id].locked;
+        if (!tooltipStates[data.id]) return;
+        tooltipStates[data.id].menuLocked = !tooltipStates[data.id].menuLocked;
     }
 
     function handleDescriptionMouseover(event: MouseEvent, data: Description) {
         drawLinesToRelatedSkills(data);
-        if (!tooltipRecord[data.id]) return;
-        tooltipRecord[data.id].show = true;
+        if (!tooltipStates[data.id]) return;
+        tooltipStates[data.id].showMenu = true;
     }
 
     function handleDescriptionMouseout(event: MouseEvent, data: Description) {
-        if (!tooltipRecord[data.id]) return;
-        if (tooltipRecord[data.id].locked) return;
+        if (!tooltipStates[data.id]) return;
+        if (tooltipStates[data.id].menuLocked) return;
         clearLines();
-        tooltipRecord[data.id].show = false;
+        tooltipStates[data.id].showMenu = false;
     }
-
 
     function handleExperienceClick(event: MouseEvent, data: Experience) {
         console.log("Clicked experience", data);
@@ -113,19 +146,20 @@
         //     tooltipRecord[description.id].locked = true;
         // }
     }
+
+    $: dataset, clearLines();
 </script>
 
 {#each dataset.descriptions as description}
     <DescriptionTooltip
-        show={tooltipRecord[description.id]?.show || false}
         options={options.descriptionTooltipOptions}
+        state={tooltipStates[description.id]}
         {description}
         {dataset}
-        isLocked={tooltipRecord[description.id]?.locked || false}
     />
 {/each}
 
-<svg {width} {height} {viewBox}>
+<svg {width} {height}>
     <g id="lines" />
 
     {#each dataset.experiences as experience}

@@ -3,6 +3,7 @@
     import type { ResumeDataset } from "../lib/ResumeDataset";
     import type { Description } from "../lib/api";
     import type { DescriptionPointOptions } from "../lib/chart-types";
+    import { fly } from "svelte/transition";
 
     export let description: Description;
     export let dataset: ResumeDataset;
@@ -37,15 +38,17 @@
         }
     }
 
+    
+
+
     $: color = dataset.descriptionColor(description);
-    let position = dataset.descriptionPosition(description);
+    $: position = dataset.descriptionPosition(description);
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <circle
-    class="description"
     cx={position.x}
     cy={position.y}
     fill={color}
@@ -54,4 +57,5 @@
     on:mouseover={handleMouseover}
     on:mouseleave={handleMouseleave}
     on:click={handleClick}
+    style="transition-duration: {options.transitionMs}ms;"
 />

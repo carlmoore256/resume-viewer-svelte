@@ -43,9 +43,9 @@
             .attr("r", radius * options.nodeSize * options.hoverSizeMult);
     }
 
-    let position = dataset.experiencePosition(experience);
-    let radius = dataset.experienceRadius(experience);
-    let color = dataset.experienceColor(experience);
+    $: position = dataset.experiencePosition(experience);
+    $: radius = dataset.experienceRadius(experience);
+    $: color = dataset.experienceColor(experience);
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -61,4 +61,5 @@
     on:mouseover={handleMouseover}
     on:mouseout={handleMouseout}
     on:click={handleClick}
+    style="transition-duration: {options.transitionMs}ms;"
 />

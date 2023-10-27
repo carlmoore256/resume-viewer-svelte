@@ -26,6 +26,7 @@ export class ResumeDataset {
         descriptionPositionY?: (d: Description) => number,
         colorRange: ReadonlyArray<string> = schemeCategory10
     ) {
+        console.log(`Creating ResumeDataset`);
         this._experiences = experiences;
         this._descriptions = experiences.flatMap((e) => e.descriptions);
 

@@ -131,3 +131,13 @@ export const createSkill = async (
     });
     return response.data;
 }
+
+export const updateDescription = async (
+    id: string,
+    text: string
+): Promise<{status: string}> => {
+    const response = await axios.put(`${baseUrl}/resume/description/${id}`, {
+        text,
+    });
+    return response.data;
+};

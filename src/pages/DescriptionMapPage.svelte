@@ -7,19 +7,25 @@
 
     let width = window.innerWidth;
     let height = window.innerHeight;
-</script>
 
-<svelte:window
-    on:resize={() => {
+    function handleResize() {
         width = window.innerWidth;
         height = window.innerHeight;
-    }}
-/>
+    }
+</script>
+
+<svelte:window on:resize={handleResize} />
 
 <main>
+    <button
+        id="randomize"
+        on:click={() => experienceStore.randomizePositions(0.1)}
+    >
+        Randomize
+    </button>
     <DescriptionMap
-        width={window.innerWidth}
-        height={window.innerHeight}
+        {width}
+        {height}
         experiences={$experienceStore}
         options={{
             descriptionPointOptions: {
@@ -28,12 +34,14 @@
                 hoverSizeDurationMs: 300,
                 tooltipTransitionMs: 100,
                 tooltipOpacity: 0.3,
+                transitionMs: 800,
             },
             experiencePointOptions: {
                 nodeSize: 0.5,
                 hoverSizeMult: 1.3,
                 hoverSizeDecayMs: 800,
                 opacity: 0.1,
+                transitionMs: 800,
             },
             descriptionTooltipOptions: {
                 opacity: 0.3,
@@ -49,6 +57,22 @@
 </main>
 
 <style>
+    #randomize {
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 12px;
+        cursor: pointer;
+        position:absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+    }
+
+    #randomize:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
     main {
         margin: 0;
         padding: 0;

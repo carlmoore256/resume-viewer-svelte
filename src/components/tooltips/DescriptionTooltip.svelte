@@ -1,12 +1,15 @@
 <script lang="ts">
-    import { draw, fade, slide } from "svelte/transition";
+    import { draw, fade, slide, blur, fly } from "svelte/transition";
     import {
         addSkillToDescription,
         removeSkillFromDescription,
         type Description,
         type Skill,
     } from "../../lib/api";
-    import type { DescriptionTooltipOptions } from "../../lib/chart-types";
+    import type {
+        DescriptionTooltipOptions,
+        TooltipState,
+    } from "../../lib/chart-types";
     import { readableDate } from "../../lib/format";
     import { skillStore } from "../../lib/stores/skillStore";
 
@@ -14,14 +17,19 @@
     import { hexToRgb, rgbColorToHex } from "../../lib/colors";
     import SkillItem from "../SkillItem.svelte";
     import Tooltip from "./Tooltip.svelte";
+    import { updateDescription } from "../../lib/api";
+    import { experienceStore } from "../../lib/stores/experienceStore";
+    import { Moon } from "svelte-loading-spinners";
+    import PointSelectionIndicator from "./PointSelectionIndicator.svelte";
 
-    export let show: boolean = false;
     export let options: DescriptionTooltipOptions;
+    export let state: TooltipState;
     export let description: Description;
     export let dataset: ResumeDataset;
-    export let isLocked = false;
 
     let allSkillsShowing = false;
+    let editMode = false;
+    let isLoading = false;
 
     $: skills = description.skillIds
         .map((id) => $skillStore.find((s) => s.id === id))
@@ -52,56 +60,68 @@
         }
     }
 
-    function getColor() {
+    function getColor(transparency: number) {
         let color = dataset.descriptionColor(description);
         let rgb = hexToRgb(color) as any;
-        rgb.a = options.opacity;
+        rgb.a = transparency;
         return rgbColorToHex(rgb);
     }
 
     function onClickText() {
         console.log("clicked text");
-        editMode = !editMode;
+        if (editMode) return;
+        editMode = true;
+    }
+
+    async function onSubmitText() {
+        editMode = false;
+        isLoading = true;
+        console.log(`Updating description: ${description.id}`);
+        const res = await updateDescription(description.id, description.text);
+        if (res && res.status === "success") {
+            console.log(`Updated description: ${res}`);
+            experienceStore.fetchData();
+            isLoading = false;
+        }
+    }
+
+    function handleTextareaKey(event: any) {
+        // Check if the pressed key is "Enter" and there's no modifier key pressed (like Shift)
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault(); // Prevent a newline
+            onSubmitText(); // Submit the content
+        }
     }
 
     $: position = dataset.descriptionPosition(description);
-    $: color = getColor();
     $: experience = dataset.descriptionExperience(description);
-
-    let editMode = false;
 </script>
 
-{#if show}
+{#if state.showLabel}
     <div
-        id="anchor-point"
-        style={`
-        top: ${position.y - options.anchorSize}px; 
-        left: ${position.x - options.anchorSize}px;
-        width: ${options.anchorSize * 2}px;
-        height: ${options.anchorSize * 2}px;
-        `}
+        in:fly={{ duration: 300 }}
+        id="label"
+        style={`top: ${position.y + options.offsetY}px; left: ${
+            position.x + options.offsetX
+        }px; background-color: ${getColor(options.opacity)};`}
     >
-        <svg>
-            <path
-                d={`M ${options.anchorSize},${
-                    options.anchorSize - options.anchorSize * 0.8
-                } a ${options.anchorSize * 0.8},${
-                    options.anchorSize * 0.8
-                } 0 1,0 0,${options.anchorSize * 0.8 * 2} a ${
-                    options.anchorSize * 0.8
-                },${options.anchorSize * 0.8} 0 1,0 0,-${
-                    options.anchorSize * 0.8 * 2
-                }`}
-                opacity={options.opacity}
-                stroke={color}
-                stroke-width="4"
-                stroke-dasharray={isLocked ? "3,3" : "none"}
-                fill="none"
-                in:draw={{ duration: 500 }}
-                out:draw={{ duration: 500 }}
-            />
-        </svg>
+        <p>{experience.name}</p>
     </div>
+{/if}
+
+{#if state.showMenu || state.highlight}
+    <PointSelectionIndicator
+        {position}
+        size={options.anchorSize}
+        color={getColor(0.8)}
+        opacity={options.opacity}
+        dashed={state.menuLocked}
+    />
+{/if}
+
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+{#if state.showMenu}
     <div
         class="container"
         style={`top: ${position.y + options.offsetY}px; left: ${
@@ -112,26 +132,41 @@
             title={experience.name}
             style={{
                 maxWidth: "200px",
-                backgroundColor: color,
-                border: isLocked
+                backgroundColor: getColor(options.opacity),
+                border: state.menuLocked
                     ? "1px solid rgba(255, 255, 255, 0.5)"
                     : "none",
                 position: "relative",
             }}
         >
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <div id="description-text" on:click={onClickText} on:mouseenter={onClickText}>
+            <div id="description-text">
                 {#if editMode}
-                    <input
-                        type="text"
+                    <textarea
+                        id="description-input"
                         bind:value={description.text}
                         on:blur={() => (editMode = false)}
+                        on:keydown={handleTextareaKey}
                     />
+                    <button id="submit-text" on:click={onSubmitText}>
+                        Submit
+                    </button>
+                    <button
+                        id="cancel-text"
+                        on:click={() => (editMode = false)}
+                    >
+                        Cancel
+                    </button>
                 {:else}
-                    <p>{description.text}</p>
+                    <p on:click={onClickText}>{description.text}</p>
                 {/if}
             </div>
+
+            {#if isLoading}
+                <div id="loading">
+                    <Moon size="25" color={getColor(1)} />
+                </div>
+            {/if}
+
             <p>{experience.organization.location}</p>
             <p>
                 {readableDate(experience.startDate)} - {experience.endDate !==
@@ -146,7 +181,7 @@
                 {#each skills as skill}
                     <SkillItem {skill} onClick={onClickExistingSkill} />
                 {/each}
-                {#if isLocked}
+                {#if state.menuLocked}
                     <button
                         id="add-btn"
                         transition:fade={{ duration: 100 }}
@@ -157,7 +192,7 @@
                 {/if}
             </div>
 
-            {#if isLocked && allSkillsShowing}
+            {#if state.menuLocked && allSkillsShowing}
                 <div transition:slide={{ duration: 300 }}>
                     {#each $skillStore as skill}
                         {#if !description.skillIds.includes(skill.id)}
@@ -177,8 +212,40 @@
 {/if}
 
 <style>
-    #anchor-point {
+    #label {
         position: absolute;
+        background-color: rgba(240, 248, 255, 0.24);
+        z-index: 999;
+        padding: 4px;
+        border-radius: 5px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(252, 252, 252, 0.123);
+    }
+
+    #label p {
+        font-size: 12px;
+        margin: 0;
+    }
+
+    #loading {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 6px;
+    }
+
+    #submit-text {
+        z-index: 999;
+    }
+
+    #description-input {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: black;
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+        height: 100px;
     }
 
     #add-btn {

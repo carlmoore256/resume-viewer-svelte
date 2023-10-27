@@ -5,6 +5,7 @@
     import SkillItem from "./SkillItem.svelte";
     import { styleToString } from "../lib/format";
     import { currentContactStore } from "../lib/stores/currentContactStore";
+    import { selectedSkillStore } from "../lib/stores/descriptionMapStores";
 
     export let skills: Skill[];
     export let onClickSkill: ((id: Skill) => void) | null = null;
@@ -17,6 +18,21 @@
         console.log("Clicked add skill");
         creatingNewSkill = true;
         newSkillName = "";
+    }
+
+    function onSkillClicked(skill: Skill) {
+        selectedSkillStore.set({ item: skill, type: "click" });
+        if (onClickSkill) {
+            onClickSkill(skill);
+        }
+    }
+
+    function onSkillMouseover(skill: Skill) {
+        selectedSkillStore.set({ item: skill, type: "hover" });
+    }
+
+    function onSkillMouseout(skill: Skill) {
+        selectedSkillStore.set({ item: null, type: "hover" });
     }
 
     let expanded = false;
@@ -32,7 +48,12 @@
         <div id="skills" transition:slide={{ duration: 300 }}>
             {#each skills as skill}
                 {#if skill}
-                    <SkillItem {skill} onClick={onClickSkill} />
+                    <SkillItem
+                        {skill}
+                        onClick={() => {onSkillClicked(skill)}}
+                        onMouseover={onSkillMouseover}
+                        onMouseout={onSkillMouseout}
+                    />
                 {/if}
             {/each}
             <button id="add-btn" on:click={onClickAdd}> + </button>

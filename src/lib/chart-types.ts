@@ -26,12 +26,25 @@ export interface TooltipContent {
     style?: any;
 }
 
-
 export interface DescriptionTooltipProps {
     data: DescriptionPoint;
     position: { x: number; y: number };
     color: string;
 }
+
+export interface TooltipState {
+    showMenu: boolean;
+    menuLocked: boolean;
+    highlight: boolean;
+    showLabel: boolean;
+}
+
+export const DefaultTooltipState : TooltipState = {
+    showMenu: false,
+    menuLocked: false,
+    highlight: false,
+    showLabel: false,
+};
 
 export interface DescriptionTooltipOptions {
     opacity: number;
@@ -46,6 +59,7 @@ export interface DescriptionPointOptions {
     hoverSizeDurationMs: number;
     tooltipTransitionMs: number;
     tooltipOpacity: number;
+    transitionMs: number;
 }
 
 export interface ExperiencePointOptions {
@@ -53,4 +67,12 @@ export interface ExperiencePointOptions {
     hoverSizeMult: number;
     hoverSizeDecayMs: number;
     opacity: number;
+    transitionMs: number;
+}
+
+export interface DescriptionMapOptions {
+    descriptionPointOptions: DescriptionPointOptions;
+    experiencePointOptions: ExperiencePointOptions;
+    descriptionTooltipOptions: DescriptionTooltipOptions;
+    margin: { top: number; right: number; bottom: number; left: number };
 }
