@@ -55,7 +55,7 @@ export const getExperiences = async (): Promise<Experience[]> => {
 };
 
 export const getContactByEmail = async (email: string): Promise<Contact> => {
-    const response = await axios.get(`${baseUrl}/resume/contact`, {
+    const response = await axios.get(`${baseUrl}/resume/contact/by-email`, {
         params: {
             email,
         },
@@ -95,6 +95,19 @@ export const addSkillToDescription = async (
     return response.data;
 };
 
+export const removeSkillFromDescription = async (
+    descriptionId: string,
+    skillId: string
+): Promise<Description> => {
+    const response = await axios.post(
+        `${baseUrl}/resume/skill/${skillId}/disconnect`,
+        {
+            descriptionId,
+        }
+    );
+    return response.data;
+};
+
 export const addSkillToExperience = async (
     experienceId: string,
     skillId: string
@@ -107,5 +120,14 @@ export const addSkillToExperience = async (
     );
     return response.data;
 }
-// export const addSkill = async ()
-// export const
+
+export const createSkill = async (
+    name: string,
+    contactId: string
+): Promise<Skill> => {
+    const response = await axios.post(`${baseUrl}/resume/skill`, {
+        name,
+        contactId,
+    });
+    return response.data;
+}

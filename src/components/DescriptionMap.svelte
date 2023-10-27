@@ -2,7 +2,6 @@
     import * as d3 from "d3";
     import { ResumeDataset } from "../lib/ResumeDataset";
     import type { Description, Experience } from "../lib/api";
-    import type { DescriptionTooltipProps } from "../lib/chart-types";
     import DescriptionPoint from "./DescriptionPoint.svelte";
     import ExperiencePoint from "./ExperiencePoint.svelte";
     import DescriptionTooltip from "./tooltips/DescriptionTooltip.svelte";
@@ -25,6 +24,7 @@
             opacity: 0.3,
             offsetX: 15,
             offsetY: 15,
+            anchorSize: 23
         },
         margin: { top: 50, right: 50, bottom: 50, left: 50 },
     };
@@ -34,7 +34,6 @@
     export let height: number;
 
     let viewBox = `0 0 ${width} ${height}`;
-    let tooltipLocked = false;
 
     $: dataset = new ResumeDataset(
         experiences,
@@ -58,16 +57,11 @@
         );
     }
 
-    function handleDescriptionClick(event: MouseEvent, data: Description) {
-        if (!tooltipRecord[data.id]) return;
-        tooltipRecord[data.id].locked = !tooltipRecord[data.id].locked;
-    }
-
-    function handleDescriptionMouseover(event: MouseEvent, data: Description) {
-        for (const skillId of data.skillIds) {
+    function drawLinesToRelatedSkills(description: Description) {
+        for (const skillId of description.skillIds) {
             const otherNodes = dataset.descriptionsWithSkill(skillId);
             const lineData = otherNodes.map((other) =>
-                dataset.lineBetweenDescriptions(data, other)
+                dataset.lineBetweenDescriptions(description, other)
             );
             const lines = d3.select("#lines").selectAll("line").data(lineData);
             lines
@@ -85,23 +79,41 @@
                 .attr("x2", (d) => d.x2)
                 .attr("y2", (d) => d.y2);
         }
+    }
+
+    function clearLines() {
+        d3.select("#lines").selectAll("line").remove();
+    }
+
+    function handleDescriptionClick(event: MouseEvent, data: Description) {
+        if (!tooltipRecord[data.id]) return;
+        tooltipRecord[data.id].locked = !tooltipRecord[data.id].locked;
+    }
+
+    function handleDescriptionMouseover(event: MouseEvent, data: Description) {
+        drawLinesToRelatedSkills(data);
         if (!tooltipRecord[data.id]) return;
         tooltipRecord[data.id].show = true;
     }
 
     function handleDescriptionMouseout(event: MouseEvent, data: Description) {
-        d3.select("#lines").selectAll("line").remove();
         if (!tooltipRecord[data.id]) return;
         if (tooltipRecord[data.id].locked) return;
+        clearLines();
         tooltipRecord[data.id].show = false;
     }
-</script>
 
-<!-- <DescriptionTooltip
-    props={descriptionTooltipProps}
-    showActions={tooltipLocked}
-    isLocked={tooltipLocked}
-/> -->
+
+    function handleExperienceClick(event: MouseEvent, data: Experience) {
+        console.log("Clicked experience", data);
+
+        // set all other points to blurred style
+        // for(const description of dataset.descriptions) {
+        //     if(description.id === data.descriptionId) continue;
+        //     tooltipRecord[description.id].locked = true;
+        // }
+    }
+</script>
 
 {#each dataset.descriptions as description}
     <DescriptionTooltip
@@ -109,7 +121,6 @@
         options={options.descriptionTooltipOptions}
         {description}
         {dataset}
-        showActions={tooltipLocked}
         isLocked={tooltipRecord[description.id]?.locked || false}
     />
 {/each}
@@ -122,6 +133,7 @@
             {experience}
             {dataset}
             options={options.experiencePointOptions}
+            onClick={handleExperienceClick}
         />
     {/each}
 

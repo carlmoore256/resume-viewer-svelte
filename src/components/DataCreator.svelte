@@ -18,7 +18,7 @@
         right: 0;
         background-color: rgba(255, 255, 255, 0.207);
         min-width: 100px;
-        min-height: 200px;
+        min-height: 100px;
         /* max-height: 300px; */
         border-radius: 5px;
     }

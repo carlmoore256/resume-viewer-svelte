@@ -37,6 +37,7 @@ export interface DescriptionTooltipOptions {
     opacity: number;
     offsetX: number;
     offsetY: number;
+    anchorSize: number;
 }
 
 export interface DescriptionPointOptions {

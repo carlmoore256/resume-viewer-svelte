@@ -39,8 +39,6 @@
 
     $: color = dataset.descriptionColor(description);
     let position = dataset.descriptionPosition(description);
-
-    console.log("creating description point", position);
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->

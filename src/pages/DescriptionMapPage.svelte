@@ -7,24 +7,45 @@
 
     let width = window.innerWidth;
     let height = window.innerHeight;
-
-
-
 </script>
 
-<svelte:window on:resize={() => {
-    width = window.innerWidth;
-    height = window.innerHeight;
-}} />
+<svelte:window
+    on:resize={() => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+    }}
+/>
 
 <main>
     <DescriptionMap
         width={window.innerWidth}
         height={window.innerHeight}
         experiences={$experienceStore}
+        options={{
+            descriptionPointOptions: {
+                nodeSize: 8,
+                hoverSizeMult: 1.1,
+                hoverSizeDurationMs: 300,
+                tooltipTransitionMs: 100,
+                tooltipOpacity: 0.3,
+            },
+            experiencePointOptions: {
+                nodeSize: 0.5,
+                hoverSizeMult: 1.3,
+                hoverSizeDecayMs: 800,
+                opacity: 0.1,
+            },
+            descriptionTooltipOptions: {
+                opacity: 0.3,
+                offsetX: 15,
+                offsetY: 15,
+                anchorSize: 23,
+            },
+            margin: { top: 100, right: 100, bottom: 100, left: 100 },
+        }}
     />
     <ExperienceCreator />
-    <SkillList skillIds={$skillStore.map((s) => s.id)} />
+    <SkillList skills={$skillStore} />
 </main>
 
 <style>

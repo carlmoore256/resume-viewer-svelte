@@ -1,42 +1,118 @@
 <script lang="ts">
+    import { slide } from "svelte/transition";
     import type { Skill } from "../lib/api";
     import { skillStore } from "../lib/stores/skillStore";
     import SkillItem from "./SkillItem.svelte";
     import { styleToString } from "../lib/format";
+    import { currentContactStore } from "../lib/stores/currentContactStore";
 
-    export let skillIds: string[] = [];
-    export let onClickAddSkill: Function | null = null;
+    export let skills: Skill[];
     export let onClickSkill: ((id: Skill) => void) | null = null;
     export let style: any = {};
 
-    const skills = skillIds.map((id) => $skillStore.find((s) => s.id === id));
+    let creatingNewSkill = false;
+    let newSkillName = "";
 
-    function handleClickAddSkill() {
-        if (onClickAddSkill) {
-            onClickAddSkill();
-        }
+    function onClickAdd() {
+        console.log("Clicked add skill");
+        creatingNewSkill = true;
+        newSkillName = "";
     }
+
+    let expanded = false;
 </script>
 
-<div class="container" style={styleToString(style)}>
-    {#if onClickAddSkill}
-        <button on:click={handleClickAddSkill}>Add Skill</button>
+<div class="container prevent-select" style={styleToString(style)}>
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div id="header" on:click={() => (expanded = !expanded)}>
+        <h3>Skills</h3>
+    </div>
+    {#if expanded}
+        <div id="skills" transition:slide={{ duration: 300 }}>
+            {#each skills as skill}
+                {#if skill}
+                    <SkillItem {skill} onClick={onClickSkill} />
+                {/if}
+            {/each}
+            <button id="add-btn" on:click={onClickAdd}> + </button>
+
+            {#if creatingNewSkill}
+                <div id="new-skill">
+                    <input type="text" bind:value={newSkillName} />
+
+                    <button
+                        on:click={() => {
+                            skillStore.addSkill(
+                                newSkillName,
+                                $currentContactStore.id
+                            );
+                            creatingNewSkill = false;
+                        }}>Add</button
+                    >
+                    <button on:click={() => (creatingNewSkill = false)}
+                        >Cancel</button
+                    >
+                </div>
+            {/if}
+        </div>
     {/if}
-    {#each skills as skill}
-        {#if skill}
-            <SkillItem {skill} onClick={onClickSkill} />
-        {/if}
-    {/each}
 </div>
 
 <style>
-    .container {
+    #add-btn {
+        background-color: rgba(255, 255, 255, 0.24);
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+        max-height: 40px;
+        border: none;
+        transition-duration: 300ms;
+    }
+
+    #add-btn:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    #new-skill {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        padding: 6px;
+        background-color: rgba(31, 31, 31, 0.527);
+        border-radius: 4px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: left;
         z-index: 100;
         max-width: 100%;
+        min-width: 120px;
+        /* padding: 10px; */
+        background-color: rgba(240, 248, 255, 0.123);
+        backdrop-filter: blur(10px);
+        border-radius: 5px;
+        filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.247));
+        border: 1px solid rgba(0, 0, 0, 0.123);
+    }
+
+    #skills {
+        padding: 4px;
+    }
+
+    #header {
+        display: flex;
+        background-color: rgba(27, 27, 27, 0.993);
+        border-radius: 4px;
+        padding: 5px;
+    }
+
+    h3 {
+        margin: 2px;
+        font-weight: 200;
     }
 
     button {
