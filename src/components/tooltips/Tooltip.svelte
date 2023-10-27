@@ -1,37 +1,30 @@
 <script lang="ts">
     import { styleToString } from "../../lib/format";
     import type { TooltipContent } from "../../lib/chart-types";
+    import { fade } from "svelte/transition"; // Import slide transition
 
-    export let content: TooltipContent | null = null;
-    export let position: { x: number; y: number };
-    export let show = false;
+    export let title: string | null = null;
+    export let subtitle: string | null = null;
+    export let style: any | null = null;
 
-    $: style = content?.style ? styleToString(content?.style) : "";
-
-    let htmlContent: string = content?.html || "";
+    $: style = style ? styleToString(style) : "";
 </script>
 
 <div
-    style={`top: ${position.y}px; left: ${position.x}px;`}
-    class="container {show ? 'show' : ''}"
+    class="container"
+    transition:fade={{ duration: 200 }}
 >
     <div class="tooltip" {style}>
-        {#if content}
-            {#if content.title}
-                <h3>{content.title}</h3>
-            {/if}
-
-            {#if content.subtitle}
-                <p>{content.subtitle}</p>
-            {/if}
-
-            {#if content.html}
-                <div bind:innerHTML={htmlContent} contenteditable></div>
-            {/if}
+        {#if title}
+            <h3>{title}</h3>
         {/if}
-    </div>
 
-    <slot />
+        {#if subtitle}
+            <p>{subtitle}</p>
+        {/if}
+
+        <slot />
+    </div>
 </div>
 
 <style>
@@ -44,16 +37,14 @@
         filter: drop-shadow(0px 0px 3px rgba(66, 46, 46, 0.209));
         border-radius: 5px;
         padding: 5px;
-        min-width: 200px;
-        max-width: 400px;
+        /* min-width: 200px;
+        max-width: 400px; */
 
         font-family: sans-serif;
         backdrop-filter: blur(10px);
     }
     .container {
-        position: absolute;
-        opacity: 0;
-        z-index: 21;
+        z-index: 100;
     }
 
     .container.show {

@@ -1,15 +1,17 @@
-
+import type { Experience } from "./api";
 export interface DescriptionPoint {
     id: string;
     x: number;
     y: number;
     cluster: number;
     text: string;
-    experienceName: string;
-    experienceOrg: string;
-    experienceLocation: string;
-    startDate: string;
-    endDate: string;
+    experience: Experience;
+    skillIds: string[];
+    // experienceName: string;
+    // experienceOrg: string;
+    // experienceLocation: string;
+    // startDate: string;
+    // endDate: string;
 }
 
 export interface ExperienceCenter {
@@ -21,6 +23,12 @@ export interface ExperienceCenter {
 export interface TooltipContent {
     title: string;
     subtitle?: string;
-    html?: string;
     style?: any;
+}
+
+
+export interface DescriptionTooltipProps {
+    data: DescriptionPoint;
+    position: { x: number; y: number };
+    color: string;
 }

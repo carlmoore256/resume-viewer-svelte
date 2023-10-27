@@ -6,6 +6,7 @@ const createExperienceStore = () => {
     const { subscribe, set, update } = writable<Experience[]>([]);
 
     const fetchData = async () => {
+        console.log("Fetching experience data...")
         try {
             const data = await getExperiences();
             set(data);

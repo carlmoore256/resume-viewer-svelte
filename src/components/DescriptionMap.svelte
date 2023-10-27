@@ -1,16 +1,18 @@
 <script lang="ts">
     import * as d3 from "d3";
-    import type { Experience } from "../lib/api";
+    import type { Description, Experience } from "../lib/api";
     import { centerOfMass, radius } from "../lib/points";
     import Tooltip from "./tooltips/Tooltip.svelte";
     import type {
         DescriptionPoint,
         ExperienceCenter,
     } from "../lib/chart-types";
-    import type { TooltipContent } from "../lib/chart-types";
+    import type {
+        TooltipContent,
+        DescriptionTooltipProps,
+    } from "../lib/chart-types";
     import { hexToRgb, rgbColorToHex } from "../lib/colors";
     import type { RgbColor } from "../lib/colors";
-    import ExperienceCreator from "./ExperienceCreator.svelte";
     import DescriptionTooltip from "./tooltips/DescriptionTooltip.svelte";
 
     export let options = {
@@ -26,11 +28,15 @@
     export let width: number;
     export let height: number;
 
+    function experienceById(id: string): Experience | undefined {
+        return experiences.find((e) => e.id === id);
+    }
+
     let viewBox = `0 0 ${width} ${height}`;
 
-    let tooltipContent: TooltipContent | null = null;
-    let tooltipPos: { x: number; y: number } = { x: 0, y: 0 };
-    let showTooltip = false;
+    let descriptionTooltipProps: DescriptionTooltipProps | null = null;
+
+    // let tooltipPos: { x: number; y: number } = { x: 0, y: 0 };
     let tooltipLocked = false;
     let displayText: { x: number; y: number; text: string } | null = null;
 
@@ -50,7 +56,9 @@
         .domain(
             Array.from(
                 new Set(
-                    mapData.descriptions.map((d) => d.experienceName.toString())
+                    mapData.descriptions.map((d) =>
+                        d.experience.name.toString()
+                    )
                 )
             )
         )
@@ -64,21 +72,24 @@
                 y: d.reducedEmbedding[1],
                 cluster: d.kmeansLabel,
                 text: d.text,
-                experienceName: experience.name,
-                experienceOrg: experience.organization.name,
-                experienceLocation: experience.organization.location,
-                startDate: experience.startDate,
-                endDate: experience.endDate || "Present",
+                skillIds: d.skillIds,
+                experience,
+                // cluster: d.kmeansLabel,
+                // text: d.text,
+                // experienceName: experience.name,
+                // experienceOrg: experience.organization.name,
+                // experienceLocation: experience.organization.location,
+                // startDate: experience.startDate,
+                // endDate: experience.endDate || "Present",
             };
         });
     }
 
     function getMapData(experiences: Experience[]) {
         console.log("Getting map data");
-        const descriptions = [];
-        for (const experience of experiences) {
-            descriptions.push(...getDescriptionPoints(experience));
-        }
+        const descriptions = experiences.flatMap((e) =>
+            getDescriptionPoints(e)
+        );
         const experienceCenters: ExperienceCenter[] = experiences.map((e) => {
             const coords = e.descriptions.map((d) => d.reducedEmbedding);
             let r = radius(coords);
@@ -106,27 +117,15 @@
         position: { x: number; y: number }
     ) {
         let bgColor = hexToRgb(
-            colorScale(data.experienceName) as string
+            colorScale(data.experience.name) as string
         ) as RgbColor;
         bgColor.a = options.tooltipOpacity;
 
-        tooltipPos = { x: position.x + 15, y: position.y + 15 };
-
-        tooltipContent = {
-            title: data.experienceName,
-            subtitle: data.text,
-            style: {
-                maxWidth: "200px",
-                backgroundColor: rgbColorToHex(bgColor),
-                border: tooltipLocked
-                    ? "1px solid rgba(255, 255, 255, 0.5)"
-                    : "none",
-            },
-            html: `<p>${data.experienceOrg}</p>
-                <p>${data.experienceLocation}</p>
-                <p>${data.startDate} - ${data.endDate}</p>`
+        descriptionTooltipProps = {
+            data: data,
+            position: { x: position.x + 15, y: position.y + 15 },
+            color: rgbColorToHex(bgColor),
         };
-        showTooltip = true;
     }
 
     function handleExpCenterMouseover(event: any, data: ExperienceCenter) {
@@ -149,7 +148,6 @@
             .transition()
             .duration(800)
             .attr("r", data.radius * 200);
-
     }
 
     function handleDescriptionMouseover(event: any, data: DescriptionPoint) {
@@ -163,6 +161,48 @@
                 y: event.clientY,
             });
         }
+
+        // draw lines from this to all other descriptions that have the same skill
+
+        for (const skillId of data.skillIds) {
+            const otherNodes = mapData.descriptions
+                .map((d) => (d.skillIds.includes(skillId) ? d : null))
+                .filter((d) => d !== null && d.id !== data.id) as DescriptionPoint[];
+
+            console.log("otherNodes", otherNodes);
+            
+            const xStart = xScale(data.x);
+            const yStart = yScale(data.y);
+            const xEnds = otherNodes.map((d) => xScale(d.x));
+            const yEnds = otherNodes.map((d) => yScale(d.y));
+
+            const lineData = xEnds.map((x, i) => {
+                return {
+                    x1: xStart,
+                    y1: yStart,
+                    x2: x,
+                    y2: yEnds[i],
+                };
+            });
+
+            const lines = d3.select("#lines").selectAll("line").data(lineData);
+
+            lines
+                .enter()
+                .append("line")
+                .attr("x1", (d) => d.x1)
+                .attr("y1", (d) => d.y1)
+                .attr("x2", (d) => d.x1)
+                .attr("y2", (d) => d.y1)
+                .attr("stroke", "white")
+                .attr("stroke-width", 1)
+                .attr("opacity", 0.5)
+                .transition()
+                .duration(200)
+                .attr("x2", (d) => d.x2)
+                .attr("y2", (d) => d.y2);
+
+        }
     }
 
     function handleDescriptionMouseout(event: any, data: DescriptionPoint) {
@@ -170,7 +210,9 @@
             .transition()
             .duration(400)
             .attr("r", options.nodeSize);
-        if (!tooltipLocked) showTooltip = false;
+        if (!tooltipLocked) descriptionTooltipProps = null;
+
+        d3.select("#lines").selectAll("line").remove();
     }
 
     function handleDescriptionClick(event: any, data: DescriptionPoint) {
@@ -185,19 +227,26 @@
             y: event.clientY,
         });
     }
+
+    function onSvgClicked() {
+        // if (tooltipLocked) {
+        //     tooltipLocked = false;
+        // }
+    }
 </script>
 
-<!-- <svelte:window on:resize={() => generateMap()} /> -->
+<svelte:window on:resize={() => (mapData = getMapData(experiences))} />
+
+
 
 <DescriptionTooltip
-    content={tooltipContent}
-    position={tooltipPos}
-    show={showTooltip}
+    props={descriptionTooltipProps}
     showActions={tooltipLocked}
+    isLocked={tooltipLocked}
 />
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<svg {width} {height} {viewBox}>
+<svg {width} {height} {viewBox} on:click={onSvgClicked}>
     <!-- {#if displayText}
         <text
             id="display-text"
@@ -213,6 +262,8 @@
         </text>
     {/if} -->
 
+    <g id="lines"></g>
+
     {#each mapData.experienceCenters as data}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -227,9 +278,7 @@
             on:click={(event) => handleExpCenterClick(event, data)}
             on:mouseover={(event) => handleExpCenterMouseover(event, data)}
             on:mouseleave={(event) => handleExpCenterMouseout(event, data)}
-        
-            >
-        </circle>   
+        />
     {/each}
 
     {#each mapData.descriptions as data}
@@ -240,7 +289,7 @@
             class="description"
             cx={xScale(data.x)}
             cy={yScale(data.y)}
-            fill={colorScale(data.experienceName)}
+            fill={colorScale(data.experience.name)}
             r={options.nodeSize}
             opacity={1}
             on:mouseover={(event) => handleDescriptionMouseover(event, data)}

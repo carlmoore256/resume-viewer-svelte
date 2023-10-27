@@ -2,11 +2,8 @@
     import Resume from "./components/Resume.svelte";
     import type { ResumeData } from "./lib/resume-types";
     import DescriptionMapOverlay from "./components/DescriptionMapOverlay.svelte";
-    import DescriptionMap from "./components/DescriptionMap.svelte";
-    import Basic from "./components/Basic.svelte";
-    import ExperienceCreator from "./components/ExperienceCreator.svelte";
-    import Navbar from "./components/Navbar.svelte";
-    import { experienceStore } from "./lib/stores/experienceStore";
+
+    import DescriptionMapPage from "./pages/DescriptionMapPage.svelte";
 
     let resumeData: ResumeData;
     let isLoading = true;
@@ -28,32 +25,24 @@
 <div class="container">
     {#if isLoading}
         <p>Loading...</p>
-    {:else}
-        {#if currentPage == "map"}
-            <DescriptionMap
-                width={window.innerWidth}
-                height={window.innerHeight}
-                experiences={$experienceStore}
-            />
-            <ExperienceCreator />
-        {:else if currentPage == "resume"}
-            <Resume {resumeData} />
-        {:else if currentPage == "resume-map"}
-            <button id="use-map" on:click={() => (useMap = !useMap)}>
-                {#if useMap}
-                    Hide Map
-                {:else}
-                    Show Map
-                {/if}
-            </button>
-            {#if useNodes}
-                <DescriptionMapOverlay isActivated={useMap} />
-                <Resume {resumeData} />
+    {:else if currentPage == "map"}
+        <DescriptionMapPage />
+    {:else if currentPage == "resume"}
+        <Resume {resumeData} />
+    {:else if currentPage == "resume-map"}
+        <button id="use-map" on:click={() => (useMap = !useMap)}>
+            {#if useMap}
+                Hide Map
             {:else}
-                <Resume {resumeData} />
+                Show Map
             {/if}
+        </button>
+        {#if useNodes}
+            <DescriptionMapOverlay isActivated={useMap} />
+            <Resume {resumeData} />
+        {:else}
+            <Resume {resumeData} />
         {/if}
-        <main />
     {/if}
 </div>
 
@@ -67,14 +56,6 @@
 
     .container {
         display: flex;
-        justify-content: center;
-        min-height: 100vh; /* for vertical centering */
-        /* z-index: 10; */
-        /* padding: 10px; */
-    }
-
-    main {
-        max-width: 1000px;
-        width: 100%; /* ensure it takes the full width up to 600px */
+        justify-content: left;
     }
 </style>
