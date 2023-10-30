@@ -12,7 +12,7 @@
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <h2
-            class="section-title sticky top-0 font-medium p-2 select-none cursor-pointer {titleStyle}"
+            class="z-10 section-title sticky top-0 font-medium p-2 select-none cursor-pointer {titleStyle}"
             on:click={() => (isExpanded = !isExpanded)}
         >
             {title}

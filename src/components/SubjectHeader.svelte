@@ -3,13 +3,21 @@
     import { formatPhoneNumber } from "../lib/format";
     import Icon from "@iconify/svelte";
     export let subject: Contact;
+    import { isMapShowing } from "../lib/stores/applicationStateStores";
+
+    function handleHeaderClick() {
+        isMapShowing.set(!$isMapShowing);
+    }
 
     // idea - on subject header click, it expands to show the map
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
     id="container"
     class="p-5 my-4 rounded-lg flex gap-10 border-solid border border-slate-400 transition-all duration-300 hover:py-8"
+    on:click={handleHeaderClick}
 >
     <div class="flex flex-col gap-2 m-2">
         <h1 class="text-3xl font-bold">{subject.firstName} {subject.lastName}</h1>

@@ -1,84 +1,81 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import type { ResumeData } from "../../lib/resume-types";
-    import SubjectHeader from "../SubjectHeader.svelte";
-    import Summary from "./Summary.svelte";
-    import Experience from "./Experience.svelte";
-    import Education from "./Education.svelte";
     import Section from "../Section.svelte";
-    import type { Experience as ExperienceType } from "../../lib/api";
-    // import { experienceDataStore } from "../lib/stores/experienceElementStore";
-    import { experienceStore } from "../../lib/stores/experienceStore";
-    import { getExperiences } from "../../lib/api";
-    import { skillStore } from "../../lib/stores/skillStore";
+    import SubjectHeader from "../SubjectHeader.svelte";
+    import Education from "./Education.svelte";
+    import Experience from "./Experience.svelte";
+    import Summary from "./Summary.svelte";
     import { currentContactStore } from "../../lib/stores/currentContactStore";
+    import { experienceStore } from "../../lib/stores/experienceStore";
+    import { skillStore } from "../../lib/stores/skillStore";
     import SkillSection from "../sections/SkillSection.svelte";
+    import LoadingPlaceholder from "../utilities/LoadingPlaceholder.svelte";
+    import { onMount } from "svelte";
+    import { getCategorySkills } from "../../lib/stores/skillStore";
+    import type { CategorySkills } from "../../lib/derived-types";
     
-    export let resumeData : ResumeData;
-
-    let experiences : ExperienceType[] = [];
-
-    // onMount(() => {
-    //     getExperiences().then((data) => {
-
-    //         // sort experiences by date
-    //         experiences = data.sort((a, b) => {
-    //             if (a.startDate && b.startDate) {
-    //                 return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
-    //             } else {
-    //                 return 0;
-    //             }
-    //         });
-    //     });
-    // });
+    export let contactEmail: string;
+    export let resumeData: ResumeData;
 
     // ai integration ideas
     // - use ai to generate a resume based on a job description
     // - categorize skills
     // - create skill descriptions
     // - automatically generate a cover letter
+    // - generate descriptions of each experience
 
-    $: {
+    let categorySkills: CategorySkills[] = [];
+
+    skillStore.subscribe((data) => {
+        categorySkills = getCategorySkills(data);
+    });
+
+    onMount(async () => {
+        await currentContactStore.fetchData(contactEmail);
         if ($currentContactStore) {
-            skillStore.fetchData($currentContactStore.id);
+            await experienceStore.fetchData(contactEmail);
+            await skillStore.fetchData(contactEmail);
         }
-    }
+    });
 
-    $: if ($experienceStore.length > 0) {
-        console.log("YOOO LOADED EXPERIENCES");
-    }
-
+    // $: {
+    //     console.log("$currentContactStore", $currentContactStore);
+    //     if ($currentContactStore) {
+    //         skillStore.fetchData($currentContactStore.id);
+    //     }
+    // }
 </script>
-
 
 <div class="justify-center w-full px-4 text-stone-100">
     <!-- NEVER set the height of a parent explicitly -->
-    <div class="max-w-screen-lg  mx-auto">
-        <SubjectHeader subject={$currentContactStore}/>
+    <div class="max-w-screen-lg mx-auto">
+        {#if $currentContactStore == null}
+            <LoadingPlaceholder />
+        {:else}
+            <SubjectHeader subject={$currentContactStore} />
+        {/if}
         <Section title="Summary">
-            <Summary summary={resumeData.summary}/>
+            <Summary summary={resumeData.summary} />
         </Section>
-        
+
         <Section title="Education">
             {#each resumeData.education as education}
-                <Education education={education}/>
+                <Education {education} />
             {/each}
         </Section>
 
         <Section title="Experience">
             {#if $experienceStore.length === 0}
-                <p>Loading...</p>
+                <LoadingPlaceholder />
             {:else}
                 {#each $experienceStore as experience}
-                    <Experience {experience}/>
+                    <Experience {experience} />
                 {/each}
             {/if}
         </Section>
 
-
         <Section title="Skills">
-            <SkillSection />
-
+            <SkillSection {categorySkills} />
         </Section>
     </div>
 </div>

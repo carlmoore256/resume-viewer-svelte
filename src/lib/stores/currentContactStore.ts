@@ -2,25 +2,24 @@ import { writable } from "svelte/store";
 import type { Contact } from "../api";
 import { getContactByEmail } from "../api";
 
-const createCurrentContactStore = (email: string) => {
+const createCurrentContactStore = () => {
     const { subscribe, set, update } = writable<Contact>();
 
     const setCurrentContact = (contact: Contact) => {
         set(contact);
     };
 
-    const fetchData = async () => {
+    const fetchData = async (forEmail: string) => {
         console.log("Fetching contact data...");
         try {
-            const data = await getContactByEmail(email);
-            console.log("Contact data:", data);
+            const data = await getContactByEmail(forEmail);
             set(data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
 
-    fetchData();
+    // fetchData();
 
     return {
         subscribe,
@@ -29,6 +28,4 @@ const createCurrentContactStore = (email: string) => {
     };
 };
 
-export const currentContactStore = createCurrentContactStore(
-    import.meta.env.VITE_MY_CONTACT_EMAIL as string
-);
+export const currentContactStore = createCurrentContactStore();

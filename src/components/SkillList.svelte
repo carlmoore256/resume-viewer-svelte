@@ -63,7 +63,7 @@
         <h3>Skills</h3>
     </div>
     {#if expanded}
-        <div id="skills" transition:slide={{ duration: 300 }}>
+        <div id="skills max-h-5 overflow-scroll" transition:slide={{ duration: 300 }}>
             {#each skills as skill}
                 {#if skill}
                     <SkillItem

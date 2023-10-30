@@ -6,10 +6,10 @@ import type { CategorySkills } from "../derived-types";
 const createSkillStore = () => {
     const { subscribe, set, update } = writable<Skill[]>([]);
 
-    const fetchData = async (forContactId: string) => {
+    const fetchData = async (forEmail: string) => {
         try {
             console.log("Fetching skills...");
-            const data = await getContactSkills(forContactId);
+            const data = await getContactSkills(forEmail);
             set(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -25,8 +25,6 @@ const createSkillStore = () => {
             console.error("Error creating skill:", error);
         }
     };
-
-    fetchData(import.meta.env.VITE_MY_CONTACT_ID);
 
     return {
         subscribe,

@@ -5,10 +5,10 @@ import { getExperiences } from "../api";
 const createExperienceStore = () => {
     const { subscribe, set, update } = writable<Experience[]>([]);
 
-    const fetchData = async () => {
+    const fetchData = async (forEmail: string) => {
         console.log("Fetching experience data...")
         try {
-            const data = await getExperiences();
+            const data = await getExperiences(forEmail);
             set(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -34,7 +34,7 @@ const createExperienceStore = () => {
         })
     }
 
-    fetchData();
+    // fetchData();
 
     return {
         subscribe,

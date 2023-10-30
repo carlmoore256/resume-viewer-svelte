@@ -48,10 +48,10 @@ export interface Contact {
     website?: string;
 }
 
-export const getExperiences = async (): Promise<Experience[]> => {
+export const getExperiences = async (forEmail: string): Promise<Experience[]> => {
     const response = await axios.get(`${baseUrl}/resume/experience`, {
         params: {
-            contactEmail: "carlmoore256@gmail.com",
+            contactEmail: forEmail,
         },
     });
     return response.data;
@@ -76,10 +76,10 @@ export const changeDescription = async (
     return response.data;
 };
 
-export const getContactSkills = async (contactId: string): Promise<Skill[]> => {
+export const getContactSkills = async (email: string): Promise<Skill[]> => {
     const response = await axios.get(`${baseUrl}/resume/skill`, {
         params: {
-            contactId,
+            email,
         },
     });
     return response.data;

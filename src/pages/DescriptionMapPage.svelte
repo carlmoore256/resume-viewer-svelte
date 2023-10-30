@@ -7,8 +7,8 @@
     import { skillStore } from "../lib/stores/skillStore";
     import { currentContactStore } from "../lib/stores/currentContactStore";
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    export let width = window.innerWidth;
+    export let height = window.innerHeight;
 
     function handleResize() {
         width = window.innerWidth;
@@ -61,7 +61,9 @@
         }}
     />
     <ExperienceCreator />
-    <SkillList skills={$skillStore}/>
+    <div class="absolute top-2 left-2 max-w-xl">
+        <SkillList skills={$skillStore}/>
+    </div>
     <!-- <ExperienceList experiences={$experienceStore} /> -->
 </main>
 

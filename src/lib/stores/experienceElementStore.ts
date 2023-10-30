@@ -34,7 +34,7 @@ const createExperienceElementStore = () => {
     };
 
     // Fetch data when store is initialized
-    fetchData();
+    // fetchData();
 
     return {
         subscribe,

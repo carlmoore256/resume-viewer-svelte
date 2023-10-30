@@ -14,6 +14,8 @@
     import ExperienceTooltip from "./tooltips/ExperienceTooltip.svelte";
     import CreateModal from "./modals/CreateModal.svelte";
     import { clickOutside } from "../lib/events/click-outside";
+    import { isMapShowing } from "../lib/stores/applicationStateStores";
+    import { fade } from "svelte/transition";
 
     export let options: DescriptionMapOptions;
     export let experiences: Experience[];
@@ -160,7 +162,7 @@
 
 <CreateModal position={createModalPosition} />
 
-<div use:clickOutside on:clickOutside={handleClickOutside}>
+<div class="" use:clickOutside on:clickOutside={handleClickOutside} transition:fade={{duration: 300}}>
     {#each dataset.descriptions as description}
         <DescriptionTooltip
             options={options.descriptionTooltipOptions}
@@ -204,6 +206,16 @@
             />
         {/each}
     </svg>
+
+    <button
+        class="absolute top-2 right-2 z-100 transition-all duration-300 bg-red-500 hover:bg-red-600 bg-opacity-20 hover:bg-opacity-80 hover:w-9 hover:h-9 text-white w-7 h-7 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+        on:click={() => {
+            console.log("yo clicked");
+            isMapShowing.set(false);
+        }}
+    >
+        X
+    </button>
 </div>
 
 <style>

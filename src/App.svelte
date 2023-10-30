@@ -1,60 +1,51 @@
 <script lang="ts">
     import Resume from "./components/resume/Resume.svelte";
     import type { ResumeData } from "./lib/resume-types";
-    import DescriptionMapOverlay from "./components/DescriptionMapOverlay.svelte";
+    import { isMapShowing } from "./lib/stores/applicationStateStores";
 
+    import { onMount } from "svelte";
     import DescriptionMapPage from "./pages/DescriptionMapPage.svelte";
-    import ResumePage from "./pages/ResumePage.svelte";
-    import DataCreator from "./components/DataCreator.svelte";
 
     let resumeData: ResumeData;
-    let isLoading = true;
 
-    import("./data/resume-carl-moore.json").then((data) => {
-        resumeData = data as ResumeData;
-        isLoading = false;
+    $: {
+        console.log("isMapShowing", $isMapShowing);
+    }
+
+    onMount(() => {
+        import("./data/resume-carl-moore.json").then((data) => {
+            resumeData = data as ResumeData;
+            console.log("loaded resume data", resumeData);
+        });
     });
-
-    let useNodes = true;
-    let useMap = false;
-
-    type Page = "resume" | "map" | "resume-map";
-
-    const currentPage: Page = "resume";
-
 </script>
 
-<!-- <Navbar /> -->
 <div>
-    {#if isLoading}
+    {#if !resumeData}
         <p>Loading...</p>
-    {:else if currentPage == "map"}
-        <DescriptionMapPage />
-    {:else if currentPage == "resume"}
-        <ResumePage />
-        <!-- <Resume {resumeData} /> -->
-    {:else if currentPage == "resume-map"}
-        <button id="use-map" on:click={() => (useMap = !useMap)}>
-            {#if useMap}
+    {:else if !$isMapShowing}
+        <Resume
+            contactEmail={import.meta.env.VITE_MY_CONTACT_EMAIL}
+            {resumeData}
+        />
+    {:else}
+        <DescriptionMapPage
+            width={window.innerWidth}
+            height={window.innerHeight}
+        />
+    {/if}
+
+    <!-- <button id="use-map" on:click={() => (showingMap = !showingMap)}>
+            {#if showingMap}
                 Hide Map
             {:else}
                 Show Map
             {/if}
         </button>
         {#if useNodes}
-            <DescriptionMapOverlay isActivated={useMap} />
+            <DescriptionMapOverlay isActivated={showingMap} />
             <Resume {resumeData} />
         {:else}
             <Resume {resumeData} />
-        {/if}
-    {/if}
+        {/if} -->
 </div>
-
-<style>
-    #use-map {
-        position: fixed;
-        top: 0;
-        right: 0;
-        z-index: 100;
-    }
-</style>
