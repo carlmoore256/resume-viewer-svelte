@@ -2,7 +2,7 @@ import { extent, scaleOrdinal, schemeCategory10 } from "d3";
 import { scaleLinear } from "d3-scale";
 import type { ScaleLinear, ScaleOrdinal } from "d3-scale";
 import type { Description, Experience } from "./api";
-import type { DescriptionPoint } from "./chart-types";
+import type { DescriptionPoint } from "./types/chart-types";
 import { radius, raidusCoords, centerOfMass, coordsToPonts } from "./points";
 
 export class ResumeDataset {

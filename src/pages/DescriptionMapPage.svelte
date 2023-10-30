@@ -2,7 +2,6 @@
     import DescriptionMap from "../components/DescriptionMap.svelte";
     import ExperienceCreator from "../components/ExperienceCreator.svelte";
     import SkillList from "../components/SkillList.svelte";
-    import ExperienceList from "../components/ExperienceList.svelte";
     import { experienceStore } from "../lib/stores/experienceStore";
     import { skillStore } from "../lib/stores/skillStore";
     import { currentContactStore } from "../lib/stores/currentContactStore";

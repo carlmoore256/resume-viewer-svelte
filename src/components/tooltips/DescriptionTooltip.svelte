@@ -3,13 +3,12 @@
     import {
         addSkillToDescription,
         removeSkillFromDescription,
-        type Description,
-        type Skill,
     } from "../../lib/api";
+    import { type Description, type Skill } from "../../lib/api";
     import type {
         DescriptionTooltipOptions,
         TooltipState,
-    } from "../../lib/chart-types";
+    } from "../../lib/types/chart-types";
     import { readableDate } from "../../lib/format";
     import { skillStore } from "../../lib/stores/skillStore";
 

@@ -10,14 +10,16 @@
     // idea - have a button that re-words everything using openai
 </script>
 
-
 <div class="flex flex-col px-4 pb-4">
     <div class="text-white font-bold text-lg">
         <h3>{experience.name}</h3>
     </div>
     <div class="flex justify-between items-center">
         <div class="text-gray-400 text-sm">
-            <span><strong>{experience.organization.name}</strong> | {experience.organization.location}</span>
+            <span
+                ><strong>{experience.organization.name}</strong> | {experience
+                    .organization.location}</span
+            >
         </div>
         <div class="text-gray-400 text-xs mt-1">
             {readableDate(experience.startDate || "")}
@@ -32,7 +34,10 @@
     <!-- {#if showingDetails} -->
     <div class="mt-2.5 text-gray-300 text-sm" style={detailsStyle}>
         {#if experience.descriptions.length > 0}
-            <ul class="list-disc list-inside mt-1 text-sm" transition:scale={{ start: 0.95, duration: 200 }}>
+            <ul
+                class="list-disc list-inside mt-1 text-sm"
+                transition:scale={{ start: 0.95, duration: 200 }}
+            >
                 {#each experience.descriptions as description, index}
                     <li id={`bullet_${description.id}`}>
                         {description.text}

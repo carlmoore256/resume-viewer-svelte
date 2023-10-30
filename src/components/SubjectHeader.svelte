@@ -20,7 +20,10 @@
     on:click={handleHeaderClick}
 >
     <div class="flex flex-col gap-2 m-2">
-        <h1 class="text-3xl font-bold">{subject.firstName} {subject.lastName}</h1>
+        <h1 class="text-3xl font-bold">
+            {subject.firstName}
+            {subject.lastName}
+        </h1>
         <h3 class="text-xl font-light">{subject.title}</h3>
     </div>
     <div class="flex flex-col gap-1 font-light m-2 text-sm">
@@ -96,6 +99,4 @@
             align-items: center;
         }
     }
-
-
 </style>

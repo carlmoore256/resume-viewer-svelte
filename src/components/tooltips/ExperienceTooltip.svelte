@@ -5,7 +5,7 @@
     import type {
         ExperienceTooltipOptions,
         TooltipState,
-    } from "../../lib/chart-types";
+    } from "../../lib/types/chart-types";
     import { hexToRgb, rgbColorToHex } from "../../lib/colors";
 
     export let options: ExperienceTooltipOptions;
@@ -28,8 +28,8 @@
         in:fade={{ duration: 300 }}
         out:fade={{ duration: 300 }}
         id="label"
-        style={`top: ${position.y -(radius/2)}px; left: ${
-            position.x -(radius/2)
+        style={`top: ${position.y - radius / 2}px; left: ${
+            position.x - radius / 2
         }px; width: ${radius}px; height: ${radius}px;`}
     >
         <p>{experience.name}</p>
@@ -44,7 +44,6 @@
         pointer-events: none;
         align-items: center;
         justify-content: center;
-
     }
 
     #label p {

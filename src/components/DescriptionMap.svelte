@@ -2,11 +2,11 @@
     import * as d3 from "d3";
     import { ResumeDataset } from "../lib/ResumeDataset";
     import type { Description, Experience } from "../lib/api";
+    import { DefaultTooltipState } from "../lib/types/chart-types";
     import type {
         DescriptionMapOptions,
         TooltipState,
-    } from "../lib/chart-types";
-    import { DefaultTooltipState } from "../lib/chart-types";
+    } from "../lib/types/chart-types";
     import { selectedSkillStore } from "../lib/stores/descriptionMapStores";
     import DescriptionPoint from "./DescriptionPoint.svelte";
     import ExperiencePoint from "./ExperiencePoint.svelte";
@@ -162,7 +162,12 @@
 
 <CreateModal position={createModalPosition} />
 
-<div class="" use:clickOutside on:clickOutside={handleClickOutside} transition:fade={{duration: 300}}>
+<div
+    class=""
+    use:clickOutside
+    on:clickOutside={handleClickOutside}
+    transition:fade={{ duration: 300 }}
+>
     {#each dataset.descriptions as description}
         <DescriptionTooltip
             options={options.descriptionTooltipOptions}

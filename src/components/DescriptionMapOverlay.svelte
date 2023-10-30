@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { getExperiences } from "../lib/api";
-    import type { Experience, Description } from "../lib/api";
-    import { centerOfMass, radius, distance } from "../lib/points";
+    impimport type { Experience, Description } from "../lib/Experience";
+ import { centerOfMass, radius, distance } from "../lib/points";
     import { experienceStore } from "../lib/stores/experienceStore";
     import { storeForId } from "../lib/stores/writableDataStore";
     import * as d3 from "d3";

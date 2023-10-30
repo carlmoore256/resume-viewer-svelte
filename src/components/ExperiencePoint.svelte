@@ -2,7 +2,7 @@
     import * as d3 from "d3";
     import type { ResumeDataset } from "../lib/ResumeDataset";
     import type { Experience } from "../lib/api";
-    import type { ExperiencePointOptions } from "../lib/chart-types";
+    import type { ExperiencePointOptions } from "../lib/types/chart-types";
 
     export let experience: Experience;
     export let dataset: ResumeDataset;

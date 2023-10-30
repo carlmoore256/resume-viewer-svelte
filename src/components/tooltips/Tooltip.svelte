@@ -1,6 +1,6 @@
 <script lang="ts">
     import { styleToString } from "../../lib/format";
-    import type { TooltipContent } from "../../lib/chart-types";
+    import type { TooltipContent } from "../../lib/types/chart-types";
     import { fade } from "svelte/transition"; // Import slide transition
 
     export let title: string | null = null;

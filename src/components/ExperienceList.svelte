@@ -28,14 +28,14 @@
             return;
         }
         selectedExperience = experience;
-        selectedSkillStore.set({ item: experience, type: "click" });
+        // selectedSkillStore.set({ item: experience, type: "click" });
         // if (onClickExperience) {
         //     onClickExperience(skill);
         // }
     }
 
     function onSkillMouseover(skill: Experience) {
-        selectedSkillStore.set({ item: skill, type: "hover" });
+        // selectedSkillStore.set({ item: skill, type: "hover" });
     }
 
     function onSkillMouseout(skill: Experience) {

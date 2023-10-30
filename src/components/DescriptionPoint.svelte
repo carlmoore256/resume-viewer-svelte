@@ -2,15 +2,21 @@
     import * as d3 from "d3";
     import type { ResumeDataset } from "../lib/ResumeDataset";
     import type { Description } from "../lib/api";
-    import type { DescriptionPointOptions } from "../lib/chart-types";
+    import type { DescriptionPointOptions } from "../lib/types/chart-types";
     import { fly } from "svelte/transition";
 
     export let description: Description;
     export let dataset: ResumeDataset;
     export let options: DescriptionPointOptions;
-    export let onMouseover: ((event: MouseEvent, data: Description) => void) | null = null;
-    export let onMouseout: ((event: MouseEvent, data: Description) => void) | null = null;
-    export let onClick: ((event: MouseEvent, data: Description) => void) | null = null;
+    export let onMouseover:
+        | ((event: MouseEvent, data: Description) => void)
+        | null = null;
+    export let onMouseout:
+        | ((event: MouseEvent, data: Description) => void)
+        | null = null;
+    export let onClick:
+        | ((event: MouseEvent, data: Description) => void)
+        | null = null;
 
     function handleMouseover(event: MouseEvent) {
         if (onMouseover) {
@@ -37,9 +43,6 @@
             onClick(event, description);
         }
     }
-
-    
-
 
     $: color = dataset.descriptionColor(description);
     $: position = dataset.descriptionPosition(description);

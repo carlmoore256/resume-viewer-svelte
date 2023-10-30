@@ -1,4 +1,5 @@
-import type { Experience } from "./api";
+import type { Experience } from "../api";
+
 export interface DescriptionPoint {
     id: string;
     x: number;

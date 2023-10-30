@@ -6,7 +6,7 @@
     import type {
         DescriptionPoint,
         ExperienceCenter,
-    } from "../lib/chart-types";
+    } from "../lib/types/chart-types";
 
     export let options = {
         nodeSize: 8,

@@ -15,9 +15,9 @@ const createExperienceElementStore = () => {
     const { subscribe, set, update } = writable<ExperienceElementStore[]>([]);
 
     // Function to fetch data from API and update the store
-    const fetchData = async () => {
+    const fetchData = async (forEmail: string) => {
         try {
-            const data = await getExperiences();
+            const data = await getExperiences(forEmail);
             set(
                 data.map((d) => {
                     return {

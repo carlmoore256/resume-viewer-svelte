@@ -6,14 +6,13 @@
 <DataCreator>
     <h3>Add Experience</h3>
     <!-- prevent default of form -->
-    <form >
+    <form>
         <div class="form-item">
             <label for="exp-title">Experience Name</label>
-            <input id="exp-title">
+            <input id="exp-title" />
         </div>
 
-
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" />
     </form>
 </DataCreator>
 

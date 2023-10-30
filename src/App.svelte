@@ -5,6 +5,7 @@
 
     import { onMount } from "svelte";
     import DescriptionMapPage from "./pages/DescriptionMapPage.svelte";
+    import Notifications from "./components/notifications/Notifications.svelte";
 
     let resumeData: ResumeData;
 
@@ -19,6 +20,9 @@
         });
     });
 </script>
+
+
+<Notifications/>
 
 <div>
     {#if !resumeData}
