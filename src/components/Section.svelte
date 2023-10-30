@@ -11,13 +11,20 @@
     {#if title}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-        <h2 class="section-title sticky top-0 font-medium p-2 select-none cursor-pointer {titleStyle}" on:click={() => isExpanded = !isExpanded}>
+        <h2
+            class="section-title sticky top-0 font-medium p-2 select-none cursor-pointer {titleStyle}"
+            on:click={() => (isExpanded = !isExpanded)}
+        >
             {title}
         </h2>
     {/if}
 
     {#if isExpanded}
-        <div class="py-3 bg-neutral-800" in:slide={{duration: 300}} out:slide={{duration: 300}}>
+        <div
+            class="py-3 bg-neutral-800"
+            in:slide={{ duration: 300 }}
+            out:slide={{ duration: 300 }}
+        >
             <slot />
             <!-- This is where the content of the section will be inserted -->
         </div>

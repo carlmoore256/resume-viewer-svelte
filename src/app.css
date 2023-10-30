@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Linefont:wght@100&family=Michroma&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Linefont:wght@100&family=Michroma&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-   line-height: 1.5;
+    line-height: 1.5;
     font-weight: 400;
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
@@ -18,8 +18,22 @@
     /* font-family: "Forum", serif; */
 }
 
+/* Styles for the custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(5, 5, 5, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .prevent-select {
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }

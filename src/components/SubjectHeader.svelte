@@ -3,11 +3,13 @@
     import { formatPhoneNumber } from "../lib/format";
     import Icon from "@iconify/svelte";
     export let subject: Contact;
+
+    // idea - on subject header click, it expands to show the map
 </script>
 
 <div
     id="container"
-    class="p-5 my-4 rounded-lg flex gap-10 border-solid border border-slate-400"
+    class="p-5 my-4 rounded-lg flex gap-10 border-solid border border-slate-400 transition-all duration-300 hover:py-8"
 >
     <div class="flex flex-col gap-2 m-2">
         <h1 class="text-3xl font-bold">{subject.firstName} {subject.lastName}</h1>

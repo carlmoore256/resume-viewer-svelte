@@ -58,16 +58,6 @@
         <Section title="Summary">
             <Summary summary={resumeData.summary}/>
         </Section>
-
-        <Section title="Experience">
-            {#if $experienceStore.length === 0}
-                <p>Loading...</p>
-            {:else}
-                {#each $experienceStore as experience}
-                    <Experience {experience}/>
-                {/each}
-            {/if}
-        </Section>
         
         <Section title="Education">
             {#each resumeData.education as education}
@@ -75,17 +65,6 @@
             {/each}
         </Section>
 
-        <Section title="Skills">
-            <SkillSection />
-
-        </Section>
-    </div>
-    <!-- <SubjectHeader subject={resumeData.subject}/>
-    <div>
-        <Section title="Summary">
-            <Summary summary={resumeData.summary}/>
-        </Section>
-
         <Section title="Experience">
             {#if $experienceStore.length === 0}
                 <p>Loading...</p>
@@ -97,9 +76,11 @@
         </Section>
 
 
+        <Section title="Skills">
+            <SkillSection />
 
-
-    </div> -->
+        </Section>
+    </div>
 </div>
 
 <style>

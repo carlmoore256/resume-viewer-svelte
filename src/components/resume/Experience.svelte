@@ -12,19 +12,15 @@
 
 
 <div class="flex flex-col px-4 pb-4">
-    <div class="position">
+    <div class="text-white font-bold text-lg">
         <h3>{experience.name}</h3>
     </div>
-    <div class="horizontal-bar">
-        <div class="position">
-            <span
-                ><strong>{experience.organization.name}</strong> | {experience
-                    .organization.location}</span
-            >
+    <div class="flex justify-between items-center">
+        <div class="text-gray-400 text-sm">
+            <span><strong>{experience.organization.name}</strong> | {experience.organization.location}</span>
         </div>
-        <div class="date">
+        <div class="text-gray-400 text-xs mt-1">
             {readableDate(experience.startDate || "")}
-
             {#if experience.endDate}
                 - {readableDate(experience.endDate || "")}
             {:else}
@@ -34,17 +30,11 @@
     </div>
 
     <!-- {#if showingDetails} -->
-    <div class="details" style={detailsStyle}>
+    <div class="mt-2.5 text-gray-300 text-sm" style={detailsStyle}>
         {#if experience.descriptions.length > 0}
-            <ul
-                class="list-disc marker:text-stone-50 text-stone-300 ml-5 mt-1 text-sm"
-                transition:scale={{ start: 0.95, duration: 200 }}
-            >
+            <ul class="list-disc list-inside mt-1 text-sm" transition:scale={{ start: 0.95, duration: 200 }}>
                 {#each experience.descriptions as description, index}
-                    <li
-                        class="bullet-container"
-                        id={`bullet_${description.id}`}
-                    >
+                    <li id={`bullet_${description.id}`}>
                         {description.text}
                     </li>
                 {/each}
@@ -52,40 +42,3 @@
         {/if}
     </div>
 </div>
-
-<style>
-    .horizontal-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .position h3 {
-        margin: 0;
-        font-weight: bold;
-        color: #ffffff;
-        font-size: larger;
-    }
-
-    .position span {
-        font-size: 0.9em;
-        color: #b7b7b7;
-    }
-
-    .date {
-        font-size: 0.85em;
-        color: #b7b7b7;
-        margin-top: 5px;
-    }
-
-    .highlights {
-        margin-top: 10px;
-        list-style-type: disc;
-    }
-
-    .highlights li {
-        margin-bottom: 5px;
-        text-indent: 6x;
-        margin-left: 15px;
-    }
-</style>
