@@ -1,52 +1,67 @@
 <script lang="ts">
-    import type { _Contact } from "../lib/resume-types";
+    import type { Contact } from "../lib/api";
     import { formatPhoneNumber } from "../lib/format";
     import Icon from "@iconify/svelte";
-    export let subject: _Contact;
+    export let subject: Contact;
 </script>
 
-<div id="container">
-    <div class="name-title">
-        <h1>{subject.name}</h1>
-        <h3>{subject.title}</h3>
+<div
+    id="container"
+    class="p-5 my-4 rounded-lg flex gap-10 border-solid border border-slate-400"
+>
+    <div class="flex flex-col gap-2 m-2">
+        <h1 class="text-3xl font-bold">{subject.firstName} {subject.lastName}</h1>
+        <h3 class="text-xl font-light">{subject.title}</h3>
     </div>
-    <div class="contact-info">
+    <div class="flex flex-col gap-1 font-light m-2 text-sm">
         {#if subject.email}
-            <div class="contact-item">
+            <div class="flex items-center gap-2">
                 <Icon icon="ic:baseline-email" />
-                <a href="mailto:{subject.email}">{subject.email}</a>
+                <a
+                    href="mailto:{subject.email}"
+                    class="transition-colors hover:text-blue-600"
+                    >{subject.email}</a
+                >
             </div>
         {/if}
         {#if subject.phone}
-            <div class="contact-item">
+            <div class="flex items-center gap-2">
                 <Icon icon="ic:baseline-phone" />
                 <span>{formatPhoneNumber(subject.phone)}</span>
             </div>
         {/if}
         {#if subject.github}
-            <div class="contact-item">
+            <div class="flex items-center gap-2">
                 <Icon icon="akar-icons:github-fill" />
-                <a href="https://github.com/{subject.github}" target="_blank"
+                <a
+                    href="https://github.com/{subject.github}"
+                    target="_blank"
+                    class="transition-colors hover:text-blue-600"
                     >{subject.github}</a
                 >
             </div>
         {/if}
         {#if subject.linkedin}
-            <div class="contact-item">
+            <div class="flex items-center gap-2">
                 <Icon icon="material-symbols:work" />
                 <span
                     >LinkedIn: <a
                         href="https://www.linkedin.com/in/{subject.linkedin}"
-                        target="_blank">{subject.linkedin}</a
+                        target="_blank"
+                        class="transition-colors hover:text-blue-600"
+                        >{subject.linkedin}</a
                     ></span
                 >
             </div>
         {/if}
         {#if subject.website}
-            <div class="contact-item">
+            <div class="flex items-center gap-2">
                 <Icon icon="material-symbols:web" />
                 <span
-                    >Website: <a href={subject.website} target="_blank"
+                    >Website: <a
+                        href={subject.website}
+                        target="_blank"
+                        class="transition-colors hover:text-blue-600"
                         >{subject.website}</a
                     ></span
                 >
@@ -57,22 +72,12 @@
 
 <style>
     #container {
-        /* background-color: rgba(240, 248, 255, 0.085); */
-        background: rgb(2, 0, 36);
         background: linear-gradient(
             120deg,
             rgba(45, 41, 115, 0.15) 0%,
             rgba(55, 55, 155, 0.15) 34%,
-            rgba(94, 56, 121, 0.15) 100%
+            rgba(88, 202, 107, 0.15) 100%
         );
-        padding: 10px 20px;
-        display: flex;
-        gap: 40px;
-        border-radius: 8px;
-    }
-
-    h1, h3 {
-        margin: 0; /* Remove default margins */
     }
 
     @media (max-width: 400px) {
@@ -82,34 +87,5 @@
         }
     }
 
-    .name-title {
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        gap: 0.5rem;
-    }
 
-    .contact-info {
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        gap: 0.3rem;
-        
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .contact-item a {
-        text-decoration: none;
-        color: inherit;
-        transition: color 0.3s ease;
-    }
-
-    .contact-item a:hover {
-        color: #0077cc;
-    }
 </style>

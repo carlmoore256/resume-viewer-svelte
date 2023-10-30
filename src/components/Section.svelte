@@ -1,27 +1,33 @@
 <script lang="ts">
-    export let title: string = ''; // Allows for an optional title for the section
+    import { slide } from "svelte/transition";
+    export let title: string = ""; // Allows for an optional title for the section
+    export let titleStyle: string =
+        "px-5 bg-neutral-700 bg-opacity-50 backdrop-blur-sm rounded-t-md";
+
+    let isExpanded: boolean = true;
 </script>
 
-<div class="section">
+<div class="mb-2 mt-2">
     {#if title}
-        <h2 class="section-title">{title}</h2>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <h2 class="section-title sticky top-0 font-medium p-2 select-none cursor-pointer {titleStyle}" on:click={() => isExpanded = !isExpanded}>
+            {title}
+        </h2>
     {/if}
-    <slot></slot> <!-- This is where the content of the section will be inserted -->
+
+    {#if isExpanded}
+        <div class="py-3 bg-neutral-800" in:slide={{duration: 300}} out:slide={{duration: 300}}>
+            <slot />
+            <!-- This is where the content of the section will be inserted -->
+        </div>
+    {/if}
 </div>
 
 <style>
-    .section {
-        /* padding-bottom: 20px; */
-        margin-bottom: 10px;
-    }
-
     .section-title {
-        font-weight: 700;
-        position: sticky;
-        top: 0; /* This means the title will stick to the top of the viewport */
-        background-color: #1b1b1b;
-        z-index: 10; /* Ensure the title is above other content */
+        /* background-color: #1b1b1b; */
         border-bottom: 1px solid #cccccc5e;
-        padding: 6px 0 6px 20px;
+        /* padding: 6px 0 6px 20px; */
     }
 </style>

@@ -11,6 +11,9 @@
     import DescriptionPoint from "./DescriptionPoint.svelte";
     import ExperiencePoint from "./ExperiencePoint.svelte";
     import DescriptionTooltip from "./tooltips/DescriptionTooltip.svelte";
+    import ExperienceTooltip from "./tooltips/ExperienceTooltip.svelte";
+    import CreateModal from "./modals/CreateModal.svelte";
+    import { clickOutside } from "../lib/events/click-outside";
 
     export let options: DescriptionMapOptions;
     export let experiences: Experience[];
@@ -26,10 +29,14 @@
     );
 
     let tooltipStates: Record<string, TooltipState> = {};
+    let createModalPosition: { x: number; y: number } | null = null;
 
     $: {
         tooltipStates = {};
         dataset.descriptions.forEach(
+            (d) => (tooltipStates[d.id] = { ...DefaultTooltipState })
+        );
+        dataset.experiences.forEach(
             (d) => (tooltipStates[d.id] = { ...DefaultTooltipState })
         );
     }
@@ -44,16 +51,9 @@
 
     selectedSkillStore.subscribe(({ item, type }) => {
         if (!dataset) return;
-
-        // if (item == null) {
-        //     mutateTooltipStates((d) => (d = {...DefaultTooltipState}));
-        //     return;
-        // }
-
-
         switch (type) {
             case "click": {
-                console.log("Clicked skill", item)
+                console.log("Clicked skill", item);
                 if (item == null) {
                     mutateTooltipStates((d) => {
                         d.showLabel = false;
@@ -62,12 +62,10 @@
                     return;
                 }
                 const descriptions = dataset.descriptionsWithSkill(item.id);
-                descriptions.forEach(
-                    (d) => {
-                        tooltipStates[d.id].showLabel = true;
-                        tooltipStates[d.id].highlight = true;
-                    }
-                );
+                descriptions.forEach((d) => {
+                    tooltipStates[d.id].showLabel = true;
+                    tooltipStates[d.id].highlight = true;
+                });
                 break;
             }
 
@@ -80,12 +78,10 @@
                     return;
                 }
                 const descriptions = dataset.descriptionsWithSkill(item.id);
-                descriptions.forEach(
-                    (d) => {
-                        tooltipStates[d.id].showLabel = true;
-                        tooltipStates[d.id].highlight = true;
-                    }
-                );
+                descriptions.forEach((d) => {
+                    tooltipStates[d.id].showLabel = true;
+                    tooltipStates[d.id].highlight = true;
+                });
                 break;
             }
         }
@@ -121,7 +117,13 @@
 
     function handleDescriptionClick(event: MouseEvent, data: Description) {
         if (!tooltipStates[data.id]) return;
-        tooltipStates[data.id].menuLocked = !tooltipStates[data.id].menuLocked;
+        const currentlyLocked = tooltipStates[data.id].menuLocked;
+        mutateTooltipStates((d) => {
+            d.menuLocked = false;
+            d.showMenu = false;
+        });
+        tooltipStates[data.id].menuLocked = !currentlyLocked;
+        tooltipStates[data.id].showMenu = true;
     }
 
     function handleDescriptionMouseover(event: MouseEvent, data: Description) {
@@ -137,51 +139,72 @@
         tooltipStates[data.id].showMenu = false;
     }
 
-    function handleExperienceClick(event: MouseEvent, data: Experience) {
-        console.log("Clicked experience", data);
+    function handleExperienceMouseover(event: MouseEvent, data: Experience) {}
 
-        // set all other points to blurred style
-        // for(const description of dataset.descriptions) {
-        //     if(description.id === data.descriptionId) continue;
-        //     tooltipRecord[description.id].locked = true;
-        // }
+    function handleExperienceMouseout(event: MouseEvent, data: Experience) {
+        if (!tooltipStates[data.id]) return;
+        tooltipStates[data.id].showLabel = false;
+    }
+
+    function handleExperienceClick(event: MouseEvent, data: Experience) {
+        if (!tooltipStates[data.id]) return;
+        tooltipStates[data.id].showLabel = true;
+    }
+
+    function handleClickOutside() {
+        console.log("clicked outside");
     }
 
     $: dataset, clearLines();
 </script>
 
-{#each dataset.descriptions as description}
-    <DescriptionTooltip
-        options={options.descriptionTooltipOptions}
-        state={tooltipStates[description.id]}
-        {description}
-        {dataset}
-    />
-{/each}
+<CreateModal position={createModalPosition} />
 
-<svg {width} {height}>
-    <g id="lines" />
-
-    {#each dataset.experiences as experience}
-        <ExperiencePoint
-            {experience}
-            {dataset}
-            options={options.experiencePointOptions}
-            onClick={handleExperienceClick}
-        />
-    {/each}
-
+<div use:clickOutside on:clickOutside={handleClickOutside}>
     {#each dataset.descriptions as description}
-        <DescriptionPoint
+        <DescriptionTooltip
+            options={options.descriptionTooltipOptions}
+            state={tooltipStates[description.id]}
             {description}
             {dataset}
-            options={options.descriptionPointOptions}
-            onMouseover={handleDescriptionMouseover}
-            onMouseout={handleDescriptionMouseout}
-            onClick={handleDescriptionClick}
         />
     {/each}
-</svg>
+
+    {#each dataset.experiences as experience}
+        <ExperienceTooltip
+            options={options.experienceTooltipOptions}
+            state={tooltipStates[experience.id]}
+            {experience}
+            {dataset}
+        />
+    {/each}
+
+    <svg {width} {height}>
+        <g id="lines" />
+
+        {#each dataset.experiences as experience}
+            <ExperiencePoint
+                {experience}
+                {dataset}
+                options={options.experiencePointOptions}
+                onClick={handleExperienceClick}
+                onMouseover={handleExperienceMouseover}
+                onMouseout={handleExperienceMouseout}
+            />
+        {/each}
+
+        {#each dataset.descriptions as description}
+            <DescriptionPoint
+                {description}
+                {dataset}
+                options={options.descriptionPointOptions}
+                onMouseover={handleDescriptionMouseover}
+                onMouseout={handleDescriptionMouseout}
+                onClick={handleDescriptionClick}
+            />
+        {/each}
+    </svg>
+</div>
 
 <style>
     svg {

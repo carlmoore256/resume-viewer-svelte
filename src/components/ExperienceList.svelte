@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { scale, slide } from "svelte/transition";
-    import type { Skill } from "../lib/api";
+    import { slide } from "svelte/transition";
+    import type { Experience } from "../lib/api";
     import { skillStore } from "../lib/stores/skillStore";
     import SkillItem from "./SkillItem.svelte";
     import { styleToString } from "../lib/format";
     import { currentContactStore } from "../lib/stores/currentContactStore";
     import { selectedSkillStore } from "../lib/stores/descriptionMapStores";
 
-    export let skills: Skill[];
-    export let onClickSkill: ((id: Skill) => void) | null = null;
+    export let skills: Experience[];
+    export let onClickExperience: ((id: Experience) => void) | null = null;
     export let style: any = {};
 
     let creatingNewSkill = false;
@@ -20,37 +20,30 @@
         newSkillName = "";
     }
 
-    let selectedSkill: Skill | null = null;
+    let selectedExperience: Experience | null = null;
 
-    function onSkillClicked(skill: Skill) {
-        if (selectedSkill !== null && selectedSkill.id == skill.id) {
-            selectedSkill = null;
+    function onExperienceClicked(experience: Experience) {
+        if (selectedExperience !== null && selectedExperience.id == experience.id) {
+            selectedExperience = null;
             return;
         }
-        selectedSkill = skill;
-        selectedSkillStore.set({ item: skill, type: "click" });
-        if (onClickSkill) {
-            onClickSkill(skill);
-        }
+        selectedExperience = experience;
+        selectedSkillStore.set({ item: experience, type: "click" });
+        // if (onClickExperience) {
+        //     onClickExperience(skill);
+        // }
     }
 
-    function onSkillMouseover(skill: Skill) {
+    function onSkillMouseover(skill: Experience) {
         selectedSkillStore.set({ item: skill, type: "hover" });
     }
 
-    function onSkillMouseout(skill: Skill) {
-        if (selectedSkill !== null && selectedSkill.id == skill.id) {
+    function onSkillMouseout(skill: Experience) {
+        if (selectedExperience !== null && selectedExperience.id == skill.id) {
             return;
         }
         selectedSkillStore.set({ item: null, type: "hover" });
-        selectedSkill = null;
-    }
-
-    function handleDescriptionKey(event: any) {
-        if (event.key == "Enter") {
-            skillStore.addSkill(newSkillName, $currentContactStore.id);
-            creatingNewSkill = false;
-        }
+        selectedExperience = null;
     }
 
     let expanded = false;
@@ -69,14 +62,14 @@
                     <SkillItem
                         {skill}
                         onClick={() => {
-                            onSkillClicked(skill);
+                            onExperienceClicked(skill);
                         }}
                         onMouseover={onSkillMouseover}
                         onMouseout={onSkillMouseout}
                         style={{
                             backgroundColor:
-                                selectedSkill !== null &&
-                                selectedSkill.id == skill.id
+                                selectedExperience !== null &&
+                                selectedExperience.id == skill.id
                                     ? "rgba(90, 224, 112, 0.5)"
                                     : "rgba(255, 255, 255, 0.24)",
                         }}
@@ -84,70 +77,30 @@
                 {/if}
             {/each}
             <button id="add-btn" on:click={onClickAdd}> + </button>
+
+            {#if creatingNewSkill}
+                <div id="new-skill">
+                    <input type="text" bind:value={newSkillName} />
+
+                    <button
+                        on:click={() => {
+                            skillStore.addSkill(
+                                newSkillName,
+                                $currentContactStore.id
+                            );
+                            creatingNewSkill = false;
+                        }}>Add</button
+                    >
+                    <button on:click={() => (creatingNewSkill = false)}
+                        >Cancel</button
+                    >
+                </div>
+            {/if}
         </div>
     {/if}
 </div>
 
-{#if creatingNewSkill}
-    <div
-        class="input-modal"
-        in:scale={{ duration: 300 }}
-        out:scale={{ duration: 300 }}
-    >
-        <h3>Add New Skill</h3>
-
-        <div class="modal-row">
-            <input
-                id="new-skill-name"
-                type="text"
-                on:keydown={handleDescriptionKey}
-                bind:value={newSkillName}
-            />
-        </div>
-        <div class="modal-row">
-            <button
-                on:click={() => {
-                    skillStore.addSkill(newSkillName, $currentContactStore.id);
-                    creatingNewSkill = false;
-                }}>Add</button
-            >
-            <button on:click={() => (creatingNewSkill = false)}>Cancel</button>
-        </div>
-    </div>
-{/if}
-
 <style>
-    #add-btn {
-        border-radius: 50%;
-        padding: 5px;
-        margin: 5px;
-        width: 30px;
-        height: 30px;
-        border: none;
-        background-color: rgba(68, 131, 68, 0.507);
-        transition-duration: 300ms;
-        font-size: 14px;
-    }
-
-    .input-modal {
-        display: flex;
-        flex-direction: column;
-        padding: 6px 10px;
-        position: absolute;
-        margin-top: 10px;
-        /* max-height: 40px; */
-        background-color: rgb(14, 14, 14);
-        filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.247));
-        border-radius: 4px;
-        justify-content: left;
-    }
-
-    .modal-row {
-        display: flex;
-        justify-content: left;
-        align-items: center;
-    }
-
     #add-btn {
         background-color: rgba(255, 255, 255, 0.24);
         border-radius: 5px;
@@ -183,7 +136,7 @@
         background-color: rgba(240, 248, 255, 0.123);
         backdrop-filter: blur(10px);
         border-radius: 5px;
-        filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.425));
+        filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.247));
         border: 1px solid rgba(0, 0, 0, 0.123);
     }
 

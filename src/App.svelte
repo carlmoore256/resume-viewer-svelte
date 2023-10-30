@@ -1,9 +1,11 @@
 <script lang="ts">
-    import Resume from "./components/Resume.svelte";
+    import Resume from "./components/resume/Resume.svelte";
     import type { ResumeData } from "./lib/resume-types";
     import DescriptionMapOverlay from "./components/DescriptionMapOverlay.svelte";
 
     import DescriptionMapPage from "./pages/DescriptionMapPage.svelte";
+    import ResumePage from "./pages/ResumePage.svelte";
+    import DataCreator from "./components/DataCreator.svelte";
 
     let resumeData: ResumeData;
     let isLoading = true;
@@ -18,17 +20,19 @@
 
     type Page = "resume" | "map" | "resume-map";
 
-    const currentPage: Page = "map";
+    const currentPage: Page = "resume";
+
 </script>
 
 <!-- <Navbar /> -->
-<div class="container">
+<div>
     {#if isLoading}
         <p>Loading...</p>
     {:else if currentPage == "map"}
         <DescriptionMapPage />
     {:else if currentPage == "resume"}
-        <Resume {resumeData} />
+        <ResumePage />
+        <!-- <Resume {resumeData} /> -->
     {:else if currentPage == "resume-map"}
         <button id="use-map" on:click={() => (useMap = !useMap)}>
             {#if useMap}
@@ -52,10 +56,5 @@
         top: 0;
         right: 0;
         z-index: 100;
-    }
-
-    .container {
-        display: flex;
-        justify-content: left;
     }
 </style>

@@ -52,9 +52,10 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <circle
+    data-interactive
     class="experience"
-    cx={position.x}
-    cy={position.y}
+    cx={position.x || 0}
+    cy={position.y || 0}
     fill={color}
     r={radius * options.nodeSize}
     opacity={options.opacity}

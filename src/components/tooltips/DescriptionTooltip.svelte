@@ -99,7 +99,6 @@
 
 {#if state.showLabel}
     <div
-        in:fly={{ duration: 300 }}
         id="label"
         style={`top: ${position.y + options.offsetY}px; left: ${
             position.x + options.offsetX
@@ -123,6 +122,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 {#if state.showMenu}
     <div
+        data-interactive
         class="container"
         style={`top: ${position.y + options.offsetY}px; left: ${
             position.x + options.offsetX

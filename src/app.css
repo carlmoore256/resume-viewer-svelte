@@ -1,43 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Linefont:wght@100&family=Michroma&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-    /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-    line-height: 1.5;
+   line-height: 1.5;
     font-weight: 400;
-
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #1d1d1d;
-    /* background-color: #070707; */
-
+    background-color: #202020;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-
-    font-family: "Forum", serif;
-
-    overflow-y: hidden;
+    /* font-family: "Forum", serif; */
 }
-
-/* :root::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: url("./assets/white-texture.jpg") repeat fixed;
-    z-index: -1;
-
-}
-
-:root::before {
-  background-color: rgba(0, 0, 0, 0.072); 
-  mix-blend-mode: multiply; 
-
-} */
 
 .prevent-select {
   -webkit-user-select: none; /* Safari */

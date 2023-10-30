@@ -15,7 +15,9 @@ export interface Skill {
     name: string;
     startDate: string | null;
     contactId: string;
-    description: string | null;
+    descriptionId: string | null;
+    isGenerated: boolean;
+    category: string | null;
     keywords: string[];
 }
 
@@ -39,6 +41,7 @@ export interface Contact {
     firstName: string;
     lastName: string;
     email: string;
+    title?: string;
     phone?: string;
     github?: string;
     linkedin?: string;

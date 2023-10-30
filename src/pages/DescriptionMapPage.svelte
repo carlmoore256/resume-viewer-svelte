@@ -2,8 +2,10 @@
     import DescriptionMap from "../components/DescriptionMap.svelte";
     import ExperienceCreator from "../components/ExperienceCreator.svelte";
     import SkillList from "../components/SkillList.svelte";
+    import ExperienceList from "../components/ExperienceList.svelte";
     import { experienceStore } from "../lib/stores/experienceStore";
     import { skillStore } from "../lib/stores/skillStore";
+    import { currentContactStore } from "../lib/stores/currentContactStore";
 
     let width = window.innerWidth;
     let height = window.innerHeight;
@@ -12,17 +14,17 @@
         width = window.innerWidth;
         height = window.innerHeight;
     }
+    
+    $: {
+        if ($currentContactStore) {
+            skillStore.fetchData($currentContactStore.id);
+        }
+    }
 </script>
 
 <svelte:window on:resize={handleResize} />
 
 <main>
-    <button
-        id="randomize"
-        on:click={() => experienceStore.randomizePositions(0.1)}
-    >
-        Randomize
-    </button>
     <DescriptionMap
         {width}
         {height}
@@ -49,11 +51,18 @@
                 offsetY: 15,
                 anchorSize: 23,
             },
+            experienceTooltipOptions: {
+                opacity: 0.3,
+                offsetX: 15,
+                offsetY: 15,
+                anchorSize: 23,
+            },
             margin: { top: 100, right: 100, bottom: 100, left: 100 },
         }}
     />
     <ExperienceCreator />
-    <SkillList skills={$skillStore} />
+    <SkillList skills={$skillStore}/>
+    <!-- <ExperienceList experiences={$experienceStore} /> -->
 </main>
 
 <style>

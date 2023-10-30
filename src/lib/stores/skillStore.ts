@@ -1,14 +1,15 @@
 import { writable } from "svelte/store";
 import type { Skill } from "../api";
 import { getContactSkills, createSkill } from "../api";
+import type { CategorySkills } from "../derived-types";
 
 const createSkillStore = () => {
     const { subscribe, set, update } = writable<Skill[]>([]);
 
-    const fetchData = async () => {
+    const fetchData = async (forContactId: string) => {
         try {
             console.log("Fetching skills...");
-            const data = await getContactSkills(import.meta.env.VITE_MY_CONTACT_ID as string);
+            const data = await getContactSkills(forContactId);
             set(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -25,8 +26,7 @@ const createSkillStore = () => {
         }
     };
 
-
-    fetchData();
+    fetchData(import.meta.env.VITE_MY_CONTACT_ID);
 
     return {
         subscribe,
@@ -38,8 +38,24 @@ const createSkillStore = () => {
 
 export const skillStore = createSkillStore();
 
-// export const getSkillById = (id: string) => {
-//     skills.subscribe((skills) => {
-//         return skills.find((skill) => skill.id === id);
-//     });
-// }
+export function getCategorySkills(skills: Skill[]) {
+    const categories = new Set(
+        skills
+            .map((skill) => skill.category)
+            .filter(Boolean)
+            .sort() as string[]
+    );
+
+    const categorySkills: CategorySkills[] = [];
+    categories.forEach((category) => {
+        const skillsInCategory = skills.filter(
+            (skill) => skill.category === category
+        );
+        categorySkills.push({
+            category,
+            skills: skillsInCategory,
+        });
+    });
+
+    return categorySkills;
+}

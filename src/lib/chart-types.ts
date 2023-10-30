@@ -74,5 +74,15 @@ export interface DescriptionMapOptions {
     descriptionPointOptions: DescriptionPointOptions;
     experiencePointOptions: ExperiencePointOptions;
     descriptionTooltipOptions: DescriptionTooltipOptions;
+    experienceTooltipOptions: ExperienceTooltipOptions;
     margin: { top: number; right: number; bottom: number; left: number };
+}
+
+
+
+export interface ExperienceTooltipOptions {
+    opacity: number;
+    offsetX: number;
+    offsetY: number;
+    anchorSize: number;
 }

@@ -3,39 +3,17 @@
     export let listItems: string[];
 </script>
 
-<div class="container">
-    <h3>{title}</h3>
-    <ul>
-        {#each listItems as item}
-            <li>{item}</li>
-        {/each}
-    </ul>
+<div class="flex flex-col w-1/2">
+    <div class="bg-neutral-900 rounded-t-md px-4 py-1 border border-neutral-700">
+        <h3 class="font-light">{title}</h3>
+    </div>
+    <div
+        class="flex-grow px-4 py-2 bg-neutral-900 border border-neutral-700 rounded-b-md text-sm"
+    >
+        <ul class="pl-5 list-disc font-light">
+            {#each listItems as item}
+                <li>{item}</li>
+            {/each}
+        </ul>
+    </div>
 </div>
-
-<style>
-    .container {
-        padding: 10px 20px;
-        background: rgb(2, 0, 36);
-        background: linear-gradient(
-            120deg,
-            rgba(45, 41, 115, 0.15) 0%,
-            rgba(55, 55, 155, 0.15) 34%,
-            rgba(94, 56, 121, 0.15) 100%
-        );
-        border-radius: 10px;
-        font-size: 0.85em;
-        width: 300px;
-    }
-
-    h3 {
-        margin: 0;
-        padding: 0;
-        font-weight: 700;
-    }
-
-    ul {
-        /* list-style-type: none; */
-        padding: 0;
-        margin-left: 20px;
-    }
-</style>
