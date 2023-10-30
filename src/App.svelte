@@ -25,7 +25,7 @@
         <p>Loading...</p>
     {:else if !$isMapShowing}
         <Resume
-            contactEmail={import.meta.env.VITE_MY_CONTACT_EMAIL}
+            contactEmail={"carlmoore256@gmail.com"}
             {resumeData}
         />
     {:else}
