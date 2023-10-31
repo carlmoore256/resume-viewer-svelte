@@ -1,7 +1,11 @@
 <script lang="ts">
-    export let summary : string;
+    import type { Description } from "../../lib/api-types";
+
+    export let summary : Description[];
 </script>
 
 <div class="px-4 text-md">
-    <p>{summary}</p>
+    {#each summary as item}
+        <p>{item.text}</p>
+    {/each}
 </div>

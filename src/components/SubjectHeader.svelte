@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Contact } from "../lib/api";
+    import type { Contact } from "../lib/api-types";
     import { formatPhoneNumber } from "../lib/format";
     import Icon from "@iconify/svelte";
     export let subject: Contact;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { CategorySkills } from "../../lib/derived-types";
+    import type { CategorySkills } from "../../lib/types/derived-types";
     import CategorySkillsComponent from "../resume/CategorySkills.svelte";
 
     export let categorySkills: CategorySkills[];

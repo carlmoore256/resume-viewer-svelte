@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
-import type { Skill } from "../api";
+import type { Skill } from "../api-types";
 import { getContactSkills, createSkill } from "../api";
-import type { CategorySkills } from "../derived-types";
+import type { CategorySkills } from "../types/derived-types";
 
 const createSkillStore = () => {
     const { subscribe, set, update } = writable<Skill[]>([]);

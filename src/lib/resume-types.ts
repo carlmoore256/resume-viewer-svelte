@@ -44,7 +44,7 @@ export interface _Contact {
     website?: string;
 }
 
-export interface ResumeData {
+export interface _ResumeData {
     subject: _Contact;
     summary: string;
     experiences: _Experience[];

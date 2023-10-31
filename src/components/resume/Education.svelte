@@ -1,12 +1,15 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
+    import type { EducationExperience } from "../../lib/api-types";
 
     import type { _Education } from "../../lib/resume-types";
     import ListBox from "../ListBox.svelte";
 
-    export let education: _Education;
+    export let educationExperience: EducationExperience;
     export let courseDescription: string = "Notable courses";
     export let activitiesDescription: string = "Activities";
+
+    const { education, organization, experience, descriptions } = educationExperience;
 
     let isExpanded = false;
 
@@ -26,21 +29,21 @@
 
         <div class="flex justify-between items-center">
             <span class="text-gray-400 mt-1 text-sm">
-                <strong>{education.institution}</strong> | {education.location}
+                <strong>{organization.name}</strong> | {organization.location}
             </span>
             <span class="text-gray-400 mt-1 text-sm">
-                {education.date.start} - {education.date.end || "Present"}
+                {experience.startDate} - {experience.endDate || "Present"}
             </span>
         </div>
     </button>
 
     {#if isExpanded}
         <div transition:slide={{duration: 300}}>
-            {#if education.summary}
+            {#each descriptions as description}
                 <div class="mt-2.5 text-gray-300 text-sm">
-                    {education.summary}
+                    {description.description.text}
                 </div>
-            {/if}
+            {/each}
 
             <div
                 class="pt-5 flex space-x-5 items-stretch justify-items-stretch"
@@ -52,12 +55,12 @@
                     />
                 {/if}
 
-                {#if education.activities && education.activities.length > 0}
+                <!-- {#if education.activities && education.activities.length > 0}
                     <ListBox
                         title={activitiesDescription}
                         listItems={education.activities}
                     />
-                {/if}
+                {/if} -->
             </div>
         </div>
     {/if}

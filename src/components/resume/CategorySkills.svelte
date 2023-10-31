@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { CategorySkills } from "../../lib/derived-types";
+    import type { CategorySkills } from "../../lib/types/derived-types";
 
     export let data: CategorySkills;
 </script>

@@ -1,4 +1,4 @@
-import type { Experience } from "../api";
+import type { Experience } from "../api-types";
 
 export interface DescriptionPoint {
     id: string;

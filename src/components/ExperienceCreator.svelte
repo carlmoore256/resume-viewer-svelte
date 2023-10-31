@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Experience } from "../lib/api";
+    import type { Experience } from "../lib/api-types";
     import DataCreator from "./DataCreator.svelte";
 </script>
 

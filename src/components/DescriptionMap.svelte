@@ -1,7 +1,7 @@
 <script lang="ts">
     import * as d3 from "d3";
     import { ResumeDataset } from "../lib/ResumeDataset";
-    import type { Description, Experience } from "../lib/api";
+    import type { Description, Experience } from "../lib/api-types";
     import { DefaultTooltipState } from "../lib/types/chart-types";
     import type {
         DescriptionMapOptions,

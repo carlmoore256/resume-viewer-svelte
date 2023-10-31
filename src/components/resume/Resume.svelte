@@ -1,5 +1,6 @@
 <script lang="ts">
-    import type { ResumeData } from "../../lib/resume-types";
+    import type { _ResumeData } from "../../lib/resume-types";
+    import type { ResumeData } from "../../lib/api-types";
     import Section from "../Section.svelte";
     import SubjectHeader from "../SubjectHeader.svelte";
     import Education from "./Education.svelte";
@@ -12,9 +13,8 @@
     import LoadingPlaceholder from "../utilities/LoadingPlaceholder.svelte";
     import { onMount } from "svelte";
     import { getCategorySkills } from "../../lib/stores/skillStore";
-    import type { CategorySkills } from "../../lib/derived-types";
-    
-    export let contactEmail: string;
+    import type { CategorySkills } from "../../lib/types/derived-types";
+
     export let resumeData: ResumeData;
 
     // ai integration ideas
@@ -30,13 +30,13 @@
         categorySkills = getCategorySkills(data);
     });
 
-    onMount(async () => {
-        await currentContactStore.fetchData(contactEmail);
-        if ($currentContactStore) {
-            await experienceStore.fetchData(contactEmail);
-            await skillStore.fetchData(contactEmail);
-        }
-    });
+    // onMount(async () => {
+    //     await currentContactStore.fetchData(contactEmail);
+    //     if ($currentContactStore) {
+    //         await experienceStore.fetchData(contactEmail);
+    //         await skillStore.fetchData(contactEmail);
+    //     }
+    // });
 
     // $: {
     //     console.log("$currentContactStore", $currentContactStore);
@@ -49,27 +49,30 @@
 <div class="justify-center w-full px-4 text-stone-100">
     <!-- NEVER set the height of a parent explicitly -->
     <div class="max-w-screen-lg mx-auto">
-        {#if $currentContactStore == null}
+        <!-- {#if $currentContactStore == null}
             <LoadingPlaceholder />
         {:else}
-            <SubjectHeader subject={$currentContactStore} />
-        {/if}
-        <Section title="Summary">
-            <Summary summary={resumeData.summary} />
-        </Section>
+        {/if} -->
+        <SubjectHeader subject={resumeData.subject} />
 
-        <Section title="Education">
-            {#each resumeData.education as education}
-                <Education {education} />
-            {/each}
-        </Section>
+        {#if resumeData.summary != null}
+            <Section title="Summary">
+                <Summary summary={resumeData.summary} />
+            </Section>
+        {/if}
+
+        {#if resumeData.educationExperiences}
+            <Section title="Education">
+                {#each resumeData.educationExperiences as educationExperience}
+                    <Education {educationExperience} />
+                {/each}
+            </Section>
+        {/if}
 
         <Section title="Experience">
-            {#if $experienceStore.length === 0}
-                <LoadingPlaceholder />
-            {:else}
-                {#each $experienceStore as experience}
-                    <Experience {experience} />
+            {#if resumeData.workExperiences}
+                {#each resumeData.workExperiences as workExperience}
+                    <Experience {workExperience} />
                 {/each}
             {/if}
         </Section>

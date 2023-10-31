@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { Contact } from "../api";
+import type { Contact } from "../api-types";
 import { getContactByEmail } from "../api";
 
 const createCurrentContactStore = () => {

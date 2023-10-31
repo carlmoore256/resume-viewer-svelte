@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { Experience } from "../api";
+import type { Experience } from "../api-types";
 import { getExperiences } from "../api";
 
 export interface ExperienceElementStore {

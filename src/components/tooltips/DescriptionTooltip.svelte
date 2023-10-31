@@ -1,25 +1,25 @@
 <script lang="ts">
-    import { draw, fade, slide, blur, fly } from "svelte/transition";
+    import { fade, slide } from "svelte/transition";
+    import { type Description, type Skill } from "../../lib/api-types";
     import {
         addSkillToDescription,
         removeSkillFromDescription,
     } from "../../lib/api";
-    import { type Description, type Skill } from "../../lib/api";
+    import { readableDate } from "../../lib/format";
+    import { skillStore } from "../../lib/stores/skillStore";
     import type {
         DescriptionTooltipOptions,
         TooltipState,
     } from "../../lib/types/chart-types";
-    import { readableDate } from "../../lib/format";
-    import { skillStore } from "../../lib/stores/skillStore";
 
-    import type { ResumeDataset } from "../../lib/ResumeDataset";
-    import { hexToRgb, rgbColorToHex } from "../../lib/colors";
-    import SkillItem from "../SkillItem.svelte";
-    import Tooltip from "./Tooltip.svelte";
-    import { updateDescription } from "../../lib/api";
-    import { experienceStore } from "../../lib/stores/experienceStore";
     import { Moon } from "svelte-loading-spinners";
+    import type { ResumeDataset } from "../../lib/ResumeDataset";
+    import { updateDescription } from "../../lib/api";
+    import { hexToRgb, rgbColorToHex } from "../../lib/colors";
+    import { experienceStore } from "../../lib/stores/experienceStore";
+    import SkillItem from "../SkillItem.svelte";
     import PointSelectionIndicator from "./PointSelectionIndicator.svelte";
+    import Tooltip from "./Tooltip.svelte";
 
     export let options: DescriptionTooltipOptions;
     export let state: TooltipState;

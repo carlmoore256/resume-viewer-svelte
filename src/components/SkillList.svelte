@@ -1,6 +1,6 @@
 <script lang="ts">
     import { scale, slide } from "svelte/transition";
-    import type { Skill } from "../lib/api";
+    import type { Skill } from "../lib/api-types";
     import { skillStore } from "../lib/stores/skillStore";
     import SkillItem from "./SkillItem.svelte";
     import { styleToString } from "../lib/format";
@@ -63,7 +63,10 @@
         <h3>Skills</h3>
     </div>
     {#if expanded}
-        <div id="skills max-h-5 overflow-scroll" transition:slide={{ duration: 300 }}>
+        <div
+            id="skills max-h-5 overflow-scroll"
+            transition:slide={{ duration: 300 }}
+        >
             {#each skills as skill}
                 {#if skill}
                     <SkillItem

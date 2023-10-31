@@ -1,0 +1,1909 @@
+{
+    "subject": {
+        "id": "clo9a4a5x0000qn2fst42bgkg",
+        "firstName": "Carl",
+        "lastName": "Moore",
+        "email": "carlmoore256@gmail.com",
+        "title": "Software Developer",
+        "phone": "7088603766",
+        "github": "github.com/carlmoore256",
+        "linkedin": null,
+        "website": null
+    },
+    "summary": [],
+    "workExperiences": [
+        {
+            "experience": {
+                "id": "clo9a4a660001qn2frbrf3q3i",
+                "name": "Lead Game Developer",
+                "type": "Work",
+                "organizationId": "clo9a4a660002qn2f6js3etrt",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2023-05-01T00:00:00.000Z",
+                "endDate": null
+            },
+            "organization": {
+                "id": "clo9a4a660002qn2f6js3etrt",
+                "name": "Ultimate Fantasy Battle (thig.io)",
+                "location": "Seattle, WA"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4a6h0003qn2fk5rc2qjn",
+                        "text": "Lead Game Developer role at thig.io",
+                        "reducedEmbedding": [
+                            5.053716659545898,
+                            -2.282932281494141
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a6h0003qn2fk5rc2qjn"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a6o0004qn2fqafmenna",
+                        "text": "Building a multiplayer mobile game for iOS and Android in Unity/C#",
+                        "reducedEmbedding": [
+                            4.995302677154541,
+                            -1.723815202713013
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a6o0004qn2fqafmenna",
+                        "clo9a4a6o0004qn2fqafmenna",
+                        "clo9a4a6o0004qn2fqafmenna",
+                        "clo9a4a6o0004qn2fqafmenna",
+                        "clo9a4a6o0004qn2fqafmenna"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a6s0005qn2fxzf8i4c8",
+                        "text": "Complete re-design of client's exisitng board game companion app",
+                        "reducedEmbedding": [
+                            5.209112644195557,
+                            -2.249213218688965
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a6s0005qn2fxzf8i4c8",
+                        "clo9a4a6s0005qn2fxzf8i4c8"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a6w0006qn2fdb0csmw7",
+                        "text": "Learning how to integrate design patterns for a complex software project with multiplayer connectivity",
+                        "reducedEmbedding": [
+                            5.257961750030518,
+                            -1.689985275268555
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a6w0006qn2fdb0csmw7",
+                        "clo9a4a6w0006qn2fdb0csmw7",
+                        "clo9a4a6w0006qn2fdb0csmw7",
+                        "clo9a4a6w0006qn2fdb0csmw7",
+                        "clo9a4a6w0006qn2fdb0csmw7",
+                        "clo9a4a6w0006qn2fdb0csmw7",
+                        "clo9a4a6w0006qn2fdb0csmw7"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a710007qn2fy7pqv6gf",
+                        "text": "Experience building for iOS, Android, and WebGL platforms",
+                        "reducedEmbedding": [
+                            5.28549861907959,
+                            -2.057703971862793
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a710007qn2fy7pqv6gf",
+                        "clo9a4a710007qn2fy7pqv6gf",
+                        "clo9a4a710007qn2fy7pqv6gf",
+                        "clo9a4a710007qn2fy7pqv6gf",
+                        "clo9a4a710007qn2fy7pqv6gf"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a750008qn2f4rn80q0d",
+                        "text": "Collaborated with another engineer to create the back-end multiplayer network protocol",
+                        "reducedEmbedding": [
+                            5.391011238098145,
+                            -1.58379852771759
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a750008qn2f4rn80q0d",
+                        "clo9a4a750008qn2f4rn80q0d",
+                        "clo9a4a750008qn2f4rn80q0d",
+                        "clo9a4a750008qn2f4rn80q0d",
+                        "clo9a4a750008qn2f4rn80q0d",
+                        "clo9a4a750008qn2f4rn80q0d",
+                        "clo9a4a750008qn2f4rn80q0d"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloaygx2t0000qndutg4q27bh",
+                "cloaygx390001qnduimunt0d2",
+                "cloaygx3g0002qndu5nwwg4j3",
+                "cloaygx3y0003qnduxjybedmi",
+                "cloaygx4b0004qndu08xfuvpt",
+                "cloaygx4l0005qndutb4urj30",
+                "cloaygx4t0006qndulborp4c2",
+                "cloaygx510007qndufm2vx8zk"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4a7a0009qn2fj2b3j958",
+                "name": "Technology Manager",
+                "type": "Work",
+                "organizationId": "clo9a4a7a000aqn2f0w6bdrvz",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2023-03-01T00:00:00.000Z",
+                "endDate": null
+            },
+            "organization": {
+                "id": "clo9a4a7a000aqn2f0w6bdrvz",
+                "name": "Seattle NFT Museum",
+                "location": "Seattle, WA"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4a7g000bqn2f72de9gbt",
+                        "text": "Managing technology systems for a digitial art gallery specializing in web3 artwork",
+                        "reducedEmbedding": [
+                            6.147956371307373,
+                            -2.533213138580322
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a7g000bqn2f72de9gbt",
+                        "clo9a4a7g000bqn2f72de9gbt",
+                        "clo9a4a7g000bqn2f72de9gbt",
+                        "clo9a4a7g000bqn2f72de9gbt"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a7j000cqn2fn29n6xml",
+                        "text": "Integrating IOT control for displays, reducing turn-around time for new exhibits and daily setup time",
+                        "reducedEmbedding": [
+                            6.22490930557251,
+                            -2.207120895385742
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a7j000cqn2fn29n6xml"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a7n000dqn2fmctedc47",
+                        "text": "Built web application nftcast.app to dynamically display and coordinate content on 30+ smart TVs",
+                        "reducedEmbedding": [
+                            5.792329788208008,
+                            -2.14329195022583
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47",
+                        "clo9a4a7n000dqn2fmctedc47"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a7s000eqn2fxq3gwwwz",
+                        "text": "Reduced costs of the museum significantly by implementing custom software solution, providing greater control to our staff, curators and event organizers",
+                        "reducedEmbedding": [
+                            6.191031455993652,
+                            -2.478557348251343
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a7s000eqn2fxq3gwwwz",
+                        "clo9a4a7s000eqn2fxq3gwwwz",
+                        "clo9a4a7s000eqn2fxq3gwwwz",
+                        "clo9a4a7s000eqn2fxq3gwwwz"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a7w000fqn2fyvbbv2it",
+                        "text": "Automating media conversions of large video and image files, optimizing digital art for displays",
+                        "reducedEmbedding": [
+                            6.342947483062744,
+                            -2.388717174530029
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a7w000fqn2fyvbbv2it",
+                        "clo9a4a7w000fqn2fyvbbv2it",
+                        "clo9a4a7w000fqn2fyvbbv2it",
+                        "clo9a4a7w000fqn2fyvbbv2it",
+                        "clo9a4a7w000fqn2fyvbbv2it"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayh6i60008qnduggaxltue",
+                "cloayh6ie0009qndukzkl97f9",
+                "cloayh6il000aqndu3oz6b76q",
+                "cloayh6iu000bqndu3levxv2z",
+                "cloayh6j5000cqndulbfml71e"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4a80000gqn2fk5voedrw",
+                "name": "Data Engineer",
+                "type": "Work",
+                "organizationId": "clo9a4a80000hqn2fph8q1t20",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2022-10-01T00:00:00.000Z",
+                "endDate": "2023-05-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4a80000hqn2fph8q1t20",
+                "name": "Ride Share Network (RSN) LLC",
+                "location": "Seattle, WA"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4a85000iqn2fsqrvfh50",
+                        "text": "Data Engineer role at RSN LLC",
+                        "reducedEmbedding": [
+                            6.914649963378906,
+                            -3.310817718505859
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a85000iqn2fsqrvfh50"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a89000jqn2f4s14zeok",
+                        "text": "Building comprehensive BI dashboards in Sisense for data science team at VSCO, a social media and photo editing mobile application",
+                        "reducedEmbedding": [
+                            5.896459102630615,
+                            -2.772108316421509
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a89000jqn2f4s14zeok",
+                        "clo9a4a89000jqn2f4s14zeok",
+                        "clo9a4a89000jqn2f4s14zeok",
+                        "clo9a4a89000jqn2f4s14zeok",
+                        "clo9a4a89000jqn2f4s14zeok"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a8d000kqn2ftfjrbyse",
+                        "text": "Experience serving client’s needs through collaboration tools Jira and Confluence, learning business strategy & docs, fulfilling tickets",
+                        "reducedEmbedding": [
+                            6.280356407165527,
+                            -3.170120000839233
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a8d000kqn2ftfjrbyse",
+                        "clo9a4a8d000kqn2ftfjrbyse",
+                        "clo9a4a8d000kqn2ftfjrbyse",
+                        "clo9a4a8d000kqn2ftfjrbyse",
+                        "clo9a4a8d000kqn2ftfjrbyse"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayhipf000dqndunywb5r6h",
+                "cloayhipm000eqnduzlckhavo",
+                "cloayhips000fqndumqxev5h4",
+                "cloayhiq2000gqndusvbtegwt",
+                "cloayhiqd000hqndu6g4e29ni",
+                "cloayhiqp000iqnduhqgb7qub"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4a8h000lqn2fcppoqawm",
+                "name": "Solutions Architect",
+                "type": "Work",
+                "organizationId": "clo9a4a8h000mqn2fdj4t3rtc",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2022-03-01T00:00:00.000Z",
+                "endDate": "2022-08-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4a8h000mqn2fdj4t3rtc",
+                "name": "Soultice Solutions",
+                "location": "Seattle, WA"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4a8m000nqn2ft6z9zfn6",
+                        "text": "Part-time contract resolving database migration issues for client moving CRMs",
+                        "reducedEmbedding": [
+                            6.301264762878418,
+                            -3.798498630523682
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a8m000nqn2ft6z9zfn6",
+                        "clo9a4a8m000nqn2ft6z9zfn6",
+                        "clo9a4a8m000nqn2ft6z9zfn6",
+                        "clo9a4a8m000nqn2ft6z9zfn6",
+                        "clo9a4a8m000nqn2ft6z9zfn6",
+                        "clo9a4a8m000nqn2ft6z9zfn6"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a8q000oqn2fz7oqaydt",
+                        "text": "Resolved database merge conflicts for customer migrating CRM",
+                        "reducedEmbedding": [
+                            6.286766529083252,
+                            -3.905446529388428
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a8q000oqn2fz7oqaydt",
+                        "clo9a4a8q000oqn2fz7oqaydt",
+                        "clo9a4a8q000oqn2fz7oqaydt"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a8u000pqn2fb887o6i1",
+                        "text": "Automated task of generating financial statement PDF documents for contractor, building NodeJS tool & integrating with business database.",
+                        "reducedEmbedding": [
+                            5.844410419464111,
+                            -3.247569561004639
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a8u000pqn2fb887o6i1",
+                        "clo9a4a8u000pqn2fb887o6i1",
+                        "clo9a4a8u000pqn2fb887o6i1",
+                        "clo9a4a8u000pqn2fb887o6i1"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a8y000qqn2fdga14ane",
+                        "text": "Experience handling secure and sensitive data for clients with care",
+                        "reducedEmbedding": [
+                            6.527778148651123,
+                            -3.159160137176514
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a8y000qqn2fdga14ane",
+                        "clo9a4a8y000qqn2fdga14ane"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayhs16000jqnduim1x5s7s",
+                "cloayhs1c000kqndun3atp2eu",
+                "cloayhs1m000lqndumh5muemd",
+                "cloayhs1u000mqndu0vv7pk1c"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4a92000rqn2fo5z5f9uc",
+                "name": "E-Commerce Specialist",
+                "type": "Work",
+                "organizationId": "clo9a4a92000sqn2fdk0a2js3",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2022-04-01T00:00:00.000Z",
+                "endDate": "2022-08-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4a92000sqn2fdk0a2js3",
+                "name": "Patchwerks LLC",
+                "location": "Seattle, WA"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4a97000tqn2fshem29jl",
+                        "text": "Designed an improved ecommerce business website patchwerks.com",
+                        "reducedEmbedding": [
+                            5.462016105651855,
+                            -2.862000942230225
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a97000tqn2fshem29jl",
+                        "clo9a4a97000tqn2fshem29jl",
+                        "clo9a4a97000tqn2fshem29jl"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a9b000uqn2fro1o63mj",
+                        "text": "Automated website upkeep tasks - new product listings, social media updates, and inventory changes using a custom NodeJS application",
+                        "reducedEmbedding": [
+                            5.716278076171875,
+                            -2.932054281234741
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a9b000uqn2fro1o63mj",
+                        "clo9a4a9b000uqn2fro1o63mj",
+                        "clo9a4a9b000uqn2fro1o63mj",
+                        "clo9a4a9b000uqn2fro1o63mj",
+                        "clo9a4a9b000uqn2fro1o63mj"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a9f000vqn2f792cdjie",
+                        "text": "Gained experience building Shopify apps, learning Shopify admin API and Liquid templating language",
+                        "reducedEmbedding": [
+                            5.459974765777588,
+                            -2.814119100570679
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a9f000vqn2f792cdjie",
+                        "clo9a4a9f000vqn2f792cdjie",
+                        "clo9a4a9f000vqn2f792cdjie",
+                        "clo9a4a9f000vqn2f792cdjie",
+                        "clo9a4a9f000vqn2f792cdjie",
+                        "clo9a4a9f000vqn2f792cdjie"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a9j000wqn2f9tj8hvo0",
+                        "text": "Integrated 3rd party apps into company’s e-commerce platform",
+                        "reducedEmbedding": [
+                            5.603610992431641,
+                            -2.748494148254395
+                        ],
+                        "kmeansLabel": 1
+                    },
+                    "skillIds": [
+                        "clo9a4a9j000wqn2f9tj8hvo0",
+                        "clo9a4a9j000wqn2f9tj8hvo0"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayi1pa000nqnduyswhuhn8",
+                "cloayi1pg000oqndumi8id3ki",
+                "cloayi1pm000pqnduhbe83iqm",
+                "cloayi1pt000qqndu1f29vuey",
+                "cloayi1q0000rqnduuqunf0xc"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4a9n000xqn2fidn1ct8s",
+                "name": "FOH Audio Engineer (Part Time)",
+                "type": "Work",
+                "organizationId": "clo9a4a9n000yqn2fbq5rp6y3",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2021-03-01T00:00:00.000Z",
+                "endDate": "2022-01-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4a9n000yqn2fbq5rp6y3",
+                "name": "Funhouse & El Corazon",
+                "location": "Seattle, WA"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4a9s000zqn2fsrjp7g63",
+                        "text": "Part-time contract as FOH audio engineer and occasional lighting director for live music venue",
+                        "reducedEmbedding": [
+                            7.254072189331055,
+                            -1.77276885509491
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4a9s000zqn2fsrjp7g63",
+                        "clo9a4a9s000zqn2fsrjp7g63",
+                        "clo9a4a9s000zqn2fsrjp7g63"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4a9v0010qn2f32zicmyi",
+                        "text": "Mixing live performances, set/strike, coordinating with bands",
+                        "reducedEmbedding": [
+                            7.356635093688965,
+                            -1.432178378105164
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4a9v0010qn2f32zicmyi",
+                        "clo9a4a9v0010qn2f32zicmyi",
+                        "clo9a4a9v0010qn2f32zicmyi"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4aa00011qn2f9gn15p9n",
+                        "text": "Running house and monitor mixes with a Behringer X32 mixing console",
+                        "reducedEmbedding": [
+                            7.376022338867188,
+                            -1.391175508499146
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4aa00011qn2f9gn15p9n",
+                        "clo9a4aa00011qn2f9gn15p9n"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4aa60012qn2fo0ndnnfg",
+                        "text": "Running lights with a QuickQ10 lighting console",
+                        "reducedEmbedding": [
+                            7.277025699615479,
+                            -1.319003462791443
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4aa60012qn2fo0ndnnfg"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayibpt000sqnduoku15xjk",
+                "cloayibq5000tqndulq4lum7d",
+                "cloayibqc000uqndu8ol4u1x6",
+                "cloayibqk000vqndu45kuecks",
+                "cloayibqs000wqnduor69vpsw",
+                "cloayibr0000xqndus9lprhz4",
+                "cloayibr8000yqndunw8q4mvq"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4aaa0013qn2fpxhq2ohm",
+                "name": "Research Assistant",
+                "type": "Work",
+                "organizationId": "clo9a4aaa0014qn2fn199wvaz",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2019-09-01T00:00:00.000Z",
+                "endDate": "2021-05-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4aaa0014qn2fn199wvaz",
+                "name": "American University",
+                "location": "Washington, DC"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4aae0015qn2fuh4hxi0t",
+                        "text": "Audio technology and machine learning research assistant",
+                        "reducedEmbedding": [
+                            7.083408355712891,
+                            -2.195146322250366
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4aae0015qn2fuh4hxi0t",
+                        "clo9a4aae0015qn2fuh4hxi0t"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4aai0016qn2f4cnjuti0",
+                        "text": "Developed generative deep learning models for audio signal repair",
+                        "reducedEmbedding": [
+                            7.132233142852783,
+                            -2.201227188110352
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4aai0016qn2f4cnjuti0",
+                        "clo9a4aai0016qn2f4cnjuti0"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4aam0017qn2fe2b16aq0",
+                        "text": "Designed VR applications with novel methods of audio interactivity",
+                        "reducedEmbedding": [
+                            6.280643939971924,
+                            -1.615385890007019
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0",
+                        "clo9a4aam0017qn2fe2b16aq0"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4aaq0018qn2fyr5fh63i",
+                        "text": "Respresented the program at AES NYC, presenting VR demos",
+                        "reducedEmbedding": [
+                            6.325796127319336,
+                            -1.252395868301392
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4aaq0018qn2fyr5fh63i"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4aau0019qn2fkf4lcpk7",
+                        "text": "Researched and implemented audio signal processing techniques",
+                        "reducedEmbedding": [
+                            7.056475639343262,
+                            -2.072758913040161
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4aau0019qn2fkf4lcpk7"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4aaz001aqn2f66dngvw5",
+                        "text": "Assisted faculty and students with remote learning audio streaming solutions during the pandemic, deploying a Python software solution",
+                        "reducedEmbedding": [
+                            6.942983150482178,
+                            -2.238969802856445
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4aaz001aqn2f66dngvw5"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayirb5000zqnduqyrh8y3y",
+                "cloayirbg0010qnduzopec9og",
+                "cloayirbn0011qndurwvchmjh",
+                "cloayirbv0012qndu2sk094e2",
+                "cloayirc60013qnduvqvvp10c",
+                "cloayirci0014qnduyz0g1tax",
+                "cloayircp0015qnduoijxoh5t",
+                "cloayircw0016qndu4gmnwgk6",
+                "cloayird30017qnduh2rd17sq"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4ab3001bqn2fdbivcss0",
+                "name": "Unity Developer (MagicLeap AR Application)",
+                "type": "Work",
+                "organizationId": "clo9a4ab3001cqn2f2xtjelri",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2019-06-01T00:00:00.000Z",
+                "endDate": "2019-09-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4ab3001cqn2f2xtjelri",
+                "name": "American University IDEAS Lab",
+                "location": "Washington, DC"
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4abb001dqn2fewnjx1ag",
+                        "text": "Developed an AR virtual museum application for MagicLeap One",
+                        "reducedEmbedding": [
+                            5.98264741897583,
+                            -1.597900986671448
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4abb001dqn2fewnjx1ag",
+                        "clo9a4abb001dqn2fewnjx1ag",
+                        "clo9a4abb001dqn2fewnjx1ag"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4abf001eqn2feun6bs6f",
+                        "text": "Developed Magic Leap AR exhibit in collaboration with Peace Corps",
+                        "reducedEmbedding": [
+                            6.253804206848145,
+                            -1.227431893348694
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4abf001eqn2feun6bs6f"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4abk001fqn2fw1ygl6r2",
+                        "text": "Integrated volumetric scans of artifacts and interviews with Peace Corps volunteers",
+                        "reducedEmbedding": [
+                            6.561212062835693,
+                            -1.175988793373108
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4abk001fqn2fw1ygl6r2"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4abo001gqn2fulnzbhmo",
+                        "text": "Co-authored paper `AHMED` - (VRST 2019)",
+                        "reducedEmbedding": [
+                            6.286878108978271,
+                            -0.8907638192176819
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4abo001gqn2fulnzbhmo"
+                    ]
+                },
+                {
+                    "description": {
+                        "id": "clo9a4abs001hqn2fqdgnnxti",
+                        "text": "Implemented novel hand-tracking controls and spatial interface",
+                        "reducedEmbedding": [
+                            5.950140953063965,
+                            -1.47603976726532
+                        ],
+                        "kmeansLabel": 2
+                    },
+                    "skillIds": [
+                        "clo9a4abs001hqn2fqdgnnxti",
+                        "clo9a4abs001hqn2fqdgnnxti"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayj1p50018qndup09itni8",
+                "cloayj1pc0019qndu6ex9y4ud",
+                "cloayj1pi001aqnduiffd6sc2",
+                "cloayj1pn001bqndunnjfo83k",
+                "cloayj1pu001cqnduv0jcux82",
+                "cloayj1q2001dqndu163l9fnm"
+            ],
+            "contactIds": []
+        }
+    ],
+    "educationExperiences": [
+        {
+            "experience": {
+                "id": "clo9a4abx001iqn2fhdg9zh6i",
+                "name": "Audio Technology",
+                "type": "Education",
+                "organizationId": "clo9a4aaa0014qn2fn199wvaz",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2019-09-01T00:00:00.000Z",
+                "endDate": "2021-05-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4aaa0014qn2fn199wvaz",
+                "name": "American University",
+                "location": "Washington, DC"
+            },
+            "education": {
+                "id": "clo9a4abx001iqn2fhdg9zh6i",
+                "degree": "Audio Technology",
+                "degreeType": "MA",
+                "area": null,
+                "gpa": null,
+                "courses": [
+                    "Computer Vision",
+                    "Digital Instrument Design",
+                    "Audio Technology Capstone"
+                ]
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4ac4001kqn2fq82infs0",
+                        "text": "I was given a scholarship to continue my studies and research into XR at AU. I worked as research assistant under Professor William Brent, researching audio signal processing techniques and machine learning, and co-developing applications for low-latency audio streaming for remote learning during the pandemic. During this time, I dove deep into machine learning, neural networks, signal processing, and honed my skills in Python, C++, and C#.",
+                        "reducedEmbedding": [
+                            7.428064346313477,
+                            -2.237928867340088
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4ac4001kqn2fq82infs0",
+                        "clo9a4ac4001kqn2fq82infs0",
+                        "clo9a4ac4001kqn2fq82infs0",
+                        "clo9a4ac4001kqn2fq82infs0",
+                        "clo9a4ac4001kqn2fq82infs0"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayjbg5001eqndukwkfbne1",
+                "cloayjbge001fqndu3hlrp5i1",
+                "cloayjbgl001gqnduievegncu",
+                "cloayjbgr001hqnduui01921u",
+                "cloayjbgy001iqndu5v5ibycw"
+            ],
+            "contactIds": []
+        },
+        {
+            "experience": {
+                "id": "clo9a4ac9001lqn2faozndyzm",
+                "name": "Audio Production",
+                "type": "Education",
+                "organizationId": "clo9a4aaa0014qn2fn199wvaz",
+                "contactId": "clo9a4a5x0000qn2fst42bgkg",
+                "startDate": "2014-09-01T00:00:00.000Z",
+                "endDate": "2019-05-01T00:00:00.000Z"
+            },
+            "organization": {
+                "id": "clo9a4aaa0014qn2fn199wvaz",
+                "name": "American University",
+                "location": "Washington, DC"
+            },
+            "education": {
+                "id": "clo9a4ac9001lqn2faozndyzm",
+                "degree": "Audio Production",
+                "degreeType": "BA",
+                "area": null,
+                "gpa": null,
+                "courses": [
+                    "Deep Learning & Computer Vision",
+                    "Recording & Mixing I & II",
+                    "Sound Synthesis",
+                    "Cinematography",
+                    "Great Ideas in Mathematics"
+                ]
+            },
+            "descriptions": [
+                {
+                    "description": {
+                        "id": "clo9a4ace001nqn2f4a96pzyt",
+                        "text": "I got my Undergraduate Degree from AU in Audio Production, which I discovered to be a deep passion of mine after shifting around from Film and Political Science.",
+                        "reducedEmbedding": [
+                            7.750710010528564,
+                            -2.232021808624268
+                        ],
+                        "kmeansLabel": 0
+                    },
+                    "skillIds": [
+                        "clo9a4ace001nqn2f4a96pzyt",
+                        "clo9a4ace001nqn2f4a96pzyt",
+                        "clo9a4ace001nqn2f4a96pzyt"
+                    ]
+                }
+            ],
+            "skillIds": [
+                "cloayjfk3001jqnduw8dv452q",
+                "cloayjfkc001kqndujua5ongy",
+                "cloayjfkp001lqnduymoofxzh"
+            ],
+            "contactIds": []
+        }
+    ],
+    "skills": [
+        {
+            "id": "clo9b2h19000rqnrhqf25lptj",
+            "name": "AI",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "clo9b2kuk000tqnrhjrqa6ohc",
+            "name": "Tensorflow",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Framework",
+            "keywords": []
+        },
+        {
+            "id": "clo9b2otf000vqnrh4koy8w8b",
+            "name": "Pytorch",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Framework",
+            "keywords": []
+        },
+        {
+            "id": "clo9b46750013qnrhqps4pr5h",
+            "name": "DSP",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Audio Engineering",
+            "keywords": []
+        },
+        {
+            "id": "clo9b1mu5000hqnrhzgrw72fu",
+            "name": "Audio Engineering",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Audio Engineering",
+            "keywords": []
+        },
+        {
+            "id": "clo9b1rba000jqnrh9r1lfr5f",
+            "name": "Live Sound",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Audio Engineering",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx2t0000qndutg4q27bh",
+            "name": "Game Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx390001qnduimunt0d2",
+            "name": "Unity/C#",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx3g0002qndu5nwwg4j3",
+            "name": "App Redesign",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Design",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx3y0003qnduxjybedmi",
+            "name": "Design Patterns",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Software Architecture",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx4b0004qndu08xfuvpt",
+            "name": "iOS Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Platform",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx4l0005qndutb4urj30",
+            "name": "WebGL Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Platform",
+            "keywords": []
+        },
+        {
+            "id": "cloayhips000fqndumqxev5h4",
+            "name": "Collaboration",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Soft Skill",
+            "keywords": []
+        },
+        {
+            "id": "cloayhiq2000gqndusvbtegwt",
+            "name": "Jira",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Collaboration Tool",
+            "keywords": []
+        },
+        {
+            "id": "cloayhiqd000hqndu6g4e29ni",
+            "name": "Confluence",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Collaboration Tool",
+            "keywords": []
+        },
+        {
+            "id": "clo9b2ywa000xqnrhsf02xdhg",
+            "name": "GraphQL",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Web Development",
+            "keywords": []
+        },
+        {
+            "id": "clo9b36re000zqnrhblt1a4za",
+            "name": "Audio Mixing",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Media Production",
+            "keywords": []
+        },
+        {
+            "id": "clo9b3lq90011qnrh36s7x6v3",
+            "name": "E-commerce",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Web Development",
+            "keywords": []
+        },
+        {
+            "id": "cloayhiqp000iqnduhqgb7qub",
+            "name": "Business Strategy Understanding",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Business Skill",
+            "keywords": []
+        },
+        {
+            "id": "clo9b4h800015qnrh9lxzzd05",
+            "name": "AWS",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Cloud Computing",
+            "keywords": []
+        },
+        {
+            "id": "clo9b4mq20017qnrhi2mdvt30",
+            "name": "Google Cloud",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Cloud Computing",
+            "keywords": []
+        },
+        {
+            "id": "clo9b6wz20019qnrh2xzlhk8w",
+            "name": "Shopify",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "E-commerce",
+            "keywords": []
+        },
+        {
+            "id": "clo9b7kl3001bqnrh7kafbdep",
+            "name": "Web Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming",
+            "keywords": []
+        },
+        {
+            "id": "clo9b99wa001dqnrhdwlva4we",
+            "name": "Powershell",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "clo9b9jen001fqnrhk25a4qjj",
+            "name": "CRM",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Business Software",
+            "keywords": []
+        },
+        {
+            "id": "clo9b9xr4001hqnrhwtnx6ffn",
+            "name": "Data Engineering",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Data Science",
+            "keywords": []
+        },
+        {
+            "id": "clo9bae00001jqnrhbtpedecy",
+            "name": "Data Visualization",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Data Science",
+            "keywords": []
+        },
+        {
+            "id": "clo9bjnau001lqnrhcmxh114z",
+            "name": "Web3",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Web Development",
+            "keywords": []
+        },
+        {
+            "id": "clo9bjqy5001nqnrhu74nvjsi",
+            "name": "NFT",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Blockchain Technology",
+            "keywords": []
+        },
+        {
+            "id": "clo9bjx1j001pqnrho8u6aqip",
+            "name": "Entrepreneur",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Business",
+            "keywords": []
+        },
+        {
+            "id": "clo9bk71z001rqnrh2irb1usz",
+            "name": "A/V",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Media Production",
+            "keywords": []
+        },
+        {
+            "id": "clo9bla3b001tqnrhteki9y4b",
+            "name": "Full Stack",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming",
+            "keywords": []
+        },
+        {
+            "id": "clo9bllg9001vqnrhftlsibcq",
+            "name": "React",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Framework",
+            "keywords": []
+        },
+        {
+            "id": "clo9blp68001xqnrhbk8b5bfu",
+            "name": "Svelte",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Framework",
+            "keywords": []
+        },
+        {
+            "id": "clo9bmr8t001zqnrhij9tqmf4",
+            "name": "Automation",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "clo9br0eu0021qnrhbixpllz2",
+            "name": "XR",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "clo9ayft70001qnrh19evrsyt",
+            "name": "iOS development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Mobile Development",
+            "keywords": []
+        },
+        {
+            "id": "clo9ayp4i0003qnrh23i1kund",
+            "name": "Android Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Mobile Development",
+            "keywords": []
+        },
+        {
+            "id": "clo9b0dqb0005qnrh7ks1e53b",
+            "name": "Unity",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Game Development",
+            "keywords": []
+        },
+        {
+            "id": "clo9b0het0007qnrhgkiazqnc",
+            "name": "C#",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "clo9b13wn0009qnrhu6lgjly4",
+            "name": "Python",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "clo9b191n000bqnrho95ilm5o",
+            "name": "JavaScript",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "clo9b1czu000dqnrh4bskumgp",
+            "name": "TypeScript",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "clo9b1gck000fqnrhabfw97ub",
+            "name": "NodeJS",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Framework",
+            "keywords": []
+        },
+        {
+            "id": "cloayhs16000jqnduim1x5s7s",
+            "name": "Database Migration",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Database Management",
+            "keywords": []
+        },
+        {
+            "id": "cloayhs1c000kqndun3atp2eu",
+            "name": "Conflict Resolution",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Problem Solving",
+            "keywords": []
+        },
+        {
+            "id": "clo9b210r000lqnrhirfxfffo",
+            "name": "SQL",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "clo9b25v2000nqnrh6mn6iv1i",
+            "name": "Postgres",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Database",
+            "keywords": []
+        },
+        {
+            "id": "clo9b2d4p000pqnrho23ymw72",
+            "name": "Vector Database",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": false,
+            "category": "Database",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx4t0006qndulborp4c2",
+            "name": "Back-end Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming",
+            "keywords": []
+        },
+        {
+            "id": "cloaygx510007qndufm2vx8zk",
+            "name": "Network Protocol Design",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Networking",
+            "keywords": []
+        },
+        {
+            "id": "cloayh6i60008qnduggaxltue",
+            "name": "Technology Management",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Management",
+            "keywords": []
+        },
+        {
+            "id": "cloayh6ie0009qndukzkl97f9",
+            "name": "IOT Integration",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayh6il000aqndu3oz6b76q",
+            "name": "Web Application Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming",
+            "keywords": []
+        },
+        {
+            "id": "cloayh6iu000bqndu3levxv2z",
+            "name": "Cost Reduction",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Management",
+            "keywords": []
+        },
+        {
+            "id": "cloayh6j5000cqndulbfml71e",
+            "name": "Media Conversion",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayhipf000dqndunywb5r6h",
+            "name": "BI Dashboard Building",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Data Visualization",
+            "keywords": []
+        },
+        {
+            "id": "cloayhipm000eqnduzlckhavo",
+            "name": "Sisense",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "BI Tool",
+            "keywords": []
+        },
+        {
+            "id": "cloayhs1m000lqndumh5muemd",
+            "name": "Data Integration",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Database Management",
+            "keywords": []
+        },
+        {
+            "id": "cloayhs1u000mqndu0vv7pk1c",
+            "name": "Data Security",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Data Management",
+            "keywords": []
+        },
+        {
+            "id": "cloayi1pa000nqnduyswhuhn8",
+            "name": "Ecommerce Website Design",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Web Development",
+            "keywords": []
+        },
+        {
+            "id": "cloayi1pg000oqndumi8id3ki",
+            "name": "Shopify App Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Web Development",
+            "keywords": []
+        },
+        {
+            "id": "cloayi1pm000pqnduhbe83iqm",
+            "name": "Shopify Admin API",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "API",
+            "keywords": []
+        },
+        {
+            "id": "cloayi1pt000qqndu1f29vuey",
+            "name": "Liquid Templating Language",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "cloayi1q0000rqnduuqunf0xc",
+            "name": "Integration of 3rd Party Apps",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Web Development",
+            "keywords": []
+        },
+        {
+            "id": "cloayibpt000sqnduoku15xjk",
+            "name": "FOH Audio Engineering",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Audio Engineering",
+            "keywords": []
+        },
+        {
+            "id": "cloayibq5000tqndulq4lum7d",
+            "name": "Live Performance Mixing",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Audio Engineering",
+            "keywords": []
+        },
+        {
+            "id": "cloayibqc000uqndu8ol4u1x6",
+            "name": "Set/Strike Coordination",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Stage Management",
+            "keywords": []
+        },
+        {
+            "id": "cloayibqk000vqndu45kuecks",
+            "name": "Band Coordination",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Communication",
+            "keywords": []
+        },
+        {
+            "id": "cloayibqs000wqnduor69vpsw",
+            "name": "Behringer X32 Mixing Console Operation",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Audio Engineering",
+            "keywords": []
+        },
+        {
+            "id": "cloayibr0000xqndus9lprhz4",
+            "name": "Monitor Mixing",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Audio Engineering",
+            "keywords": []
+        },
+        {
+            "id": "cloayibr8000yqndunw8q4mvq",
+            "name": "QuickQ10 Lighting Console Operation",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Lighting Design",
+            "keywords": []
+        },
+        {
+            "id": "cloayirb5000zqnduqyrh8y3y",
+            "name": "Audio technology",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayirbg0010qnduzopec9og",
+            "name": "Machine learning",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayirbn0011qndurwvchmjh",
+            "name": "Deep learning",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayirbv0012qndu2sk094e2",
+            "name": "Audio signal repair",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayirc60013qnduvqvvp10c",
+            "name": "VR application design",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayirci0014qnduyz0g1tax",
+            "name": "Audio interactivity",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayircp0015qnduoijxoh5t",
+            "name": "Presentation skills",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Soft skills",
+            "keywords": []
+        },
+        {
+            "id": "cloayircw0016qndu4gmnwgk6",
+            "name": "Audio signal processing",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayird30017qnduh2rd17sq",
+            "name": "Remote learning solutions",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayj1p50018qndup09itni8",
+            "name": "Unity Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "cloayj1pc0019qndu6ex9y4ud",
+            "name": "AR Development",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayj1pi001aqnduiffd6sc2",
+            "name": "Integration of Volumetric Scans",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayj1pn001bqndunnjfo83k",
+            "name": "Writing",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Soft Skill",
+            "keywords": []
+        },
+        {
+            "id": "cloayj1pu001cqnduv0jcux82",
+            "name": "Hand-Tracking Controls Implementation",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayj1q2001dqndu163l9fnm",
+            "name": "Spatial Interface Implementation",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayjbg5001eqndukwkfbne1",
+            "name": "Audio Signal Processing",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayjbge001fqndu3hlrp5i1",
+            "name": "Machine Learning",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "cloayjbgl001gqnduievegncu",
+            "name": "Neural Networks",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayjbgr001hqnduui01921u",
+            "name": "Signal Processing",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayjbgy001iqndu5v5ibycw",
+            "name": "C++",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Programming Language",
+            "keywords": []
+        },
+        {
+            "id": "cloayjfk3001jqnduw8dv452q",
+            "name": "Audio Production",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Technology",
+            "keywords": []
+        },
+        {
+            "id": "cloayjfkc001kqndujua5ongy",
+            "name": "Film Knowledge",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Arts",
+            "keywords": []
+        },
+        {
+            "id": "cloayjfkp001lqnduymoofxzh",
+            "name": "Political Science Knowledge",
+            "startDate": null,
+            "contactId": "clo9a4a5x0000qn2fst42bgkg",
+            "descriptionId": null,
+            "isGenerated": true,
+            "category": "Social Sciences",
+            "keywords": []
+        }
+    ]
+}

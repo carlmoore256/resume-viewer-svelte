@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { Skill } from "../api";
+import type { Skill } from "../api-types";
 
 type ActionType = "hover" | "click" | "none";
 

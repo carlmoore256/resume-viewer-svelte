@@ -1,54 +1,20 @@
 import axios from "axios";
+import type { Experience, Contact, Description, Skill, ResumeData } from "./api-types";
 
 const baseUrl = "https://api.carlmoore.xyz:8080";
 
-export interface Description {
-    id: string;
-    kmeansLabel: number;
-    reducedEmbedding: number[];
-    text: string;
-    skillIds: string[];
-}
+export const getResumeData = async (forEmail: string): Promise<ResumeData> => {
+    const response = await axios.get(`${baseUrl}/resume`, {
+        params: {
+            email: forEmail,
+        },
+    });
+    return response.data;
+};
 
-export interface Skill {
-    id: string;
-    name: string;
-    startDate: string | null;
-    contactId: string;
-    descriptionId: string | null;
-    isGenerated: boolean;
-    category: string | null;
-    keywords: string[];
-}
-
-export interface Experience {
-    id: string;
-    name: string;
-    contactId: string;
-    contacts: any[];
-    descriptions: Description[];
-    startDate: string;
-    endDate?: string | null;
-    organization: {
-        name: string;
-        location: string;
-    };
-    skillIds: string[];
-}
-
-export interface Contact {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    title?: string;
-    phone?: string;
-    github?: string;
-    linkedin?: string;
-    website?: string;
-}
-
-export const getExperiences = async (forEmail: string): Promise<Experience[]> => {
+export const getExperiences = async (
+    forEmail: string
+): Promise<Experience[]> => {
     const response = await axios.get(`${baseUrl}/resume/experience`, {
         params: {
             contactEmail: forEmail,
@@ -122,7 +88,7 @@ export const addSkillToExperience = async (
         }
     );
     return response.data;
-}
+};
 
 export const createSkill = async (
     name: string,
@@ -133,14 +99,28 @@ export const createSkill = async (
         contactId,
     });
     return response.data;
-}
+};
 
 export const updateDescription = async (
     id: string,
     text: string
-): Promise<{status: string}> => {
+): Promise<{ status: string }> => {
     const response = await axios.put(`${baseUrl}/resume/description/${id}`, {
         text,
     });
+    return response.data;
+};
+
+export const login = async (
+    username: string,
+    password: string
+): Promise<{ status: "success"; contact: Contact }> => {
+    const response = await axios.post(`${baseUrl}/user/login`, {
+        username,
+        password,
+    });
+    if (response.data.status !== "success") {
+        throw new Error("Login failed");
+    }
     return response.data;
 };

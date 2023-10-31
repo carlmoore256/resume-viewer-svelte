@@ -1,6 +1,6 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
-    import type { Experience } from "../lib/api";
+    import type { Experience } from "../lib/Experience";
     import { skillStore } from "../lib/stores/skillStore";
     import SkillItem from "./SkillItem.svelte";
     import { styleToString } from "../lib/format";
@@ -23,7 +23,10 @@
     let selectedExperience: Experience | null = null;
 
     function onExperienceClicked(experience: Experience) {
-        if (selectedExperience !== null && selectedExperience.id == experience.id) {
+        if (
+            selectedExperience !== null &&
+            selectedExperience.id == experience.id
+        ) {
             selectedExperience = null;
             return;
         }

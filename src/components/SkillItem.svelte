@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Skill } from "../lib/api";
+    import type { Skill } from "../lib/api-types";
     import { styleToString } from "../lib/format";
     import { scale } from "svelte/transition";
 

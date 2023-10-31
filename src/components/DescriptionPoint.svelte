@@ -1,7 +1,7 @@
 <script lang="ts">
     import * as d3 from "d3";
     import type { ResumeDataset } from "../lib/ResumeDataset";
-    import type { Description } from "../lib/api";
+    import type { Description } from "../lib/api-types";
     import type { DescriptionPointOptions } from "../lib/types/chart-types";
     import { fly } from "svelte/transition";
 

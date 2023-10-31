@@ -1,11 +1,13 @@
 <script lang="ts">
     import Resume from "./components/resume/Resume.svelte";
-    import type { ResumeData } from "./lib/resume-types";
+    // import type { _ResumeData } from "./lib/resume-types";
+    import type { ResumeData } from "./lib/api-types";
     import { isMapShowing } from "./lib/stores/applicationStateStores";
 
     import { onMount } from "svelte";
     import DescriptionMapPage from "./pages/DescriptionMapPage.svelte";
     import Notifications from "./components/notifications/Notifications.svelte";
+    import { getResumeData } from "./lib/api";
 
     let resumeData: ResumeData;
 
@@ -13,11 +15,14 @@
         console.log("isMapShowing", $isMapShowing);
     }
 
-    onMount(() => {
-        import("./data/resume-carl-moore.json").then((data) => {
-            resumeData = data as ResumeData;
-            console.log("loaded resume data", resumeData);
-        });
+    onMount(async () => {
+        // import("./data/resume-data-carlmoore256.json").then((data) => {
+        //     resumeData = data as ResumeData;
+        //     console.log("loaded resume data", resumeData);
+        // });
+
+        resumeData = await getResumeData("carlmoore256@gmail.com");
+        console.log("loaded resume data", resumeData);
     });
 </script>
 
@@ -29,7 +34,6 @@
         <p>Loading...</p>
     {:else if !$isMapShowing}
         <Resume
-            contactEmail={import.meta.env.VITE_MY_CONTACT_EMAIL}
             {resumeData}
         />
     {:else}

@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { getExperiences } from "../lib/api";
-    impimport type { Experience, Description } from "../lib/Experience";
- import { centerOfMass, radius, distance } from "../lib/points";
+    import * as d3 from "d3";
+    import type { Experience } from "../lib/api-types";
+    import { centerOfMass, radius } from "../lib/points";
     import { experienceStore } from "../lib/stores/experienceStore";
     import { storeForId } from "../lib/stores/writableDataStore";
-    import * as d3 from "d3";
 
     export let isActivated = false;
     let svg: SVGElement;

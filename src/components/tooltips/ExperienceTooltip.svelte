@@ -1,12 +1,12 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
+    import type { Experience } from "../../lib/api-types";
     import type { ResumeDataset } from "../../lib/ResumeDataset";
-    import type { Experience } from "../../lib/api";
+    import { hexToRgb, rgbColorToHex } from "../../lib/colors";
     import type {
         ExperienceTooltipOptions,
         TooltipState,
     } from "../../lib/types/chart-types";
-    import { hexToRgb, rgbColorToHex } from "../../lib/colors";
 
     export let options: ExperienceTooltipOptions;
     export let state: TooltipState;
