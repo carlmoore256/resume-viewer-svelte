@@ -1,19 +1,13 @@
 <script lang="ts">
-    import type { _ResumeData } from "../../lib/resume-types";
     import type { ResumeData } from "../../lib/api-types";
     import Section from "../Section.svelte";
     import SubjectHeader from "../SubjectHeader.svelte";
     import Education from "./Education.svelte";
     import Experience from "./Experience.svelte";
     import Summary from "./Summary.svelte";
-    import { currentContactStore } from "../../lib/stores/currentContactStore";
-    import { experienceStore } from "../../lib/stores/experienceStore";
-    import { skillStore } from "../../lib/stores/skillStore";
-    import SkillSection from "../sections/SkillSection.svelte";
-    import LoadingPlaceholder from "../utilities/LoadingPlaceholder.svelte";
-    import { onMount } from "svelte";
     import { getCategorySkills } from "../../lib/stores/skillStore";
     import type { CategorySkills } from "../../lib/types/derived-types";
+    import SkillSection from "../sections/SkillSection.svelte";
 
     export let resumeData: ResumeData;
 
@@ -24,26 +18,8 @@
     // - automatically generate a cover letter
     // - generate descriptions of each experience
 
-    let categorySkills: CategorySkills[] = [];
-
-    skillStore.subscribe((data) => {
-        categorySkills = getCategorySkills(data);
-    });
-
-    // onMount(async () => {
-    //     await currentContactStore.fetchData(contactEmail);
-    //     if ($currentContactStore) {
-    //         await experienceStore.fetchData(contactEmail);
-    //         await skillStore.fetchData(contactEmail);
-    //     }
-    // });
-
-    // $: {
-    //     console.log("$currentContactStore", $currentContactStore);
-    //     if ($currentContactStore) {
-    //         skillStore.fetchData($currentContactStore.id);
-    //     }
-    // }
+    let categorySkills: CategorySkills[] = getCategorySkills(resumeData.skills);
+    let experiences = resumeData.experiences.filter((e) => e.type === "Work");
 </script>
 
 <div class="justify-center w-full px-4 text-stone-100">
@@ -61,21 +37,19 @@
             </Section>
         {/if}
 
-        {#if resumeData.educationExperiences}
+        <Section title="Experience">
+            {#each experiences as experience}
+                <Experience {experience} />
+            {/each}
+        </Section>
+
+        {#if resumeData.educations.length > 0}
             <Section title="Education">
-                {#each resumeData.educationExperiences as educationExperience}
-                    <Education {educationExperience} />
+                {#each resumeData.educations as education}
+                    <Education {education} />
                 {/each}
             </Section>
         {/if}
-
-        <Section title="Experience">
-            {#if resumeData.workExperiences}
-                {#each resumeData.workExperiences as workExperience}
-                    <Experience {workExperience} />
-                {/each}
-            {/if}
-        </Section>
 
         <Section title="Skills">
             <SkillSection {categorySkills} />

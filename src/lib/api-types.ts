@@ -61,25 +61,55 @@ export type Education = {
     courses: string[];
 };
 
-export interface WorkExperience {
-    experience: Experience;
-    organization: Organization | null;
-    descriptions: { description: Description; skillIds: string[] }[];
+
+export interface ExperienceJoin {
+    experienceId: string;
+    organizationId: string | null;
+    descriptionIds: string[];
     skillIds: string[];
     contactIds: string[];
 }
 
-export interface EducationExperience
-    extends Omit<WorkExperience, "organization"> {
-    organization: Organization;
-    education: Education;
+export interface DescriptionJoin {
+    descriptionId: string;
+    skillIds: string[];
 }
 
 export interface ResumeData {
     subject: Contact;
-    summary?: Description[]; // get this as a contact description
-    workExperiences?: WorkExperience[]; // experiences where type is work or internship
-    educationExperiences?: EducationExperience[]; // experiences where type is project
-    skills?: Skill[];
-    contacts?: Contact[];
+    summary: Description[]; // get this as a contact description
+    experiences: Experience[]; // experiences where type is work or internship\
+    descriptions: Description[];
+    educations: Education[];
+    organizations: Organization[];
+    skills: Skill[];
+    contacts: Contact[];
+    joins: {
+        experiences: ExperienceJoin[];
+        descriptions: DescriptionJoin[];
+    };
 }
+
+
+
+// export interface ResumeExperience {
+//     experience: Experience;
+//     organization: Organization | null;
+//     descriptions: { description: Description; skillIds: string[] }[];
+//     skillIds: string[];
+//     contactIds: string[];
+// }
+
+// export interface EducationExperience
+//     extends Omit<ResumeExperience, "organization"> {
+//     organization: Organization;
+//     education: Education;
+// }
+
+// export interface ResumeData {
+//     subject: Contact;
+//     summary?: Description[]; // get this as a contact description
+//     experiences?: ResumeExperience[];
+//     skills?: Skill[];
+//     contacts?: Contact[];
+// }

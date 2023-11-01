@@ -1,11 +1,32 @@
 <script lang="ts">
     import { scale } from "svelte/transition";
-    import type { WorkExperience } from "../../lib/api-types";
+    // import type { ResumeExperience } from "../../lib/api-types";
+    import type { Experience, ExperienceJoin } from "../../lib/api-types";
     import { readableDate } from "../../lib/format";
+    import {
+        experienceJoinStore,
+        organizationStore,
+        descriptionStore,
+    } from "../../lib/stores/resumeDataStore";
 
-    export let workExperience: WorkExperience;
+    export let experience: Experience;
 
-    const { experience, organization, descriptions } = workExperience;
+    let joins = $experienceJoinStore.find(
+        (data) => data.experienceId === experience.id
+    ) as ExperienceJoin;
+
+    $: organization = $organizationStore.find(
+        (o) => o.id === joins.organizationId
+    );
+
+    const getDescriptions = () => {
+        const descriptions = $descriptionStore.filter((d) =>
+            joins.descriptionIds.includes(d.id)
+        );
+        return descriptions;
+    };
+
+    $: descriptions = getDescriptions();
 
     let showingDetails = true;
     let detailsStyle = "";
@@ -41,8 +62,8 @@
                 transition:scale={{ start: 0.95, duration: 200 }}
             >
                 {#each descriptions as description, index}
-                    <li id={`bullet_${description.description.id}`}>
-                        {description.description.text}
+                    <li id={`bullet_${description.id}`}>
+                        {description.text}
                     </li>
                 {/each}
             </ul>

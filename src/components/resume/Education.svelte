@@ -1,15 +1,36 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
-    import type { EducationExperience } from "../../lib/api-types";
+    import type { Education, Organization, Experience, Description, ExperienceJoin } from "../../lib/api-types";
 
-    import type { _Education } from "../../lib/resume-types";
+
     import ListBox from "../ListBox.svelte";
-
-    export let educationExperience: EducationExperience;
+    import { readableDate } from "../../lib/format";
+    import {
+        organizationStore,
+        experienceStore,
+        experienceJoinStore,
+        descriptionStore,
+    } from "../../lib/stores/resumeDataStore";
+    export let education: Education;
     export let courseDescription: string = "Notable courses";
     export let activitiesDescription: string = "Activities";
 
-    const { education, organization, experience, descriptions } = educationExperience;
+    // we have to find the experience store where educationId = experience.id
+    $: experience = $experienceStore.find(
+        (e) => e.id === education.id
+    ) as Experience;
+
+    $: joins = $experienceJoinStore.find(
+        (data) => data.experienceId === education.id
+    ) as ExperienceJoin;
+
+    $: descriptions = $descriptionStore.filter((d) =>
+        joins.descriptionIds.includes(d.id)
+    );
+
+    $: organization = $organizationStore.find(
+        (o) => o.id === experience.organizationId
+    ) as Organization;
 
     let isExpanded = false;
 
@@ -22,7 +43,7 @@
     <button
         on:click={toggleExpanded}
         class="w-full transition-all duration-300 hover:p-2 text-left rounded-md focus:outline-none hover:bg-gray-800"
-        >
+    >
         <div class="text-white font-bold text-lg">
             <h3>{education.degree} ({education.degreeType})</h3>
         </div>
@@ -32,16 +53,18 @@
                 <strong>{organization.name}</strong> | {organization.location}
             </span>
             <span class="text-gray-400 mt-1 text-sm">
-                {experience.startDate} - {experience.endDate || "Present"}
+                {readableDate(experience.startDate)} - {readableDate(
+                    experience.endDate || ""
+                ) || "Present"}
             </span>
         </div>
     </button>
 
     {#if isExpanded}
-        <div transition:slide={{duration: 300}}>
+        <div transition:slide={{ duration: 300 }}>
             {#each descriptions as description}
                 <div class="mt-2.5 text-gray-300 text-sm">
-                    {description.description.text}
+                    {description.text}
                 </div>
             {/each}
 

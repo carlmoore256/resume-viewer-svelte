@@ -29,3 +29,4 @@ dist-ssr
 
 public/2020-election-states.csv
 .env
+pkg/

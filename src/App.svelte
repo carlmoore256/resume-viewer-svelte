@@ -9,11 +9,16 @@
     import Notifications from "./components/notifications/Notifications.svelte";
     import { getResumeData } from "./lib/api";
 
-    let resumeData: ResumeData;
+    import { skillStore } from "./lib/stores/skillStore";
+    import { experienceStore } from "./lib/stores/experienceStore";
+    import { currentContactStore } from "./lib/stores/currentContactStore";
+    import { resumeDataStore, descriptionStore, organizationStore } from "./lib/stores/resumeDataStore";
 
-    $: {
-        console.log("isMapShowing", $isMapShowing);
-    }
+    // let resumeData: ResumeData;
+
+    // $: {
+    //     console.log("isMapShowing", $isMapShowing);
+    // }
 
     onMount(async () => {
         // import("./data/resume-data-carlmoore256.json").then((data) => {
@@ -21,20 +26,32 @@
         //     console.log("loaded resume data", resumeData);
         // });
 
-        resumeData = await getResumeData("carlmoore256@gmail.com");
-        console.log("loaded resume data", resumeData);
+        resumeDataStore.fetch("carlmoore256@gmail.com");
+
+        // resumeData = await getResumeData("carlmoore256@gmail.com");
+        // console.log("loaded resume data", resumeData);
+
+        // skillStore.set(resumeData.skills);
+        // experienceStore.set(resumeData.experiences)
+        // now set the stores
     });
+
+
+    $: console.log($resumeDataStore);
+
+    $: console.log("descriptionStore store", $descriptionStore);
+    $: console.log("organization store", $organizationStore);
 </script>
 
 
 <Notifications/>
 
 <div>
-    {#if !resumeData}
+    {#if !$resumeDataStore}
         <p>Loading...</p>
     {:else if !$isMapShowing}
         <Resume
-            {resumeData}
+            resumeData={$resumeDataStore}
         />
     {:else}
         <DescriptionMapPage

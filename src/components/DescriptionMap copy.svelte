@@ -2,7 +2,8 @@
     import * as d3 from "d3";
     import type { Experience } from "../lib/api";
     import { centerOfMass, radius } from "../lib/points";
-    import { experienceStore } from "../lib/stores/experienceStore";
+    // import { experienceStore } from "../lib/stores/experienceStore";
+    import { experienceStore } from "../lib/stores/resumeDataStore";
     import type {
         DescriptionPoint,
         ExperienceCenter,
