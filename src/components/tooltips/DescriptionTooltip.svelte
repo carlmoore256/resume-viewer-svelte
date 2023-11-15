@@ -30,9 +30,11 @@
     let editMode = false;
     let isLoading = false;
 
-    $: skills = description.skillIds
-        .map((id) => $skillStore.find((s) => s.id === id))
-        .filter((s) => s !== undefined) as Skill[];
+    $: skills = dataset.skillsForDescription(description);
+
+    // $: skills = description.skillIds
+    //     .map((id) => $skillStore.find((s) => s.id === id))
+    //     .filter((s) => s !== undefined) as Skill[];
 
     async function onClickNewSkill(skill: Skill) {
         const res = await addSkillToDescription(
@@ -40,8 +42,8 @@
             skill.id
         );
         if (res) {
-            description.skillIds.push(skill.id);
-            description = description;
+            // description.skillIds.push(skill.id);
+            // description = description;
         }
     }
 
@@ -52,10 +54,10 @@
         );
 
         if (res) {
-            description.skillIds = description.skillIds.filter(
-                (id) => id !== skill.id
-            );
-            description = description;
+            // description.skillIds = description.skillIds.filter(
+            //     (id) => id !== skill.id
+            // );
+            // description = description;
         }
     }
 

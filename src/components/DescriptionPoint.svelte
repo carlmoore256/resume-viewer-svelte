@@ -4,6 +4,7 @@
     import type { Description } from "../lib/api-types";
     import type { DescriptionPointOptions } from "../lib/types/chart-types";
     import { fly } from "svelte/transition";
+    import { get } from "svelte/store";
 
     export let description: Description;
     export let dataset: ResumeDataset;

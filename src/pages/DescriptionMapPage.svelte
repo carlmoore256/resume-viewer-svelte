@@ -5,6 +5,7 @@
     import { experienceStore } from "../lib/stores/experienceStore";
     import { skillStore } from "../lib/stores/skillStore";
     import { currentContactStore } from "../lib/stores/currentContactStore";
+    import { resumeDataStore } from "../lib/stores/resumeDataStore";
 
     export let width = window.innerWidth;
     export let height = window.innerHeight;
@@ -27,7 +28,6 @@
     <DescriptionMap
         {width}
         {height}
-        experiences={$experienceStore}
         options={{
             descriptionPointOptions: {
                 nodeSize: 8,

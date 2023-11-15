@@ -32,6 +32,12 @@ export type Experience = {
     contactId: string;
     startDate: string;
     endDate: string | null;
+    joins: {
+        organizationId: string | null;
+        descriptionIds: string[];
+        skillIds: string[];
+        contactIds: string[];
+    }
 };
 
 export type Contact = {

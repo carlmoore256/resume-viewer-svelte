@@ -1,17 +1,18 @@
 import { extent, scaleOrdinal, schemeCategory10 } from "d3";
-import { scaleLinear } from "d3-scale";
 import type { ScaleLinear, ScaleOrdinal } from "d3-scale";
-import type { Description, Experience } from "./api-types";
-import type { DescriptionPoint } from "./types/chart-types";
-import { radius, raidusCoords, centerOfMass, coordsToPonts } from "./points";
+import { scaleLinear } from "d3-scale";
+import type { Description, Experience, ResumeData, Skill } from "./api-types";
+import { centerOfMass, coordsToPonts, raidusCoords } from "./points";
 
 export class ResumeDataset {
     private _xScale: ScaleLinear<number, number>;
     private _yScale: ScaleLinear<number, number>;
     private _colorScale: ScaleOrdinal<string, string>;
 
-    private _experiences: Experience[];
-    private _descriptions: Description[];
+    private _resumeData: ResumeData;
+
+    // private _experiences: Experience[];
+    // private _descriptions: Description[];
 
     private _descriptionPositions: Map<Description, { x: number; y: number }>;
 
@@ -19,7 +20,7 @@ export class ResumeDataset {
     private _descriptionPositionY = (d: Description) => d.reducedEmbedding[1];
 
     constructor(
-        experiences: Experience[],
+        resumeData: ResumeData,
         rangeX: [number, number] = [0, 1],
         rangeY: [number, number] = [0, 1],
         descriptionPositionX?: (d: Description) => number,
@@ -27,8 +28,8 @@ export class ResumeDataset {
         colorRange: ReadonlyArray<string> = schemeCategory10
     ) {
         console.log(`Creating ResumeDataset`);
-        this._experiences = experiences;
-        this._descriptions = experiences.flatMap((e) => e.descriptions);
+        this._resumeData = resumeData;
+        // this._descriptions = experiences.flatMap((e) => e.descriptions);
 
         this._descriptionPositionX =
             descriptionPositionX || this._descriptionPositionX;
@@ -36,7 +37,7 @@ export class ResumeDataset {
             descriptionPositionY || this._descriptionPositionY;
 
         this._descriptionPositions = new Map(
-            this._descriptions.map((d) => [
+            this._resumeData.descriptions.map((d) => [
                 d,
                 {
                     x: this._descriptionPositionX(d),
@@ -46,16 +47,16 @@ export class ResumeDataset {
         );
 
         const [minX, maxX] = extent(
-            this._descriptions.map((d) => this._descriptionPositions.get(d)!.x)
+            this._resumeData.descriptions.map((d) => this._descriptionPositions.get(d)!.x)
         );
         const [minY, maxY] = extent(
-            this._descriptions.map((d) => this._descriptionPositions.get(d)!.y)
+            this._resumeData.descriptions.map((d) => this._descriptionPositions.get(d)!.y)
         );
 
         this._xScale = scaleLinear().domain([minX!, maxX!]).range(rangeX);
         this._yScale = scaleLinear().domain([minY!, maxY!]).range(rangeY);
 
-        const experienceNames = experiences.map((e) => e.name);
+        const experienceNames = this._resumeData.experiences.map((e) => e.name);
         this._colorScale = scaleOrdinal<string>()
             .domain(experienceNames)
             .range(colorRange);
@@ -75,11 +76,11 @@ export class ResumeDataset {
     }
 
     public get experiences(): Experience[] {
-        return this._experiences;
+        return this._resumeData.experiences;
     }
 
     public get descriptions(): Description[] {
-        return this._descriptions;
+        return this._resumeData.descriptions;
     }
 
     // public descriptionCluster(descriptions: Description[]): {
@@ -97,19 +98,46 @@ export class ResumeDataset {
     //     };
     // }
 
+    public descriptionsForExperience(experience: Experience): Description[] {
+        return this._resumeData.joins.experiences
+            .find(e => e.experienceId === experience.id)!
+            .descriptionIds.map(dId => this._resumeData.descriptions.find(d => d.id === dId)!);
+    }
+
+    public skillsForExperience(experience: Experience): Skill[] {
+        return this._resumeData.joins.experiences
+            .find(e => e.experienceId === experience.id)!
+            .skillIds.map(sId => this._resumeData.skills.find(s => s.id === sId)!);
+    }
+
+    public skillsForDescription(description: Description): Skill[] {
+        return this._resumeData.joins.descriptions
+            .find(d => d.descriptionId === description.id)!
+            .skillIds.map(sId => this._resumeData.skills.find(s => s.id === sId)!);
+    }
+
+    public experienceForDescription(description: Description): Experience {
+        return this._resumeData.experiences
+            .find(e => e.id === this._resumeData.joins.experiences
+                .find(j => j.descriptionIds.includes(description.id))!.experienceId)!;
+    }
+
+
     public experiencePosition(experience: Experience) {
-        const { descriptions } = experience;
+        // const { descriptions } = experience;
+
+        const descriptions = this.descriptionsForExperience(experience);
         return centerOfMass(
             coordsToPonts(descriptions.map((d) => this.descriptionPosition(d)))
         );
     }
 
     public experienceRadius(experience: Experience) {
-        const { descriptions } = experience;
-        let r =raidusCoords(
+        const descriptions = this.descriptionsForExperience(experience);
+        let r = raidusCoords(
             descriptions.map((d) => this.descriptionPosition(d))
         );
-        if (!isFinite(r)) r = 0; 
+        if (!isFinite(r)) r = 0;
         return r;
     }
 
@@ -118,7 +146,13 @@ export class ResumeDataset {
     }
 
     public descriptionsWithSkill(skillId: string): Description[] {
-        return this._descriptions.filter((d) => d.skillIds.includes(skillId));
+        const descriptions: Description[] = [];
+        for (const join of this._resumeData.joins.descriptions) {
+            if (join.skillIds.includes(skillId)) {
+                descriptions.push(this._resumeData.descriptions.find(d => d.id === join.descriptionId)!);
+            }
+        }
+        return descriptions;
     }
 
     public lineBetweenDescriptions(
@@ -137,16 +171,13 @@ export class ResumeDataset {
     }
 
     public descriptionColor(description: Description): string {
-        const experience = this._experiences.find((e) =>
-            e.descriptions.includes(description)
-        );
+        const experience = this.experienceForDescription(description);
         return this._colorScale(experience!.name);
     }
 
     public descriptionExperience(description: Description): Experience {
-        return this._experiences.find((e) =>
-            e.descriptions.includes(description)
-        )!;
+        const { experienceId } = this._resumeData.joins.experiences.find(e => e.descriptionIds.includes(description.id))!;
+        return this._resumeData.experiences.find(e => e.id === experienceId)!;
     }
 
     public descriptionPosition(description: Description): {

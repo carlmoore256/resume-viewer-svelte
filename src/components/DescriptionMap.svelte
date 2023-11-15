@@ -16,14 +16,18 @@
     import { clickOutside } from "../lib/events/click-outside";
     import { isMapShowing } from "../lib/stores/applicationStateStores";
     import { fade } from "svelte/transition";
+    import {
+        resumeDataStore,
+        descriptionStore,
+        experienceStore,
+    } from "../lib/stores/resumeDataStore";
 
     export let options: DescriptionMapOptions;
-    export let experiences: Experience[];
     export let width: number;
     export let height: number;
 
     $: dataset = new ResumeDataset(
-        experiences,
+        $resumeDataStore,
         [options.margin.left, width - options.margin.right],
         [options.margin.top, height - options.margin.bottom],
         (d) => d.reducedEmbedding[0],
@@ -90,8 +94,14 @@
     });
 
     function drawLinesToRelatedSkills(description: Description) {
-        for (const skillId of description.skillIds) {
-            const otherNodes = dataset.descriptionsWithSkill(skillId);
+        const skills = dataset.skillsForDescription(description);
+
+        if (skills === undefined || skills.length === 0) return;
+
+        console.log("skills", skills);
+
+        for (const { id } of skills) {
+            const otherNodes = dataset.descriptionsWithSkill(id);
             const lineData = otherNodes.map((other) =>
                 dataset.lineBetweenDescriptions(description, other)
             );
@@ -168,28 +178,28 @@
     on:clickOutside={handleClickOutside}
     transition:fade={{ duration: 300 }}
 >
-    {#each dataset.descriptions as description}
-        <DescriptionTooltip
-            options={options.descriptionTooltipOptions}
-            state={tooltipStates[description.id]}
-            {description}
+    {#each $experienceStore as experience}
+        <ExperienceTooltip
+            {experience}
             {dataset}
+            options={options.experienceTooltipOptions}
+            state={tooltipStates[experience.id]}
         />
     {/each}
 
-    {#each dataset.experiences as experience}
-        <ExperienceTooltip
-            options={options.experienceTooltipOptions}
-            state={tooltipStates[experience.id]}
-            {experience}
+    {#each $descriptionStore as description}
+        <DescriptionTooltip
+            {description}
             {dataset}
+            options={options.descriptionTooltipOptions}
+            state={tooltipStates[description.id]}
         />
     {/each}
 
     <svg {width} {height}>
         <g id="lines" />
 
-        {#each dataset.experiences as experience}
+        {#each $experienceStore as experience}
             <ExperiencePoint
                 {experience}
                 {dataset}
@@ -200,7 +210,7 @@
             />
         {/each}
 
-        {#each dataset.descriptions as description}
+        {#each $descriptionStore as description}
             <DescriptionPoint
                 {description}
                 {dataset}
